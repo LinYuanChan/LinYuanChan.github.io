@@ -77,3 +77,26 @@ a.article-title {
         font-size: 13px;
     }
 }
+
+
+/*修改颜色值*/
+/*最近文章卡片*/
+#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
+    background:#FFFFFB;
+
+  }
+  
+  #aside-content .card-widget {
+    background: #FFFFFB
+  }
+  
+  #post,#page,#archive,#tag,#category{
+  background: #FFFFFB
+  }
+  
+  /*修改代码下拉箭头颜色  */
+  .fa-angle-double-down:before {
+      color: white;
+  }
+
+
