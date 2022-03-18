@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 #site-title {
     font-family: 'Poppins', sans-serif;
-    color: #1d2225;
+    color: #000;
 }
 
 a.article-title {
@@ -103,4 +103,5 @@ a.article-title {
 #sidebar-menus {
     background: #FFFFFB;
 }
+
 
