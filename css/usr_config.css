@@ -104,4 +104,6 @@ a.article-title {
     background: #FFFFFB;
 }
 
-
+#recent-posts >.recent-post-item {
+    height: 18em;
+}
