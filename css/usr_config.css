@@ -55,7 +55,13 @@ a.article-title {
 
 /* 顶部导航栏 */
 #nav a {
-    color: #ffffff;
+    color: #240303;
+    text-shadow: 0.1rem 0.1rem 0.2rem rgb(4 4 4 / 76%);
+}
+
+#page-header #site-title, #page-header #site-subtitle, #page-header #scroll-down .scroll-down-effects {
+    text-shadow: 0.1rem 0.1rem 0.2rem rgb(4 4 4 / 76%);
+    line-height: 1.6;
 }
 
 /*页脚a标签字体颜色*/
@@ -109,5 +115,10 @@ a.article-title {
 }
 
 p {
-    font-size: 17px;
+    font-size: 16px;
+}
+
+#page-header #site-title {
+    margin: 0;
+    color: #ededed;
 }
