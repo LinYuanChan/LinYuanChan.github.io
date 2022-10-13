@@ -122,3 +122,20 @@ p {
     margin: 0;
     color: #ededed;
 }
+
+.avatar-img img {
+    height: 100%;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.55, 0.99);
+    transition-delay: 0s;
+    object-fit: cover;
+}
+
+
+
