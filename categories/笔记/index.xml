@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>笔记 on WitchElaina&#39;s Blog</title>
+        <link>https://withcelaina.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+        <description>Recent content in 笔记 on WitchElaina&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language><atom:link href="https://withcelaina.github.io/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>概率论与数理统计自学整理汇总</title>
+        <link>https://withcelaina.github.io/posts/probability_theory_and_math_statistics/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://withcelaina.github.io/posts/probability_theory_and_math_statistics/</guid>
+        <description>&lt;h1 id=&#34;概率论&#34;&gt;概率论&lt;/h1&gt;
+&lt;h2 id=&#34;随机事件与概率&#34;&gt;随机事件与概率&lt;/h2&gt;
+&lt;h3 id=&#34;随机事件&#34;&gt;随机事件&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;随机试验(Experiment)&lt;/strong&gt;	满足&lt;strong&gt;可重复进行&lt;/strong&gt;, &lt;strong&gt;结果明确且不止一个&lt;/strong&gt;, &lt;strong&gt;结果无法预测&lt;/strong&gt;的&lt;strong&gt;试验&lt;/strong&gt;, 记作$E$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;样本空间&lt;/strong&gt;	随机试验所有结果的集合, 记作$S$或$\varOmega$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;样本点&lt;/strong&gt;	样本空间中的元素, 即随机试验的每一个结果, 记作$e$或$\omega$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;随机事件&lt;/strong&gt;	随机试验样本空间的子集, 用$A,B,C,\cdots$表示&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;基本事件&lt;/strong&gt;	只包含一个样本点的随机事件&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不可能事件&lt;/strong&gt;	$\varnothing$, 一个样本点都不包含的随机事件&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;必然事件&lt;/strong&gt;	$S$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;事件满足集合运算, 特别的, $A\cap B=AB$, 对立事件$\bar A$&lt;/p&gt;
+&lt;h3 id=&#34;概率&#34;&gt;概率&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;频率&lt;/strong&gt;	$n$次试验中随机事件$A$发生了$n_A$次, 则其频率记作
+$$
+f_n(A)=\dfrac{n_A}{n}
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;非负&lt;/strong&gt;	$0\leq f_n(A)\leq1$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;规范&lt;/strong&gt;	$f_n(S)=1$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;可加&lt;/strong&gt;	$f_n(A_1\cup A_2\cup \cdots\cup A_n)=f_n(A_1)+f_n(A_2) +\cdots+f_n(A_n),\  (A_i两两不相容)$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;概率&lt;/strong&gt;	对$E$的每一个事件$A$赋予一个实数$P(A)$即为$A$的概率&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;非负&lt;/strong&gt;	$0\leq P(A)\leq1$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;规范&lt;/strong&gt;	$P(S)=1$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;可列可加&lt;/strong&gt;	$P(A_1\cup A_2\cup \cdots\cup A_n)=P(A_1)+P(A_2) +\cdots+P(A_n),\  (A_i两两不相容)$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;相关性质如下:
+$$
+P(A-B)=P(A)-P(B)	\
+P(A+B)=P(A)+P(B)-P(AB)	\
+P(\bar A)=1-P(A)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;古典概型-等可能概型&#34;&gt;古典概型 (等可能概型)&lt;/h3&gt;
+&lt;p&gt;$$
+P(A)=\dfrac{k}{n}
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其中$n$为样本点总数, $k$为$A$包含的样本数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;条件概率&#34;&gt;条件概率&lt;/h3&gt;
+&lt;p&gt;$$
+P(A|B)=\dfrac{P(AB)}{P(B)}
+$$&lt;/p&gt;
+&lt;p&gt;即$B$发生的情况下$A$的概率&lt;/p&gt;
+&lt;h4 id=&#34;全概率公式&#34;&gt;全概率公式&lt;/h4&gt;
+&lt;p&gt;样本空间$S$的划分$B_1,B_2,\cdots , B_n$称为样本空间的&lt;strong&gt;互斥完备事件组&lt;/strong&gt;, 则有
+$$
+P(A)=\sum_{i=1}^nP(B_i)P(A|B_i)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Polya模型&lt;/strong&gt;	有无放回地取球概率相等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;贝叶斯公式&#34;&gt;贝叶斯公式&lt;/h4&gt;
+&lt;p&gt;样本空间$S$有划分$B_1,B_2,\cdots , B_n$, 则有
+$$
+P(B_i|A)=\dfrac{P(B_i)P(A|B_i)}{\sum_{j=1}^nP(B_j)P(A|B_j)}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;事件独立性&#34;&gt;事件独立性&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;两两独立&lt;/strong&gt;	$P(AB)=P(A)P(B)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相互独立&lt;/strong&gt;	三个事件两两独立的基础上$P(A)P(B)P(C)=P(ABC)$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$A,B,C$两两独立不能证明其相互独立&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一维随机变量及其分布&#34;&gt;一维随机变量及其分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;离散型随机变量&lt;/strong&gt;	随机变量$X$的取值是可列的或有限个的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;连续型随机变量&lt;/strong&gt;	随机变量$X$的可能取值是数轴或至少有一部分取值是某个区间&lt;/p&gt;
+&lt;h3 id=&#34;离散型随机变量&#34;&gt;离散型随机变量&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;分布律&lt;/strong&gt;	设$X$所有可能取值$x_k$, $x_k$被取到的概率$p_k$, $(k=1,2,3,\cdots)$, 则&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$X$&lt;/th&gt;
+&lt;th&gt;$x_1$&lt;/th&gt;
+&lt;th&gt;$x_2$&lt;/th&gt;
+&lt;th&gt;$\cdots$&lt;/th&gt;
+&lt;th&gt;$x_n$&lt;/th&gt;
+&lt;th&gt;$\cdots$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$p_k$&lt;/td&gt;
+&lt;td&gt;$p_1$&lt;/td&gt;
+&lt;td&gt;$p_2$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;td&gt;$p_n$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;非负性&lt;/strong&gt;	$p_k\geqslant 0 $&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;完备性&lt;/strong&gt;	$\sum_{i=1}^{+\inf}p_k=1$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;特殊分布&#34;&gt;特殊分布&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;(0-1)分布&lt;/strong&gt;	也叫两点分布, 随机变量只能取0,1两个值&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二项分布&lt;/strong&gt;	由贝努利概型,若随机变量可能取值为$0, 1, 2,\cdots,n$得到的分布$X\sim B(n,p)$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;贝努利概型&lt;/strong&gt;	$n$次重复, 结果独立且只有$A$和$\bar A$两种的试验为贝努利试验, $n$为贝努里概型&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;贝努利定理&lt;/strong&gt;	$p=P(A)$,$n$次试验中$A$发生$k$次的概率$P_n(k)$满足
+$$
+P_n(k)=C_n^kp^k(1-p)^{n-k}
+$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;泊松 (Poisson) 定理&lt;/strong&gt;	设$\lambda=n\cdot p_n$, 则
+$$
+\lim\limits_{n\to \infty}P_n(k)=\dfrac{\lambda^ke^{-\lambda}}{k!}
+$$
+&lt;strong&gt;泊松分布&lt;/strong&gt;	若随机变量可能取值为$0, 1, 2,\cdots$,则根据泊松定理有泊松分布$X\sim P(\lambda)$&lt;/p&gt;
+&lt;h3 id=&#34;随机变量分布函数&#34;&gt;随机变量分布函数&lt;/h3&gt;
+&lt;p&gt;设$X$为一个随机变量, 则$F(x)=P(X\leqslant x)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;单调性&lt;/strong&gt;	$F(x)$是在实数轴上单调非减的函数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;有界性&lt;/strong&gt;	对任意$x$有$0\leqslant F(x)\leqslant 1$, $\lim\limits_{x\to-\infty}F(x)=0$, $\lim\limits_{x\to+\infty}F(x)=1$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;右连续性&lt;/strong&gt;	$\lim\limits_{x\to x_0}F(x)=F(x_0)$&lt;/p&gt;
+&lt;h3 id=&#34;连续性随机变量&#34;&gt;连续性随机变量&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;概率密度函数&lt;/strong&gt;	非负函数$f(x)$使得$F(X)=\int_{-\infty}^xf(t)dt$, 则这个函数为概率密度函数&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;非负性&lt;/strong&gt;	$f(x)\geqslant0$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正则性&lt;/strong&gt;	$\int_{-\infty}^{+\infty}f(x)dx=1$&lt;/p&gt;
+&lt;p&gt;若$F(x)$在$x$上连续则$F&amp;rsquo;(x)=f(x)$&lt;/p&gt;
+&lt;p&gt;$P(x_1\leqslant X\leqslant x_2)=F(x_2)-F(x_1)=\int_{x_1}^{x_2}f(x)dx$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;均匀分布&lt;/strong&gt;	$b$到$a$上的自由分布
+$$
+f(x)=&lt;br&gt;
+\begin{cases}
+\dfrac{1}{b-a} &amp;amp;a&amp;lt;x&amp;lt;b \
+0 &amp;amp;\text{其他}
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+F(x)=
+\begin{cases}
+0 &amp;amp; x&amp;lt;a	\
+\dfrac{x-a}{b-a} &amp;amp; a\leqslant x&amp;lt;b	\
+1 &amp;amp; x\geqslant b
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;指数分布&lt;/strong&gt;
+$$
+f(x)=
+\begin{cases}&lt;br&gt;
+\dfrac{1}{\theta}e^{-\frac{x}{\theta}} &amp;amp; x&amp;gt;0,\text{其中}\theta\text{为常数} \&lt;br&gt;
+0 &amp;amp;\text{其他}
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;$$
+F(x)=
+\begin{cases}
+1-e^{-\frac{x}{\theta}}	&amp;amp;	x&amp;gt;0\
+0	&amp;amp;	\text{其他}
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正态分布&lt;/strong&gt;	$X\sim N(\mu,\sigma^2)$
+$$
+f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}};e^{-{\frac {\left(x-\mu \right)^{2}}{2\sigma ^{2}}}}
+$$&lt;/p&gt;
+&lt;h1 id=&#34;fx&#34;&gt;$$
+F(x)&lt;/h1&gt;
+&lt;p&gt;\frac{1}{\sigma\sqrt{2\pi}}
+\int_{-\infty}^x
+\exp
+\left( -\frac{(t - \mu)^2}{2\sigma^2}
+\ \right), dt.
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;位置参数&lt;/strong&gt;$\mu$决定中心位置, &lt;strong&gt;尺度参数&lt;/strong&gt;$\sigma$越大曲线越矮越胖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;标准正态分布&lt;/strong&gt;	$X\sim N(0,1)$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$\mu=0$, $\sigma=1$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+\varphi(x)=
+f(x)=
+\frac{1}{\sqrt{2\pi}}
+\exp\left(-\frac{t^2}{2}\right)
+, dt
+$$&lt;/p&gt;
+&lt;p&gt;$$
+\varPhi(x)=
+F(x)=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^x
+\exp\left(-\frac{t^2}{2}\right)
+, dt
+$$&lt;/p&gt;
+&lt;h3 id=&#34;相互独立的随机变量&#34;&gt;相互独立的随机变量&lt;/h3&gt;
+&lt;p&gt;$$
+F(x,y)=F_X(x)\cdot F_Y(y)	\
+P(x,y)=P_X(x)\cdot P_Y(y)	\
+f(x,y)=f_X(x)\cdot f_Y(y)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;两个随机变量函数的分布&#34;&gt;两个随机变量函数的分布&lt;/h3&gt;
+&lt;h4 id=&#34;zxy分布&#34;&gt;$Z=X+Y$分布&lt;/h4&gt;
+&lt;p&gt;$$
+F_Z(z)=P(Z\leqslant z)=\iint_{x+y\leqslant z}f(x,y)dxdy
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;卷积公式&lt;/strong&gt;	当$X\ ,Y$相互独立时
+$$
+f_X * f_Y=\int_{-\infty}^{+\infty}f_X(x)\cdot f_Y(z-x)\mathrm dx
+=\int_{-\infty}^{+\infty}f_X(z-y)\cdot f_Y(y)\mathrm dy
+$$
+​
+$$&lt;/p&gt;
+&lt;p&gt;$$&lt;/p&gt;
+&lt;h2 id=&#34;多维随机变量及其分布&#34;&gt;多维随机变量及其分布&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;二维随机变量&lt;/strong&gt;	同一个样本空间中的随机变量$X,Y$组成的向量$(X,Y)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二维随机变量分布函数&lt;/strong&gt;
+$$
+F(x,y)=P(X\leqslant x,Y\leqslant y)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;满足&lt;strong&gt;单调性&lt;/strong&gt;, &lt;strong&gt;有界性&lt;/strong&gt;, &lt;strong&gt;右连续性&lt;/strong&gt;, &lt;strong&gt;非负性&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;二维离散型随机变量&#34;&gt;二维离散型随机变量&lt;/h3&gt;
+&lt;p&gt;$(x,y)$取值为有限多对或可列无限多对, 则$(X,Y)$为二维离散型随机变量&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;联合分布律&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$X$ \ $Y$&lt;/th&gt;
+&lt;th&gt;$y_0$&lt;/th&gt;
+&lt;th&gt;$y_1$&lt;/th&gt;
+&lt;th&gt;$\cdots$&lt;/th&gt;
+&lt;th&gt;$y_j$&lt;/th&gt;
+&lt;th&gt;$\cdots$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$x_0$&lt;/td&gt;
+&lt;td&gt;$p_{00}$&lt;/td&gt;
+&lt;td&gt;$p_{01}$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;td&gt;$p_{00}$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$x_1$&lt;/td&gt;
+&lt;td&gt;$p_{10}$&lt;/td&gt;
+&lt;td&gt;$p_{11}$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;td&gt;$p_{1j}$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\ddots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\ddots$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$x_i$&lt;/td&gt;
+&lt;td&gt;$p_{i0}$&lt;/td&gt;
+&lt;td&gt;$p_{i1}$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;td&gt;$p_{ij}$&lt;/td&gt;
+&lt;td&gt;$\cdots$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\vdots$&lt;/td&gt;
+&lt;td&gt;$\ddots$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;非负性&lt;/strong&gt;	$p_{ij}\geqslant 0$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正则性&lt;/strong&gt;	$\sum_i\sum_jp_{ij}=1$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;联合分布函数&lt;/strong&gt;
+$$
+P(X\leqslant x,Y\leqslant y)=F(x,y)=
+\sum_{
+\begin{subarray}{1}
+x_i \leqslant x	\
+y_j \leqslant y
+\end{subarray}}
+p_{ij}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;二维连续型随机变量&#34;&gt;二维连续型随机变量&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;联合概率密度函数&lt;/strong&gt;	非负二元函数$f(x,y)$, 有
+$$
+F(x,y)=
+\int_{-\infty}^{x}
+\int_{-\infty}^{y}
+f(x,y)\mathrm{d} x\mathrm{d} y
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;非负性&lt;/strong&gt;	$f(x,y)\geqslant0$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;规范性&lt;/strong&gt;	$\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x,y)\mathrm{d} x\mathrm{d} y=1$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;联合分布函数&lt;/strong&gt;	$F(x, y)$&lt;/p&gt;
+&lt;h3 id=&#34;边缘分布&#34;&gt;边缘分布&lt;/h3&gt;
+&lt;p&gt;边缘分布函数
+$$
+F_X(x)=F(x,+\infty)	\
+F_Y(y)=F(+\infty,y)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;条件分布&#34;&gt;条件分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;离散型随机变量&lt;/strong&gt; 给定$X$求$Y$或给定$Y$求$X$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;连续型随机变量&lt;/strong&gt;	取极限
+$$
+F_{X|Y}(x|y)=P(X\leqslant x\ |\ Y=y )
+$$&lt;/p&gt;
+&lt;h3 id=&#34;相互独立的随机变量-1&#34;&gt;相互独立的随机变量&lt;/h3&gt;
+&lt;p&gt;$$
+F(x,y)=F_X(x)\cdot F_Y(y)
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;离散型&lt;/strong&gt;	直接计算&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;连续型&lt;/strong&gt;
+$$
+f(x,y)=f_X(x)\cdot f_Y(y)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;两个随机变量的函数分布&#34;&gt;两个随机变量的函数分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;$Z=X+Y$分布&lt;/strong&gt;
+$$
+F_Z(z)=P(Z\leqslant z)=\iint_{x+y\leqslant z}f(x,y)\mathrm{d}x\mathrm{d}y
+$$&lt;/p&gt;
+&lt;p&gt;$$
+f_Z(z)=\int_{-\infty}^{+\infty}f(z-y,y)\mathrm{d}x=\int_{-\infty}^{+\infty}f(x,z-x)\mathrm{d}y
+$$
+当$X$与$Y$相互独立时,有&lt;strong&gt;卷积公式&lt;/strong&gt;
+$$
+f_Z(z)=f_X(x)*f_Y(y)=\int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\mathrm{d}y=\int_{-\infty}^{+\infty}f_Y(z-x)f_X(x)\mathrm{d}x
+$$
+&lt;strong&gt;$Z=X/Y$分布&lt;/strong&gt;
+$$
+F_Z(z)=P(Z\leqslant z)=\iint_{\frac{x}{y}\leqslant z}f(x,y)\mathrm{d}x\mathrm{d}y
+$$&lt;/p&gt;
+&lt;p&gt;相互独立时, 有:
+$$
+f_Z(z)=\int_{-\infty}^{+\infty}|y|f_X(yz)\cdot f_Y(y)\mathrm dy
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最大最小值分布&lt;/strong&gt;
+$$
+M=\max{X,Y}	\
+N=\min{X,Y}
+$$
+则X,Y相互独立时
+$$
+F_M(m)=F_X(m)\cdot F_Y(m)	\
+F_N(n)=1-[1-F_X(n)]-[1- F_Y(n)]
+$$&lt;/p&gt;
+&lt;h2 id=&#34;随机变量的数字特征&#34;&gt;随机变量的数字特征&lt;/h2&gt;
+&lt;h3 id=&#34;数学期望&#34;&gt;数学期望&lt;/h3&gt;
+&lt;p&gt;对于离散型随机变量$X$, 分布律$P(X=x_k)=p_k,k=1,2,\cdots$, 若&lt;a class=&#34;link&#34; href=&#34;https://zh.wikipedia.org/wiki/%E7%BA%A7%E6%95%B0#%E7%BB%9D%E5%AF%B9%E6%94%B6%E6%95%9B&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;级数&lt;/a&gt;$\sum_{k=1}^{\infty}x_kp_k$绝对收敛, 则
+$$
+E(X)=\sum_{k=1}^\infty x_kp_k
+$$
+对于连续型随机变量$X$, 概率密度$f(x)$
+$$
+E(X)=\int_{-\infty}^{+\infty}xf(x)\mathrm{d}x
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数学期望简称期望或均值&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;随机变量函数的数学期望&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;离散型	若$\sum_{k=1}^{\infty}g(x_k)p_k$绝对收敛,则
+$$
+E(Y)=E(g(x))=\sum_{k=1}^{\infty}g(x_k)p_k
+$$
+连续型	若$\int^{+\infty}&lt;em&gt;{-\infty}g(x)f(x)\mathrm dx$绝对收敛, 则
+$$
+E(Y)=E(g(x))=\int^{+\infty}&lt;/em&gt;{-\infty}g(x)f(x)\mathrm dx
+$$
+$n$维度连续型
+$$
+E(X)=\int^{+\infty}&lt;em&gt;{-\infty}\int^{+\infty}&lt;/em&gt;{-\infty}xf(x,y)\mathrm dx\mathrm dy	\
+E[g(X,Y)]=\int^{+\infty}&lt;em&gt;{-\infty}\int^{+\infty}&lt;/em&gt;{-\infty}g(x,y)f(x,y)\mathrm dx\mathrm dy
+$$
+&lt;strong&gt;性质&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$C$为常数则$E(C)=C$&lt;/li&gt;
+&lt;li&gt;$E(CX)=CE(X)$&lt;/li&gt;
+&lt;li&gt;$E(X_1+X_2+\cdots+X_n)=\sum E(X_i)$&lt;/li&gt;
+&lt;li&gt;$E(X_1X_2\cdots X_n)=E(X_1)E(X_2)\cdots E(X_n)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;方差与矩&#34;&gt;方差与矩&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;方差&lt;/strong&gt;	若期望存在,则
+$$
+D(X)=E(X-E(X))^2
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;标准差/均方差&lt;/strong&gt;	$\sqrt {D(X)}$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;矩&lt;/strong&gt;	若$E(x^k)$存在, 则其$k$阶矩
+$$
+\mu_k = E(X^k)
+$$
+&lt;strong&gt;离散型随机变量&lt;/strong&gt;
+$$
+D(x)=\sum_{k=1}^{\infty}[x_k-E(X)]^2p_k
+$$
+&lt;strong&gt;连续型随机变量&lt;/strong&gt;
+$$
+D(x)=\int_{-\infty}^{+\infty}[x-E(X)]^2f(x)\mathrm dx
+$$
+另,
+$$
+D(X)=E(X^2)-[E(X)]^2
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正态分布$X\sim N(\mu,\sigma^2)$中, $\mu$为数学期望, $\sigma^2$为方差&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;性质&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若$C$为常数, $D(C)=0$&lt;/li&gt;
+&lt;li&gt;$D(CX)=C^2D(X)$&lt;/li&gt;
+&lt;li&gt;$D(X_1+X_2+\cdots+X_n)=\sum D(X_i)$&lt;/li&gt;
+&lt;li&gt;$D(X)=0 \iff P(X=E(x))=1$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;切比雪夫不等式&lt;/strong&gt;	若随机变量方差与期望均存在, 对$\forall \varepsilon&amp;gt;0$
+$$
+P(|X-E(X)|\geqslant\varepsilon)\leqslant\dfrac{D(X)}{\varepsilon^2}
+$$&lt;/p&gt;
+&lt;h2 id=&#34;协方差&#34;&gt;协方差&lt;/h2&gt;
+&lt;p&gt;二维随机变量$(X,Y)$, 若存在则
+$$
+\mathrm{cov}(X,Y)=E[(X-E(X))(Y-E(Y))]
+$$
+常用公式
+$$
+\mathrm{cov}(X,Y)=E(XY)-E(X)\cdot E(Y)
+$$
+&lt;strong&gt;性质&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\mathrm{cov}(X,X)=D(X)$&lt;/li&gt;
+&lt;li&gt;$\mathrm{cov}(X,C)=0$&lt;/li&gt;
+&lt;li&gt;$\mathrm{cov}(X,Y)=\mathrm{cov}(Y,X)$&lt;/li&gt;
+&lt;li&gt;$\mathrm{cov}(aX,bY)=ab\mathrm{cov}(X,Y)$&lt;/li&gt;
+&lt;li&gt;$\mathrm{cov}(X+Y,Z)=\mathrm{cov}(X,Z)+\mathrm{cov}(Y,Z)$&lt;/li&gt;
+&lt;li&gt;$D(X+Y)=D(X)+D(Y)+2\mathrm{cov}(X,Y)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;相关系数&#34;&gt;相关系数&lt;/h2&gt;
+&lt;p&gt;二维随机变量$(X,Y)$, $D(X)\neq0$且 $D(Y)\neq0$时
+$$
+\rho_{XY}=\dfrac{\mathrm{cov}(X,Y)}{\sqrt{D(X)}\cdot\sqrt{D(Y)}}
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$|\rho|\leqslant1$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;线性相关系数&lt;/strong&gt;	$|\rho|=1\iff P(Y=aX+b)=1, a\neq0$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;极限定理&#34;&gt;极限定理&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;概率收敛&lt;/strong&gt;	设$Y_1,Y_2,\cdots,Y_n,\cdots$是随机变量序列且对常数$a$, $\forall \varepsilon&amp;gt;0$有
+$$
+\lim\limits_{n\to \infty}P(|Y_n-a|\geqslant\varepsilon)=0	\
+\text{or}	\
+\lim\limits_{n\to \infty}P(|Y_n-a|&amp;lt;\varepsilon)=1
+$$
+则随机序列概率收敛到常数$a$, 记作
+$$
+Y_n\xrightarrow P a
+$$&lt;/p&gt;
+&lt;h3 id=&#34;大数定律&#34;&gt;大数定律&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;贝努利大数定律&lt;/strong&gt;	设$X_1,X_2,\cdots,X_n,\cdots$是相互独立的随机变量序列且均服从以$p$为参数的**(0-1)分布**, 则
+$$
+\dfrac{1}{n}\sum_{k=1}^nX_k\xrightarrow{P}p
+$$
+&lt;strong&gt;切比雪夫大数定律特例&lt;/strong&gt;	设$X_1,X_2,\cdots,X_n,\cdots$是相互独立的随机变量序列且数学期望与方差相同, $E(X_k)=\mu$, $D(X_k)=\sigma^2$ $(k=1,2,\cdots)$, 则
+$$
+\dfrac{1}{n}\sum_{k=1}^nX_k\xrightarrow{P}\mu
+$$
+&lt;strong&gt;辛钦大数定律&lt;/strong&gt;	设$X_1,X_2,\cdots,X_n,\cdots$是相互独立的随机变量序列且服从相同的分布, 并且存在数学期望$E(X_k)=\mu$, 则
+$$
+\dfrac{1}{n}\sum_{k=1}^nX_k\xrightarrow{P}\mu
+$$&lt;/p&gt;
+&lt;h3 id=&#34;中心极限定理&#34;&gt;中心极限定理&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;数理统计&#34;&gt;数理统计&lt;/h1&gt;
+&lt;p&gt;数理统计相比于概率论, 研究的都是分布未知的随机变量&lt;/p&gt;
+&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;总体&lt;/strong&gt;	研究对象某个指标值得全体称为&lt;strong&gt;总体&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;个体&lt;/strong&gt;	总体中的每个元素&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;抽样&lt;/strong&gt;	按一定规则从总体中抽取若干个体的过程&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;样本&lt;/strong&gt;	所抽取的个体&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;样本容量&lt;/strong&gt;	样本中所包含的个体数&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;样本应该具有随机性, 独立性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;常见统计量&#34;&gt;常见统计量&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;统计量&lt;/strong&gt;	样本的函数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;样本均值&lt;/strong&gt;	$\bar X$
+$$
+\bar X=\dfrac{1}{n}\sum_{i=1}^nX_i
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;偏差&lt;/strong&gt;	样本中数据与样本均值的差$X_i-\bar X$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;性质 偏差和为0&lt;/strong&gt;	$\sum (X_i-\bar X)=0$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;样本均值的抽样分布&lt;/strong&gt;	若总体分布为$N(\mu,\sigma^2)$, 则$\bar X\sim N(\mu,\dfrac{\sigma^2}{n})$; 若总体不为正态分布但期望为$\mu$,方差为$\sigma^2$则$\bar X$近似分布$ N(\mu,\dfrac{\sigma^2}{n})$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;样本方差&lt;/strong&gt;	$S^2$
+$$
+S^2=\dfrac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2
+$$
+&lt;strong&gt;样本标准差&lt;/strong&gt;	$S=\sqrt {S^2}$&lt;/p&gt;
+&lt;h3 id=&#34;四大统计量及其分布&#34;&gt;四大统计量及其分布&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;卡方分布/$\chi^2$分布&lt;/strong&gt;	对来自正态总体$N(0,1)$的样本$X_1, X_2,\cdots,X_n$, 统计量$\chi^2=\sum^n_{i=1} X_i^2$服从自由度为$n$的卡方分布, 记作
+$$
+\chi^2\sim\chi^2(n)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$E(\chi^2)=n$&lt;/p&gt;
+&lt;p&gt;$D(\chi^2)=2n$&lt;/p&gt;
+&lt;p&gt;$n&amp;gt;45$时分位点近似公式$\chi^2_\alpha(n)\approx n+\sqrt{2n}\cdot z_\alpha$, $z_\alpha$为标准正态分布的分位点,
+$$
+P(\chi^2&amp;gt;\chi^2_\alpha (n))=\int^{+\infty}&lt;em&gt;{\chi^2&lt;/em&gt;\alpha(n)}f(x)\mathrm d x
+$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;$t$分布/学生分布&lt;/strong&gt;	$X\sim N(0,1)$, $Y\sim\chi^2(n)$, $X,Y$独立, $t=\dfrac{X}{\sqrt\frac{Y}{n}}$
+$$
+t\sim t(n)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$n=1$	 均值不存在&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$n&amp;gt;1$	$E(t)=0$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$n&amp;gt;2$	$D(t)=\dfrac{n}{n-2}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;分位点&lt;/p&gt;
+&lt;p&gt;$$
+P(t&amp;gt;t_\alpha(n))=\int_{t_{\alpha(n)}}^{+\infty}h(t)\mathrm dt
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$n&amp;gt;45$时, $t_\alpha(n)\approx z_\alpha$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$n\leqslant45$时, 查表&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;$F$分布&lt;/strong&gt;	&lt;em&gt;X&lt;/em&gt; ~ F(&lt;em&gt;n&lt;/em&gt;1, &lt;em&gt;n&lt;/em&gt;2)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;正态总体相关四定理&lt;/strong&gt;	对于来自正态总体$X\sim N(\mu,\sigma^2)$的样本$X_1,X_2,\cdots,X_n$, 有
+$$
+\bar X\sim N(\mu,\dfrac{\sigma^2}{n})\ \text{or}\
+\dfrac{\bar {X}-\mu}{\sigma/\sqrt n}\sim N(0,1)	\	\
+\dfrac{\bar {X}-\mu}{S/\sqrt n}\sim t(n-1)	\	\
+\dfrac{(n-1)S^2}{\sigma^2}=\dfrac{\sum_{i=1}^{n}(X_i-\bar X)^2}{\sigma^2} \sim \chi^2(n-1)	\	\
+\bar X\text{与}S^2\text{相互独立}
+$$&lt;/p&gt;
+&lt;h2 id=&#34;参数估计&#34;&gt;参数估计&lt;/h2&gt;
+&lt;h3 id=&#34;矩估计&#34;&gt;矩估计&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;步骤&lt;/strong&gt;	估$k$个待估参数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;求前$k$阶矩,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用样本矩带入$\mu_i$
+$$
+M_i=\dfrac{1}{n}\sum_{j=1}^{n}X_j^i=\mu_i
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解方程&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;极大似然估计&#34;&gt;极大似然估计&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;步骤&lt;/strong&gt;	求极大似然函数的最大值&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;写出极大似然函数&lt;/li&gt;
+&lt;li&gt;利用偏导或$lnF$的偏导求最值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;点估计优良性&#34;&gt;点估计优良性&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;无偏性&lt;/strong&gt;	$E(\hat\theta)=\theta$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;有效性&lt;/strong&gt;	若$\hat\theta_1, \hat\theta_2$都是无偏估计, 若$D(\hat\theta_1-\theta)&amp;lt;D(\hat\theta_2-\theta)$则$\hat\theta_1$更比2有效&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相合性&lt;/strong&gt;	若$n\to\infty$, $\forall\varepsilon&amp;gt;0$
+$$
+\lim\limits_{n\to\infty}P(|\hat\theta_n-\theta|&amp;lt;\varepsilon)=1
+$$&lt;/p&gt;
+&lt;h3 id=&#34;区间估计&#34;&gt;区间估计&lt;/h3&gt;
+&lt;p&gt;$$
+P(\underline\theta&amp;lt;\theta&amp;lt;\overline\theta)=1-\alpha
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;置信区间&lt;/strong&gt;	$(\underline\theta,\overline\theta)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;置信上限&lt;/strong&gt;	$\overline\theta$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;置信下限&lt;/strong&gt;	$\underline\theta$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;置信度/置信概率&lt;/strong&gt;	$1-\alpha$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;正态总体均值&#34;&gt;正态总体均值&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;单个正态总体&lt;/strong&gt;	$\mu$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$\sigma^2$已知
+$$
+(\overline X\pm\dfrac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} )
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$\sigma^2$未知
+$$
+(\overline X\pm\dfrac{S}{\sqrt{n}}t_{\frac{\alpha}{2}}(n-1) )
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;两个正态总体&lt;/strong&gt;	$\mu_1-\mu_2$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$\sigma^2_1$$,\sigma_2^2$均已知
+$$
+(\bar X-\bar Y\pm\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}\cdot z_{\frac{\alpha}{2}})
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$\sigma_1^2=\sigma_2^2=\sigma^2$但未知
+$$
+(\bar X-\bar Y\pm S_w \sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}\cdot t_{\frac{\alpha}{2}}(n_1+n_2-2))
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;正态总体方差&#34;&gt;正态总体方差&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;单个正态总体&lt;/strong&gt;
+$$
+\bigg(\dfrac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n-1)},\dfrac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n-1)}\bigg)
+$$&lt;/p&gt;
+&lt;h4 id=&#34;0-1分布总体方差&#34;&gt;(0-1)分布总体方差&lt;/h4&gt;
+&lt;p&gt;$$
+(n+z^2_{\frac{\alpha}{2}})p^2-(2n\bar X+z^2_{\frac{\alpha}{2}})p+n\bar X^2=0
+$$&lt;/p&gt;
+&lt;p&gt;解方程得到
+$$
+(p_1,p_2)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;假设检验&#34;&gt;假设检验&lt;/h3&gt;
+&lt;p&gt;一般步骤&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;提出原假设$H_0$及备择假设$H_1$&lt;/li&gt;
+&lt;li&gt;给定显著性水平$\alpha$及样本容量$n$&lt;/li&gt;
+&lt;li&gt;提出拒绝域的形式并确定检验统计量&lt;/li&gt;
+&lt;li&gt;由$P(\text{拒绝}H_0\ |\ H_0\text{为真})=\alpha$求表达式&lt;/li&gt;
+&lt;li&gt;对总体抽样判断是否接受假设&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;单个正态总体的假设检验&#34;&gt;单个正态总体的假设检验&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;$\mu$的假设检验&lt;/strong&gt;	$H_0:\mu=\mu_0$的拒绝域&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$\sigma^2$已知
+$$
+|\dfrac{\bar X-\mu_0}{\sigma/\sqrt n}|&amp;gt;z_{\frac{\alpha}{2}}
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$\sigma^2$未知
+$$
+|t|=|\dfrac{\bar X-\mu_0}{S/\sqrt n}|&amp;gt;t_{\frac{\alpha}{2}}(n-1)
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;$\sigma^2$的假设检验&lt;/strong&gt;	$H_0:\sigma^2=\sigma^2_0$的拒绝域
+$$
+\chi^2=\dfrac{(n-1)S^2}{\sigma^2_0}\in(0,\chi_{1-\frac{\alpha}{2}}^2(n-1))\cup(\chi_{\frac{\alpha}{2}}^2(n-1),+\infty)
+$$
+&lt;strong&gt;单边假设检验&lt;/strong&gt;	$H_0:\mu\geqslant\mu_0$的拒绝域
+$$
+\bar x-\mu_0&amp;lt;-\dfrac{\sigma_0}{\sqrt{n}}\cdot z_\alpha
+$$&lt;/p&gt;
+&lt;h4 id=&#34;两个正态总体的假设检验&#34;&gt;两个正态总体的假设检验&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;方差已知均值的假设检验&lt;/strong&gt;	$H_0:\mu_1=\mu_2$
+$$
+|U|=|\dfrac{\bar x-\bar y}{\sqrt{\dfrac{\sigma_1^2}{n_1}-\dfrac{\sigma_2^2}{n_2}}}|&amp;gt;z_{\frac{\alpha}{2}}
+$$
+&lt;strong&gt;均值未知总体方差的检验&lt;/strong&gt;	$H_0:\sigma^2_1=\sigma^2_2$的拒绝域
+$$
+\dfrac{S_1^2}{S_2^2}\in (0,F_{1-\frac{\alpha}{2}}(n_1-1,n_2-1))\cup (F_{\frac{\alpha}{2}}(n_1-1,n_2-1),+\infty)
+$$&lt;/p&gt;
+&lt;h4 id=&#34;分布拟合检验&#34;&gt;分布拟合检验&lt;/h4&gt;
+&lt;p&gt;当$n\geqslant50$时(充分大时),
+$$
+\delta
+$$&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>离散数学自学整理汇总</title>
+        <link>https://withcelaina.github.io/posts/discrete-mathematics/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://withcelaina.github.io/posts/discrete-mathematics/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;为了考试周不破防, 准备系统地&lt;del&gt;预习&lt;/del&gt;复习一遍&lt;strong&gt;离散数学&lt;/strong&gt;, 参考了&lt;strong&gt;高等教育出版社&lt;/strong&gt;的&lt;strong&gt;离散数学(第2版)&lt;/strong&gt;, 这篇博文用于记录各种知识点以及后续的大作业代码实现及思路&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;数理逻辑&#34;&gt;数理逻辑&lt;/h1&gt;
+&lt;h2 id=&#34;命题逻辑&#34;&gt;命题逻辑&lt;/h2&gt;
+&lt;h3 id=&#34;命题&#34;&gt;命题&lt;/h3&gt;
+&lt;h4 id=&#34;定义&#34;&gt;定义&lt;/h4&gt;
+&lt;p&gt;具有&lt;strong&gt;真假意义&lt;/strong&gt;的&lt;strong&gt;表达判断&lt;/strong&gt;的&lt;strong&gt;陈述句&lt;/strong&gt;为&lt;strong&gt;命题&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;分类&#34;&gt;分类&lt;/h4&gt;
+&lt;p&gt;按真值&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;真命题&lt;/li&gt;
+&lt;li&gt;假命题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按能否再分:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原子命题(简单命题)&lt;/li&gt;
+&lt;li&gt;复合命题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;标识符&#34;&gt;标识符&lt;/h4&gt;
+&lt;p&gt;大写字母/带下标的大写字母/[]包围的数字 都是合法的命题标识符&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$A, B, A_i, [12]$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;表示确定命题的标识符为&lt;strong&gt;命题常元&lt;/strong&gt;, 表示命题位置,并不代表具体某个命题的标识符称为&lt;strong&gt;命题变元&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;联结词&#34;&gt;联结词&lt;/h3&gt;
+&lt;p&gt;命题之间可以由联结词联结组成新的命题, 常见联结词如下&lt;/p&gt;
+&lt;h4 id=&#34;否定联结词&#34;&gt;否定联结词&lt;/h4&gt;
+&lt;p&gt;非	$\neg$	&lt;code&gt;$\neg$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$P$&lt;/th&gt;
+&lt;th&gt;$\neg P$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;最简单的联结词之一, 取反, 常见语言表述为 &amp;ldquo;不, 没有&amp;hellip;&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;合取联结词&#34;&gt;合取联结词&lt;/h4&gt;
+&lt;p&gt;且	$\land$	&lt;code&gt;$\land$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$P$&lt;/th&gt;
+&lt;th&gt;$Q$&lt;/th&gt;
+&lt;th&gt;$P\land Q$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;析取联结词&#34;&gt;析取联结词&lt;/h4&gt;
+&lt;p&gt;或	$\lor$	&lt;code&gt;$\lor$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$P$&lt;/th&gt;
+&lt;th&gt;$Q$&lt;/th&gt;
+&lt;th&gt;$P\lor Q$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意与自然语言中的&lt;strong&gt;或&lt;/strong&gt;区分, 数理逻辑中的或为&lt;strong&gt;可兼或&lt;/strong&gt;, 即$P,Q$可以同时发生, 但是自然语言中还有&lt;strong&gt;排斥或&lt;/strong&gt;, 不可同时发生, 此时就不能使用$P\or Q$表示这一命题, 需要根据真值表构造新的命题, 在以后的章节中会提到&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;蕴含联结词&#34;&gt;蕴含联结词&lt;/h4&gt;
+&lt;p&gt;如果&amp;hellip;则&amp;hellip;	$\to$	&lt;code&gt;$\to$&lt;/code&gt; &lt;code&gt;$\rightarrow$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$P$&lt;/th&gt;
+&lt;th&gt;$Q$&lt;/th&gt;
+&lt;th&gt;$P\rightarrow Q$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;等价联结词&#34;&gt;等价联结词&lt;/h4&gt;
+&lt;p&gt;当且仅当	$\leftrightarrow$	&lt;code&gt;$\leftrightarrow$&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$P$&lt;/th&gt;
+&lt;th&gt;$Q$&lt;/th&gt;
+&lt;th&gt;$P\leftrightarrow Q$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以上联结词具有以下优先级(从高到低)
+$$
+(), \lnot , \land , \lor , \rightarrow , \leftrightarrow
+$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;命题公式之间的关系&#34;&gt;命题公式之间的关系&lt;/h3&gt;
+&lt;h4 id=&#34;逻辑等价&#34;&gt;逻辑等价&lt;/h4&gt;
+&lt;p&gt;双重否定率
+$$
+A\iff \lnot \lnot A
+$$
+幂等率
+$$
+A\iff A \lor A \
+A\iff A \land A
+$$
+交换律
+$$
+A\lor B\iff B \lor A \
+A\land B\iff B \land A
+$$
+结合律
+$$
+(A\lor B)\lor C\iff A\lor (B\lor C) \
+(A\land B)\land C\iff A\land (B\land C)
+$$
+分配律
+$$
+A\lor (B\land C)\iff (A\lor B)\land(A\lor C) \
+A\land (B\lor C)\iff (A\land B)\lor(A\land C)
+$$
+&lt;strong&gt;德摩根律&lt;/strong&gt;
+$$
+\lnot (A\lor B)\iff\lnot A\land \lnot B \
+\lnot (A\land B)\iff\lnot A\lor \lnot B
+$$
+吸收律
+$$
+A\lor (A\land B)\iff A \
+A\land (A\lor B)\iff A
+$$
+零律
+$$
+A \lor 1 \iff 1 \
+A \land 0 \iff 0
+$$
+同一律
+$$
+A \land 1 \iff A \
+A \lor 0 \iff A
+$$
+排中律
+$$
+A \lor \lnot A \iff 1
+$$
+矛盾律
+$$
+A \land \lnot A \iff 0
+$$
+&lt;strong&gt;蕴含律&lt;/strong&gt;
+$$
+A \rightarrow B \iff \lnot A \lor B
+$$
+等价律
+$$
+A \leftrightarrow B \iff (A\rightarrow B)\land(B \rightarrow A)
+$$
+假言易位律
+$$
+A\to B \iff \lnot B \to \lnot A
+$$
+等价否定律
+$$
+A \leftrightarrow B \iff \lnot A \leftrightarrow \lnot B
+$$
+归谬率
+$$
+(A\to B)\land(A \to \lnot B)\iff \lnot A
+$$&lt;/p&gt;
+&lt;h4 id=&#34;逻辑蕴含&#34;&gt;逻辑蕴含&lt;/h4&gt;
+&lt;p&gt;若$A\to B$是&lt;strong&gt;重言式&lt;/strong&gt;, 则有$A\implies B$, 称为&lt;strong&gt;A逻辑蕴含B&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;推理定律如下&lt;/p&gt;
+&lt;p&gt;附加律
+$$
+A \implies A\lor B
+$$
+化简律
+$$
+A \land B \implies A
+$$
+假言推理
+$$
+(A\to B)\land A \implies B
+$$
+拒取式
+$$
+(A \to B)\land \lnot B \implies \lnot A
+$$
+析取三段论
+$$
+(A \lor B)\land \lnot B \implies A
+$$
+假言三段论
+$$
+(A\to B)\land (B\to C) \implies A \to C
+$$
+等价三段论
+$$
+(A \leftrightarrow B)\land (B \leftrightarrow C)\implies A \leftrightarrow C
+$$
+构造性二难
+$$
+(A\to B)\land(C\to D)\land(A \lor C)\implies B\lor D
+$$
+破坏性二难
+$$
+(A\to B)\land(C\to D)\land(\lnot B\lor \lnot D) \implies \lnot A \lor \lnot C
+$$&lt;/p&gt;
+&lt;h3 id=&#34;对偶&#34;&gt;对偶&lt;/h3&gt;
+&lt;h4 id=&#34;定义-1&#34;&gt;定义&lt;/h4&gt;
+&lt;p&gt;对于只包含$\lnot,$ $\land$和$\lor$的命题公式$A$,互换 $\land$和$\lor$,$0$和$1$, 得到的新命题公式$A^*$称为$A$的对偶式&lt;/p&gt;
+&lt;h4 id=&#34;性质&#34;&gt;性质&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;设$A$为命题公式,$P_n$为命题公式中的命题变元,$A^*$是$A$的对偶式,则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$
+\lnot A(P_1,P_2,\cdots,P_n) \iff A^&lt;em&gt;(\lnot P_1,\lnot P_2,\cdots,\lnot P_n) \
+A(\lnot P_1,\lnot P_2,\cdots,\lnot P_n) \iff \lnot A^&lt;/em&gt;(P_1,P_2,\cdots,P_n)
+$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若$A \iff B$, 则$A^* \iff B^*$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;范式&#34;&gt;范式&lt;/h3&gt;
+&lt;h4 id=&#34;概念&#34;&gt;概念&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;文字&lt;/strong&gt;	命题变元和命题变元的否定&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如$P,\lnot P$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;简单析取式&lt;/strong&gt;	仅由有限个文字构成的析取式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如$P\lor$$\lnot Q$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;简单合取式&lt;/strong&gt;	仅由有限个文字构成的合取式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如$P\land$$\lnot Q$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个文字既是简单合取式也是简单析取式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;析取范式&lt;/strong&gt;	仅由有限个简单合取式构成的析取式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;合取范式&lt;/strong&gt;	仅由有限个简单析取式构成的合取式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;范式&lt;/strong&gt;	析取范式和合取范式统称为范式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简单析取式和简单合取式都既是析取范式也是合取范式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;极小项&lt;/strong&gt;	含有$n$个命题变元, 每个命题变元和他的否定式有且只有一个, 且按照(字典)顺序排列的简单合取式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$n$个命题变元有$2^n$个极小项, 两两互不逻辑等价, 所有最小项析取式永真&lt;/p&gt;
+&lt;p&gt;每个极小项有且仅有一个成真赋值, 记作$m_i, \ i$为十进制下的成真赋值&lt;/p&gt;
+&lt;p&gt;任两个不同极小项的合取式永假&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;极大项&lt;/strong&gt;	含有$n$个命题变元, 每个命题变元和他的否定式有且只有一个, 且按照(字典)顺序排列的简单析取式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$n$个命题变元有$2^n$个极大项, 两两互不逻辑等价, 所有最大项的合取式永假&lt;/p&gt;
+&lt;p&gt;每个极大项有且仅有一个成假赋值, 记作$m_i, \ i$为十进制下的成真赋值&lt;/p&gt;
+&lt;p&gt;任两个不同极大项的析取式永真&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;主析取范式&lt;/strong&gt;	有限个极小项构成的析取式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主合取范式&lt;/strong&gt;	有限个极大项构成的合取式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主范式&lt;/strong&gt;	主析取范式和主合取范式统称为主范式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;任何命题公式都存在&lt;strong&gt;唯一&lt;/strong&gt;与之逻辑等价的主析取范式和主合取范式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;求范式步骤&#34;&gt;求范式步骤&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;范式存在定理&lt;/strong&gt;	任一命题公式都存在与之逻辑等价的析取范式和合取范式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;消去$\rightarrow$ ,$\leftrightarrow$
+$$
+A\to B\iff \lnot A\lor B \
+A \leftrightarrow B \iff A\to B \land B\to A
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消去$\lnot$$\lnot$
+$$
+\lnot\lnot A\iff A
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消去$\lnot ()$ //内移$\lnot$
+$$
+\lnot(A\land B)\iff \lnot A\lor \lnot B	\
+\lnot(A\lor B)\iff \lnot A\land \lnot B
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分配$\land$,$\lor$
+$$
+A\lor(B \land C)\iff (A\lor B)\land(A \lor C)	\
+A\land (B \or C) \iff (A\land B)\lor(A\land C)
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;求主范式&lt;/strong&gt;	在求出范式的基础上, 添加缺少的项组成&lt;strong&gt;最小/最大项&lt;/strong&gt;即可&lt;/p&gt;
+&lt;h3 id=&#34;命题演算推证&#34;&gt;命题演算推证&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;	由&lt;strong&gt;推理根据&lt;/strong&gt;, &lt;strong&gt;推理规则&lt;/strong&gt;和&lt;strong&gt;证明方法&lt;/strong&gt;组成&lt;/p&gt;
+&lt;h4 id=&#34;推理根据&#34;&gt;推理根据&lt;/h4&gt;
+&lt;p&gt;推理根据是命题验算的命题定律和推理定律, 主要为&lt;strong&gt;逻辑等价式&lt;/strong&gt;和&lt;strong&gt;逻辑蕴含式&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;推理规则&#34;&gt;推理规则&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;P规则/前提引入规则&lt;/strong&gt;	在推论的任何步骤中引入前提&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;T规则/结论引入规则&lt;/strong&gt;    所得到的结论作为后续的前提&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CP规则/附加前提规则&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;谓词逻辑&#34;&gt;谓词逻辑&lt;/h2&gt;
+&lt;h3 id=&#34;谓词和个体&#34;&gt;谓词和个体&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;论域&lt;/strong&gt;	个体变元的取值范围&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;全总个体域&lt;/strong&gt;	宇宙间一切个体组成的论域&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;谓词&lt;/strong&gt;	刻画论域中个体性质的模式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;简单命题函数&lt;/strong&gt;	$P(x_1,x_2,\cdots)$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;特性谓词&lt;/strong&gt;	一般用于在全总个体域中声明事物特性的谓词, 如: $F(x):x$是人&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;量词&#34;&gt;量词&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;全称量词&lt;/strong&gt;	$\forall$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;特性谓词一般做蕴含的&lt;strong&gt;前件&lt;/strong&gt;, $\forall x(F(x)\to G(x))$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;存在量词&lt;/strong&gt;	$\exist$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;特性谓词一般做&lt;strong&gt;合取项&lt;/strong&gt;, $\exist x(F(x)\land G(x))$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;谓词公式&#34;&gt;谓词公式&lt;/h3&gt;
+&lt;p&gt;由命题变元, 联结词和括号按照一定的规则组成的字符串称为&lt;strong&gt;谓词公式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原子谓词公式&lt;/strong&gt;	$P(x_1,x_2,\cdots)$&lt;/p&gt;
+&lt;h3 id=&#34;自由与约束&#34;&gt;自由与约束&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;指导变元/作用变元&lt;/strong&gt;	$\forall xA$或$ \exist xA$中, $x$称为量词的&lt;strong&gt;指导变元&lt;/strong&gt;, $A$称为量词的辖域&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;封闭的公式/闭式&lt;/strong&gt;	不含自由出现个体变元的公式&lt;/p&gt;
+&lt;h3 id=&#34;逻辑等价-1&#34;&gt;逻辑等价&lt;/h3&gt;
+&lt;h4 id=&#34;命题公式推广&#34;&gt;命题公式推广&lt;/h4&gt;
+&lt;p&gt;$$
+\lnot \lnot \forall xF(x)\iff \forall F(x)	\
+\forall xF(x)\to \exist yG(y) \iff \lnot xF(x)\lor \exist yG(y)	\
+\lnot(\forall xF(x)\lor \exist yG(y))\iff \lnot\forall xF(x) \land \lnot\exist yG(y)
+$$&lt;/p&gt;
+&lt;h4 id=&#34;否定逻辑等价式&#34;&gt;否定逻辑等价式&lt;/h4&gt;
+&lt;p&gt;$$
+\lnot \forall P(x) \iff \exist x(\lnot P(x))	\
+\lnot \exist P(x) \iff \forall x(\lnot P(x))
+$$&lt;/p&gt;
+&lt;h4 id=&#34;辖域扩张与收缩&#34;&gt;辖域扩张与收缩&lt;/h4&gt;
+&lt;p&gt;$$
+\lnot(\forall xF(x)\lor G)\iff \lnot\forall xF(x)\lor G	\
+\cdots
+$$&lt;/p&gt;
+&lt;h4 id=&#34;量词分配&#34;&gt;量词分配&lt;/h4&gt;
+&lt;p&gt;$$
+\forall x(A(x)\land B(x))\iff \forall xA(x)\land\forall xB(x)	\
+\exist x(A(x)\lor B(x))\iff \exist xA(x)\lor \exist xB(x)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;前束范式&#34;&gt;前束范式&lt;/h3&gt;
+&lt;p&gt;若一个公式的量词都在最前边且其辖域一直延伸到末尾, 则其为&lt;strong&gt;前束范式&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;没有量词的前束范式称为&lt;strong&gt;平凡的前束范式&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;集合论&#34;&gt;集合论&lt;/h1&gt;
+&lt;h2 id=&#34;二元关系&#34;&gt;二元关系&lt;/h2&gt;
+&lt;h3 id=&#34;二元关系-1&#34;&gt;二元关系&lt;/h3&gt;
+&lt;p&gt;仅含有序对的集合或此意义下的空集&lt;/p&gt;
+&lt;h4 id=&#34;定义-2&#34;&gt;定义&lt;/h4&gt;
+&lt;p&gt;设$A$,$B$为集合, $A\times B$的任何子集称为从$A$到$B$的&lt;strong&gt;二元关系&lt;/strong&gt;, 记为$R\subseteq$$A\times B$&lt;/p&gt;
+&lt;p&gt;若$R\subseteq$$A\times A$则$R$为$A$上的二元关系&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若集合$A$有n个元素, 则有$2^{n^m}$个$m$元关系&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;特殊关系&#34;&gt;特殊关系&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;空关系&lt;/strong&gt;	$\varnothing$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;全域关系&lt;/strong&gt;	$E=A\times B$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;恒等关系&lt;/strong&gt;	$I_A = {&amp;lt;x,x&amp;gt;|x\in A}$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其他常用关系&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;小于等于关系&lt;/strong&gt;	$L_A = {&amp;lt;x,y&amp;gt;|x,y\in A \land x\leq y}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;整除关系&lt;/strong&gt;	$D_A = {&amp;lt;x,y&amp;gt;|x,y\in A \land x是 y的因子}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;包含关系&lt;/strong&gt;	$R_{\subseteq}={&amp;lt;x,y&amp;gt;|x,y\in A\land x\subseteq y}$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;表示&#34;&gt;表示&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;列举法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;描述法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;矩阵表示法&lt;/strong&gt;	使用&lt;strong&gt;关系矩阵&lt;/strong&gt;表示二元关系, 只适用于有限集
+$$
+M_R=(r_{ij})&lt;em&gt;{m\times n} \
+r&lt;/em&gt;{ij} = \begin{cases}
+1 &amp;amp;,a_iRb_j \
+0 &amp;amp;,a_i \tilde{R} b_j
+\end{cases}
+$$
+&lt;strong&gt;关系图表示法&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;性质-1&#34;&gt;性质&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;自反性&lt;/strong&gt;
+$$
+\forall x(x\in A\to &amp;lt;x,x&amp;gt;\in R)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关系图上每个结点都有环&lt;/p&gt;
+&lt;p&gt;关系矩阵主对角线上元素均为1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;反自反性&lt;/strong&gt;
+$$
+\forall x(x\in A\to &amp;lt;x,x&amp;gt;\notin R)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;空关系是$A$上的反自反关系&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关系图上每个结点均无环&lt;/p&gt;
+&lt;p&gt;关系矩阵主对角线上的元素均为0&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;对称性&lt;/strong&gt;
+$$
+\forall x\forall y(x,y\in A\and &amp;lt;x,y&amp;gt;\in R\to&amp;lt;y,x&amp;gt;\in R)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关系矩阵是对称矩阵&lt;/p&gt;
+&lt;p&gt;关系图上两结点间若有边则一定有方向相反的两个边&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;反对称性&lt;/strong&gt;
+$$
+\forall x\forall y(x,y\in A\and &amp;lt;x,y&amp;gt;\in R\to&amp;lt;y,x&amp;gt;\in R)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关系矩阵如果$r_{ij}=1$且$i\neq j$则$r_{ji}=0$&lt;/p&gt;
+&lt;p&gt;关系图上两结点间若有边则一定是单向边&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;传递性&lt;/strong&gt;
+$$
+\forall x\forall y\forall z(x,y,z\in A\land &amp;lt;x,y&amp;gt;\in R\land&amp;lt;y,z&amp;gt;\in R\to&amp;lt;x,z&amp;gt;\in R)
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$M^2$中1的位置关系矩阵$M$中也为1&lt;/p&gt;
+&lt;p&gt;关系图上的边有传递性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;运算&#34;&gt;运算&lt;/h3&gt;
+&lt;p&gt;设$R$为二元关系&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义域&lt;/strong&gt;	有序对第一元素构成的集合
+$$
+domR={x|\exist y(&amp;lt;x,y&amp;gt;\in R)}
+$$
+&lt;strong&gt;值域&lt;/strong&gt;	有序对的第二元素构成的集合
+$$
+ranR={y|\exist x(&amp;lt;x,y&amp;gt;\in R)}
+$$
+&lt;strong&gt;域&lt;/strong&gt;
+$$
+fldR=domR\cup ranR
+$$
+&lt;strong&gt;限制&lt;/strong&gt;
+$$
+R\upharpoonright A={&amp;lt;x,y&amp;gt;|xRy \land x\in A}
+$$
+&lt;strong&gt;像&lt;/strong&gt;
+$$
+R[A]=ran(R\upharpoonright A)
+$$
+&lt;strong&gt;逆运算&lt;/strong&gt;
+$$
+R^{-1}={&amp;lt;x,y&amp;gt;|&amp;lt;y,x&amp;gt;\in R}
+$$
+&lt;strong&gt;复合运算&lt;/strong&gt;
+$$
+R\circ S={&amp;lt;x,y&amp;gt;|\exist z\land(xRz\land zSy)}
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意$R\circ S\neq S\circ R$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;幂运算由复合运算产生&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;闭包&#34;&gt;闭包&lt;/h3&gt;
+&lt;p&gt;为现有关系$R$&lt;strong&gt;尽可能少&lt;/strong&gt;地添加有序对使其具有新的性质, $R&amp;rsquo;$称为$R$的闭包&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;自反闭包&lt;/strong&gt;
+$$
+r(R)=R\cup R^0	\
+M_r = M + E
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对称闭包&lt;/strong&gt;
+$$
+s(R)=R\cup R^{-1}	\
+M_s=M+M^T
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;传递闭包&lt;/strong&gt;
+$$
+t(R)=R\cup R^{2}\cup R^{3}\cup \cdots	\
+M_t = M + M^2 + M^3 + \cdots
+$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处+为逻辑加&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用关系图闭包较为简单, 不再赘述&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;等价关系&#34;&gt;等价关系&lt;/h3&gt;
+&lt;p&gt;若非空集合$A$上的关系$R$是&lt;strong&gt;自反,对称且传递&lt;/strong&gt;的, 则$R$为$A$上的等价关系, 若$&amp;lt;x,y&amp;gt;\in R$记作$x\sim y$&lt;/p&gt;
+&lt;h4 id=&#34;等价类&#34;&gt;等价类&lt;/h4&gt;
+&lt;p&gt;设非空集合$A$上的关系$R$为等价关系, $\forall x\in A$ , 则$[x]_R$为$x$关于$R$的等价类
+$$
+[x]={y|y\in A\land xRy}
+$$&lt;/p&gt;
+&lt;h4 id=&#34;商集&#34;&gt;商集&lt;/h4&gt;
+&lt;p&gt;设非空集合$A$上的关系$R$为等价关系, 则有$R$关于$A$的商集$A/R$
+$$
+A/R={[x]_R | x\in A}
+$$&lt;/p&gt;
+&lt;h4 id=&#34;划分&#34;&gt;划分&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;集合运算求划分&lt;/li&gt;
+&lt;li&gt;关系矩阵求划分&lt;/li&gt;
+&lt;li&gt;关系图求划分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;相容关系&#34;&gt;相容关系&lt;/h3&gt;
+&lt;p&gt;若非空集合$A$上的关系$R$是&lt;strong&gt;自反,对称&lt;/strong&gt;的, 则$R$为$A$上的相容关系&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所有等价关系都是相容关系&lt;/p&gt;
+&lt;p&gt;相容关系可用简化图与下三角矩阵表示&lt;/p&gt;
+&lt;p&gt;相容关系不能确定划分&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;相容类&#34;&gt;相容类&lt;/h4&gt;
+&lt;p&gt;若$x,y\in C$有$xRy$, 则$C$是$A$的一个相容类&lt;/p&gt;
+&lt;p&gt;若$C$不是任何相容类的真子集, 则$C$是最大相容类&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简化关系图上:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最大完全多边形的顶点构成的集合&lt;/li&gt;
+&lt;li&gt;孤立点构成的集合&lt;/li&gt;
+&lt;li&gt;非完全多边形的边的端点构成的集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是最大相容类&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;覆盖&#34;&gt;覆盖&lt;/h4&gt;
+&lt;p&gt;若$A$的子集族$\pi$满足$\varnothing $$\notin$$\pi$, $\cup _{x\in\pi} x=A$则$\pi$为$A$的一个覆盖&lt;/p&gt;
+&lt;p&gt;由$R$最大相容类构成的$A$的覆盖是&lt;strong&gt;完全覆盖&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;偏序关系&#34;&gt;偏序关系&lt;/h3&gt;
+&lt;p&gt;若非空集合$A$上的关系$R$是&lt;strong&gt;自反&lt;/strong&gt;,&lt;strong&gt;反对称&lt;/strong&gt;且&lt;strong&gt;传递&lt;/strong&gt;的, 则$R$为$A$上的偏序关系, 记作$\leq$&lt;/p&gt;
+&lt;p&gt;集合$A$与$\leq$一起组成的有序对$&amp;lt;A,\leq&amp;gt;$称为&lt;strong&gt;偏序集&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;全序关系&#34;&gt;全序关系&lt;/h4&gt;
+&lt;p&gt;设$&amp;lt;A,\leq&amp;gt;$是偏序集, $\forall x,y\in A, x与y均可比$, 则$\leq$是$A$上的全序关系(线序关系), $&amp;lt;A,\leq&amp;gt;$是全序集&lt;/p&gt;
+&lt;h4 id=&#34;盖住关系&#34;&gt;盖住关系&lt;/h4&gt;
+&lt;p&gt;设$&amp;lt;A,\leq&amp;gt;$是偏序集, $\forall x,y\in A \land (\not\exist z\in A\land x\leq z\leq y)$, 则$y$&lt;strong&gt;盖住&lt;/strong&gt;$x$
+$$
+COV A={&amp;lt;x,y&amp;gt;|x,y\in A\land y盖住x}
+$$&lt;/p&gt;
+&lt;h4 id=&#34;哈斯图&#34;&gt;哈斯图&lt;/h4&gt;
+&lt;p&gt;根据盖住关系绘制, $\circ$表示$A$中元素, $\forall x,y\in A$若&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$x&amp;lt;y$, 则$x$在$y$下方&lt;/li&gt;
+&lt;li&gt;$&amp;lt;x,y&amp;gt;\in COV A$, 则用线连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;全序关系的哈斯图是一条线, 因此称为线序关系&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;特殊元素&#34;&gt;特殊元素&lt;/h4&gt;
+&lt;p&gt;设$B\subseteq A, y\in B$, 则$y$是$B$的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最小元&lt;/strong&gt;	$\forall x(x\in B\to y\leq x)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最大元&lt;/strong&gt;	$\forall x(x\in B\to x\leq y)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;极小元&lt;/strong&gt;	$\lnot \exist x(x\in B\land x&amp;lt;y)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;极大元&lt;/strong&gt;	$\lnot\exist x(x\in B\land y&amp;lt;x)$&lt;/p&gt;
+&lt;p&gt;设$B\subseteq A, y\in A$, 则$y$是$B$的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;上界&lt;/strong&gt;	$\forall x(x\in B\to y\leq x)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下界&lt;/strong&gt;	$\forall x(x\in B\to x\leq y)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;上确界&lt;/strong&gt;	${y\ |\ y为B的上界}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下确界&lt;/strong&gt;	${y\ |\ y为B的下界}$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;代数结构&#34;&gt;代数结构&lt;/h1&gt;
+&lt;h2 id=&#34;代数系统&#34;&gt;代数系统&lt;/h2&gt;
+&lt;h3 id=&#34;二元运算&#34;&gt;二元运算&lt;/h3&gt;
+&lt;p&gt;设非空集合$S$, 则$S^n$到$S$的一个函数$f$为$S$上的$n$&lt;strong&gt;元代数运算&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当$n=2$时称为&lt;strong&gt;二元运算&lt;/strong&gt;, 记作$a_1*a_2=b$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;封闭性&lt;/strong&gt;	运算结果一定在$S$中&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;唯一性&lt;/strong&gt;	参与运算的元素和其顺序都相同, 则结果一定相同&lt;/p&gt;
+&lt;h4 id=&#34;二元运算性质&#34;&gt;二元运算性质&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;交换律&lt;/strong&gt;
+$$
+a&lt;em&gt;b=b&lt;/em&gt;a
+$$
+&lt;strong&gt;结合律&lt;/strong&gt;
+$$
+a*(b&lt;em&gt;c)=(a&lt;/em&gt;b)&lt;em&gt;c
+$$
+&lt;strong&gt;分配律&lt;/strong&gt;	$&lt;/em&gt;$对$+$满足
+$$
+a*(b+c)=(a&lt;em&gt;c)+(b&lt;/em&gt;c) \
+(b+c)&lt;em&gt;a=(b&lt;/em&gt;a)+(c&lt;em&gt;a)
+$$
+&lt;strong&gt;幂等律&lt;/strong&gt;
+$$
+a&lt;/em&gt;a=a
+$$
+&lt;strong&gt;吸收律&lt;/strong&gt;	$&lt;em&gt;$和$+$满足
+$$
+a&lt;/em&gt;(a+b)=a \
+a+(a*b)=a
+$$&lt;/p&gt;
+&lt;h4 id=&#34;单位元&#34;&gt;单位元&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;左单位元&lt;/strong&gt;	$e_l*x=x$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;右单位元&lt;/strong&gt;	$x*e_r=x$&lt;/p&gt;
+&lt;p&gt;若$e_l=e_r$,  则$e$为$S$上的&lt;strong&gt;单位元&lt;/strong&gt;(幺元)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;左逆元&lt;/strong&gt;	$y_l\circ x=e$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;右逆元&lt;/strong&gt;	$x\circ y_r=e$&lt;/p&gt;
+&lt;p&gt;若$y_l=y_r$, 则y为x的&lt;strong&gt;逆元&lt;/strong&gt;, $x$是&lt;strong&gt;可逆的&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;零元&#34;&gt;零元&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;左零元&lt;/strong&gt;	$\theta_l*x=\theta_l$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;右零元&lt;/strong&gt;	$x*\theta_r=\theta_r$&lt;/p&gt;
+&lt;h3 id=&#34;代数系统-1&#34;&gt;代数系统&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;	集合$A$与$A$上的$k$个运算所组成的系统$&amp;lt;A, \cdot_1,\cdot_2,\cdots,\cdot_k&amp;gt;$, 简称&lt;strong&gt;代数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;代数常数/特异元素&lt;/strong&gt;	如零元, 单位元, 也可出现在代数系统中$&amp;lt;A, \cdot_1,\cdot_2,\cdots,\cdot_k,e&amp;gt;$,&lt;/p&gt;
+&lt;h4 id=&#34;子代数系统&#34;&gt;子代数系统&lt;/h4&gt;
+&lt;p&gt;对代数系统$V=&amp;lt;A, \cdot_1,\cdot_2,\cdots,\cdot_k&amp;gt;$,若$A_0 \subseteq A$, $A0$对运算$\cdot$封闭且$A$中代数常数与$A_0$相等, 则$&amp;lt;A_0, \cdot_1,\cdot_2,\cdots,\cdot_k&amp;gt;$也是代数系统, 且称为$V$的&lt;strong&gt;子代数(系统)&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;积代数系统&#34;&gt;积代数系统&lt;/h4&gt;
+&lt;p&gt;设$V_1=&amp;lt;A_1,\cdot_1&amp;gt;$, $V_2=&amp;lt;A_2,\cdot_2&amp;gt;$,定义$A_1\times A_2$上的二元运算$\cdot$使得$\forall &amp;lt;x_1,y_1&amp;gt;,&amp;lt;x_2,y_2&amp;gt;\in A_1\times A_2$有$&amp;lt;x_1,y_1&amp;gt;\cdot &amp;lt;x_2,y_2&amp;gt;=&amp;lt;x_1\cdot_1x_2,y_1\cdot_2 y_2&amp;gt;$,则$&amp;lt;A_1\times A_2,\cdot&amp;gt;$是$V_1,V_2$的&lt;strong&gt;积代数系统&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;同态&#34;&gt;同态&lt;/h4&gt;
+&lt;p&gt;设$U=&amp;lt;X,\cdot&amp;gt;$, $V=&amp;lt;Y,*&amp;gt;$是两个同一类型的代数系统, $\exist f:X\to Y$对于$\forall x_1,x_2\in X$, 若
+$$
+f(x_1\cdot x_2)=f(x_1)*f(x_2)
+$$
+则$f:X\to Y$为$U$到$V$的&lt;strong&gt;同态(映射)&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若$f:U\to U$则为&lt;strong&gt;自同态&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若$f$&lt;strong&gt;满射&lt;/strong&gt;, 则为&lt;strong&gt;满同态&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;若$f$&lt;strong&gt;单射&lt;/strong&gt;, 则为&lt;strong&gt;单同态&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;同构&#34;&gt;同构&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若上述$f$&lt;strong&gt;双射&lt;/strong&gt;, 则为&lt;strong&gt;同构&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若$f:U\to U$则为&lt;strong&gt;自同构&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;群论&#34;&gt;群论&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;群&lt;/strong&gt;	单位元, 逆元和一个可结合运算共同构成的代数系统&lt;/p&gt;
+&lt;h2 id=&#34;半群与独异点&#34;&gt;半群与独异点&lt;/h2&gt;
+&lt;p&gt;$\cdot$是$G$上的二元代数且满足结合律, 则$&amp;lt;G,\cdot&amp;gt;$为&lt;strong&gt;半群&lt;/strong&gt;, 其子代数系统为&lt;strong&gt;子半群&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;独异点/含幺半群&lt;/strong&gt;	$G$中含有$\cdot$的幺元, 若其子代数也含有, 则其为&lt;strong&gt;子独异点&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群&#34;&gt;群&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;	对独异点$&amp;lt;G,\cdot&amp;gt;$, 若$\forall a\in G$存在$a^{-1}\in G$使得$a\cdot a^{-1}=a^{-1}\cdot a=e$, 则$&amp;lt;G,\cdot&amp;gt;$为群&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;有限群&lt;/strong&gt;	$G$是有限集&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阶数&lt;/strong&gt;	$|G|$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;平凡群&lt;/strong&gt;	只含有单位元&lt;/p&gt;
+&lt;h3 id=&#34;阶元&#34;&gt;阶元&lt;/h3&gt;
+&lt;p&gt;$a\in G$使得$a^k=e$的最小正整数$k$为$a$&lt;strong&gt;的阶元&lt;/strong&gt;, 记作$|a|=k$, 称$a$为$k$阶元&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若不存在这样的正整数$k$则$a$为无限阶元&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;性质&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若$|a|=r$, $r$整除$k$, 则$a^k=e$&lt;/li&gt;
+&lt;li&gt;$|a^{-1}|=|a|$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;特殊群&#34;&gt;特殊群&lt;/h2&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;图论&#34;&gt;图论&lt;/h1&gt;
+&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;无序积&lt;/strong&gt;	$A&amp;amp;B$	记作$(a,b)={{a,b}|a\in A\land b\in B}$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;图定义为一个&lt;strong&gt;三元组&lt;/strong&gt;$(V,E,\varphi)$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;顶点(vertex)&lt;/strong&gt;	非空集合$V(G)$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;边(edge)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;$\varphi$    边集合$E$到$V&amp;amp; V$上的函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;度&#34;&gt;度&lt;/h3&gt;
+&lt;p&gt;图$G=&amp;lt;V,E&amp;gt;$中顶点$v$与所有边的&lt;strong&gt;关联次数之和&lt;/strong&gt;为&lt;strong&gt;度&lt;/strong&gt;, 记作$deg(v)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;入度&lt;/strong&gt;	有序图中进入这一顶点的边的关联次数, 记作$deg^-(v)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;出度&lt;/strong&gt;	有序图中离开这一顶点的边的关联次数, 记作$deg^+(v)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最大度&lt;/strong&gt;	$\varDelta (G)$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最小度&lt;/strong&gt;	$\delta(G)$&lt;/p&gt;
+&lt;h3 id=&#34;握手定理&#34;&gt;握手定理&lt;/h3&gt;
+&lt;p&gt;每个图中顶点度数等于边数的二倍
+$$
+\sum_{v\in V} deg(v) = 2|E|
+$$&lt;/p&gt;
+&lt;h3 id=&#34;度数序列&#34;&gt;度数序列&lt;/h3&gt;
+&lt;p&gt;$$
+d=(d_1,d_2,\cdots,d_n)=(deg(v_1),deg(v_2),\cdots,deg(v_n))
+$$&lt;/p&gt;
+&lt;h4 id=&#34;可图化&#34;&gt;可图化&lt;/h4&gt;
+&lt;p&gt;非负整数列$d$可图化当且仅当$\sum_{i=1}^{n} d_i$为偶数&lt;/p&gt;
+&lt;h4 id=&#34;可简单图化&#34;&gt;可简单图化&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;哈韦尔-哈基米算法&lt;/strong&gt;	令$S=(d_{1},\dots ,d_{n})$为有限多个非负整数组成的非递增序列。$S$可简单图化当且仅当有穷序列$S&amp;rsquo;=(d_{2}-1,d_{3}-1,\dots ,d_{d_{1}+1}-1,d_{d_{1}+2},\dots ,d_{n})$只含有非负整数且是可简单图化的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;补图&#34;&gt;补图&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;完全图&lt;/strong&gt;	$G$中每一个顶点都与其余所有顶点相连, 则$K_n$为$n$阶完全图&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;竞赛图&lt;/strong&gt;	$G$为有向图则为$n$阶竞赛图&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$K_n$的边数为$\dfrac{n(n-1)}{2}=C_n^2$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;给定图$G$中所有顶点和能使$G$成为完全图的所有&lt;strong&gt;添加边&lt;/strong&gt;构成$G$的&lt;strong&gt;补图&lt;/strong&gt;, 记作$\bar G$&lt;/p&gt;
+&lt;h3 id=&#34;子图&#34;&gt;子图&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;生成子图&lt;/strong&gt;	去边法&lt;/p&gt;
+&lt;h2 id=&#34;连通性&#34;&gt;连通性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;回路&lt;/strong&gt;	始点和终点相同的路径&lt;/p&gt;
+&lt;h2 id=&#34;树&#34;&gt;树&lt;/h2&gt;
+&lt;p&gt;连通无回路的无向图称为树&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;树叶&lt;/strong&gt;	度数为1的顶点&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分支点&lt;/strong&gt;	度数大于1的顶点&lt;/p&gt;
+&lt;h3 id=&#34;性质-2&#34;&gt;性质&lt;/h3&gt;
+&lt;p&gt;给定图$T$为树&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无回路的连通图&lt;/li&gt;
+&lt;li&gt;无回路且$e=v-1$&lt;/li&gt;
+&lt;li&gt;连通且$e=v-1$&lt;/li&gt;
+&lt;li&gt;无回路但新增一条边则有且仅有一个回路&lt;/li&gt;
+&lt;li&gt;连通但删去一条边不再连通&lt;/li&gt;
+&lt;li&gt;每一对顶点之间有且仅有一条路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;生成树&#34;&gt;生成树&lt;/h3&gt;
+&lt;p&gt;无向图$G$的&lt;strong&gt;生成子图&lt;/strong&gt;$T$若为一棵树, 则$T$是$G$的生成树&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

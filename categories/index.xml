@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on WitchElaina&#39;s Blog</title>
+        <link>https://withcelaina.github.io/categories/</link>
+        <description>Recent content in Categories on WitchElaina&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 13 Oct 2022 13:02:24 +0000</lastBuildDate><atom:link href="https://withcelaina.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>教程</title>
+        <link>https://withcelaina.github.io/categories/%E6%95%99%E7%A8%8B/</link>
+        <pubDate>Thu, 13 Oct 2022 13:02:24 +0000</pubDate>
+        
+        <guid>https://withcelaina.github.io/categories/%E6%95%99%E7%A8%8B/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>笔记</title>
+        <link>https://withcelaina.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://withcelaina.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>记录</title>
+        <link>https://withcelaina.github.io/categories/%E8%AE%B0%E5%BD%95/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://withcelaina.github.io/categories/%E8%AE%B0%E5%BD%95/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,2575 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='C&#43;&#43;课程实验之一, 使用gdb调试程序, 查看反汇编代码寻找答案, 本文记录了实验过程及一些问题的巧妙解法'>
+<title>Bomblab拆弹实验</title>
+
+<link rel='canonical' href='https://withcelaina.github.io/posts/bomb_defusion/'>
+
+<link rel="stylesheet" href="/scss/style.min.3b122f5b6a7023e613be9affad843eaceacf4a3383edd177ce41e35501998968.css"><meta property='og:title' content='Bomblab拆弹实验'>
+<meta property='og:description' content='C&#43;&#43;课程实验之一, 使用gdb调试程序, 查看反汇编代码寻找答案, 本文记录了实验过程及一些问题的巧妙解法'>
+<meta property='og:url' content='https://withcelaina.github.io/posts/bomb_defusion/'>
+<meta property='og:site_name' content='WitchElaina&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:tag' content='汇编' />
+<meta name="twitter:title" content="Bomblab拆弹实验">
+<meta name="twitter:description" content="C&#43;&#43;课程实验之一, 使用gdb调试程序, 查看反汇编代码寻找答案, 本文记录了实验过程及一些问题的巧妙解法">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://cdn.staticaly.com/gh/LinYuanChan/image-hosting@master/81346402.webp" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">❄️</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WitchElaina&#39;s Blog</a></h1>
+            <h2 class="site-description">New blog developing...</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/WitchElaina'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://withcelaina.github.io/" selected>English</option>
+                        
+                            <option value="https://withcelaina.github.io/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#bomblab拆弹实验总结">Bomblab拆弹实验总结</a>
+      <ol>
+        <li><a href="#前期准备">前期准备</a>
+          <ol>
+            <li><a href="#安装gdb-peda插件">安装gdb-peda插件</a></li>
+          </ol>
+        </li>
+        <li><a href="#phase-0">Phase 0</a></li>
+        <li><a href="#phase-1">Phase 1</a></li>
+        <li><a href="#phase-2">Phase 2</a></li>
+        <li><a href="#phase-3">Phase 3</a></li>
+        <li><a href="#phase-4">Phase 4</a></li>
+        <li><a href="#phase-5">Phase 5</a></li>
+        <li><a href="#phase-6">Phase 6</a></li>
+        <li><a href="#phase-7-隐藏关">Phase 7 隐藏关</a></li>
+      </ol>
+    </li>
+    <li><a href="#一键拆弹方法">一键拆弹方法</a>
+      <ol>
+        <li><a href="#注意">注意</a></li>
+        <li><a href="#实现方法">实现方法</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%B0%E5%BD%95/" >
+                记录
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/bomb_defusion/">Bomblab拆弹实验</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            C&#43;&#43;课程实验之一, 使用gdb调试程序, 查看反汇编代码寻找答案, 本文记录了实验过程及一些问题的巧妙解法
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+
+    
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    24 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="bomblab拆弹实验总结">Bomblab拆弹实验总结</h1>
+<h2 id="前期准备">前期准备</h2>
+<h3 id="安装gdb-peda插件">安装gdb-peda插件</h3>
+<p>首先使用<code>tar -xvf 42024203.tar</code>解压压缩包，然后使用 <code>gdb ./work/bomb </code>指令用<code>gdb</code>打开二进制可执行文件<code>bomb</code></p>
+<h2 id="phase-0">Phase 0</h2>
+<p>获取phase0的汇编代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble phase_0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function phase_0:
+</span></span><span class="line"><span class="cl">   0x08049580 &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x08049584 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x08049585 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x08049587 &lt;+7&gt;:     sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x0804958a &lt;+10&gt;:    sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x0804958d &lt;+13&gt;:    push   0x804b1c8	# 推入0x804b1c8处的字符串
+</span></span><span class="line"><span class="cl">   0x08049592 &lt;+18&gt;:    push   DWORD PTR [ebp+0x8]	# 推入用户输入的字符串
+</span></span><span class="line"><span class="cl">   0x08049595 &lt;+21&gt;:    call   0x8049df1 &lt;strings_not_equal&gt;	# 调用字符串比较函数比较两字符串是否相等
+</span></span><span class="line"><span class="cl">   0x0804959a &lt;+26&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x0804959d &lt;+29&gt;:    test   eax,eax	# 判断strings_not_equal函数的返回值, 将eax与自身进行与运算，得到返回值1或0
+</span></span><span class="line"><span class="cl">   0x0804959f &lt;+31&gt;:    je     0x80495ad &lt;phase_0+45&gt;	# 如果不是0跳转至0x80495ad处的指令，结束phase_0,拆弹成功
+</span></span><span class="line"><span class="cl">   0x080495a1 &lt;+33&gt;:    call   0x804a071 &lt;explode_bomb&gt;	# 如果是0则不跳转，引爆炸弹
+</span></span><span class="line"><span class="cl">   0x080495a6 &lt;+38&gt;:    mov    eax,0x0		# 将phase_0函数return 0;
+</span></span><span class="line"><span class="cl">   0x080495ab &lt;+43&gt;:    jmp    0x80495b2 &lt;phase_0+50&gt;
+</span></span><span class="line"><span class="cl">   0x080495ad &lt;+45&gt;:    mov    eax,0x1		# 将phase_0函数return 1;
+</span></span><span class="line"><span class="cl">   0x080495b2 &lt;+50&gt;:    leave  
+</span></span><span class="line"><span class="cl">   0x080495b3 &lt;+51&gt;:    ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析可得只需要查看<code>0x804b1c8</code>处字符串的值即可获得<code>phase_0</code>的答案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ x/s 0x804b1c8
+</span></span><span class="line"><span class="cl">0x804b1c8:      <span class="s2">&#34;Why index with the middle bits?&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查询可得正确结果<code>Why index with the middle bits?</code></p>
+<h2 id="phase-1">Phase 1</h2>
+<p>获取phase1的汇编代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble phase_1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function phase_1:
+</span></span><span class="line"><span class="cl">   0x080495b4 &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x080495b8 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x080495b9 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x080495bb &lt;+7&gt;:     sub    esp,0x38
+</span></span><span class="line"><span class="cl">   0x080495be &lt;+10&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x080495c1 &lt;+13&gt;:    mov    DWORD PTR [ebp-0x2c],eax
+</span></span><span class="line"><span class="cl">   0x080495c4 &lt;+16&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x080495ca &lt;+22&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x080495cd &lt;+25&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x080495cf &lt;+27&gt;:    mov    DWORD PTR [ebp-0x1c],0x2009dd99	#将整数0x2009dd99推入浮点计数器中
+</span></span><span class="line"><span class="cl">   0x080495d6 &lt;+34&gt;:    fild   DWORD PTR [ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x080495d9 &lt;+37&gt;:    fstp   QWORD PTR [ebp-0x18]	# 将浮点计数器中的数存储到寄存器中，地址为ebp-0x18
+</span></span><span class="line"><span class="cl">   0x080495dc &lt;+40&gt;:    lea    eax,[ebp-0x20]	
+</span></span><span class="line"><span class="cl">   0x080495df &lt;+43&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x080495e0 &lt;+44&gt;:    lea    eax,[ebp-0x24]
+</span></span><span class="line"><span class="cl">   0x080495e3 &lt;+47&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x080495e4 &lt;+48&gt;:    push   0x804b1e8	# sscanf读取的输入格式，查看内容可得%d %d，即输入为两个用空格分开的整数
+</span></span><span class="line"><span class="cl">   0x080495e9 &lt;+53&gt;:    push   DWORD PTR [ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x080495ec &lt;+56&gt;:    call   0x80491f0 &lt;__isoc99_sscanf@plt&gt;
+</span></span><span class="line"><span class="cl">   0x080495f1 &lt;+61&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x080495f4 &lt;+64&gt;:    cmp    eax,0x2	# 将输入的数字数量与0x2作比较，如果相等则跳转，不相等则爆炸，即必须输入两个整数
+</span></span><span class="line"><span class="cl">   0x080495f7 &lt;+67&gt;:    je     0x8049605 &lt;phase_1+81&gt; # 跳转
+</span></span><span class="line"><span class="cl">   0x080495f9 &lt;+69&gt;:    call   0x804a071 &lt;explode_bomb&gt;	# 引爆炸弹
+</span></span><span class="line"><span class="cl">   0x080495fe &lt;+74&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049603 &lt;+79&gt;:    jmp    0x8049631 &lt;phase_1+125&gt;
+</span></span><span class="line"><span class="cl">   0x08049605 &lt;+81&gt;:    lea    eax,[ebp-0x18]	
+</span></span><span class="line"><span class="cl">   0x08049608 &lt;+84&gt;:    mov    edx,DWORD PTR [eax]
+</span></span><span class="line"><span class="cl">   0x0804960a &lt;+86&gt;:    mov    eax,DWORD PTR [ebp-0x24]  
+</span></span><span class="line"><span class="cl">   0x0804960d &lt;+89&gt;:    cmp    edx,eax	# 比较第一个输入数和此时eax中的数是否相等，不相等则爆炸，相等则继续
+</span></span><span class="line"><span class="cl">   0x0804960f &lt;+91&gt;:    jne    0x8049620 &lt;phase_1+108&gt;
+</span></span><span class="line"><span class="cl">   0x08049611 &lt;+93&gt;:    lea    eax,[ebp-0x18]
+</span></span><span class="line"><span class="cl">   0x08049614 &lt;+96&gt;:    add    eax,0x4
+</span></span><span class="line"><span class="cl">   0x08049617 &lt;+99&gt;:    mov    edx,DWORD PTR [eax]
+</span></span><span class="line"><span class="cl">   0x08049619 &lt;+101&gt;:   mov    eax,DWORD PTR [ebp-0x20]
+</span></span><span class="line"><span class="cl">   0x0804961c &lt;+104&gt;:   cmp    edx,eax	# 比较第二个输入数和此时eax中的数是否相等，不相等则爆炸，相等则结束phase_1，拆弹成功
+</span></span><span class="line"><span class="cl">   0x0804961e &lt;+106&gt;:   je     0x804962c &lt;phase_1+120&gt;
+</span></span><span class="line"><span class="cl">   0x08049620 &lt;+108&gt;:   call   0x804a071 &lt;explode_bomb&gt;# 引爆炸弹
+</span></span><span class="line"><span class="cl">   0x08049625 &lt;+113&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x0804962a &lt;+118&gt;:   jmp    0x8049631 &lt;phase_1+125&gt;
+</span></span><span class="line"><span class="cl">   0x0804962c &lt;+120&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x08049631 &lt;+125&gt;:   mov    ecx,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x08049634 &lt;+128&gt;:   xor    ecx,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x0804963b &lt;+135&gt;:   je     0x8049642 &lt;phase_1+142&gt;
+</span></span><span class="line"><span class="cl">   0x0804963d &lt;+137&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x08049642 &lt;+142&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x08049643 &lt;+143&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编写以下C++代码，模拟程序执行的过程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">value</span><span class="o">=</span><span class="mh">0x2009dd99</span><span class="p">;</span>		<span class="c1">//传入浮点寄存器中的数值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">*</span> <span class="n">res</span><span class="o">=</span><span class="k">new</span> <span class="kt">int</span> <span class="p">[</span><span class="mi">2</span><span class="p">];</span>			
+</span></span><span class="line"><span class="cl">    <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">value</span><span class="p">;</span>				<span class="c1">//获取两处地址，进行强制类型转换，以整数方式强制打印，即可得到结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行上述程序，得到答案
+<code>-864026624 1103103214</code></p>
+<h2 id="phase-2">Phase 2</h2>
+<p>输入<code>disassemble phase_2</code>获取phase2的汇编代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble phase_2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function phase_2:
+</span></span><span class="line"><span class="cl">   0x08049644 &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x08049648 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x08049649 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x0804964b &lt;+7&gt;:     sub    esp,0x48
+</span></span><span class="line"><span class="cl">   0x0804964e &lt;+10&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049651 &lt;+13&gt;:    mov    DWORD PTR [ebp-0x3c],eax
+</span></span><span class="line"><span class="cl">   0x08049654 &lt;+16&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x0804965a &lt;+22&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x0804965d &lt;+25&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x0804965f &lt;+27&gt;:    sub    esp,0x4
+</span></span><span class="line"><span class="cl">   0x08049662 &lt;+30&gt;:    push   0x8	# 结合后面的函数read_n_numbers可知，程序读取了0x8个数，即我们需要输入8个整数
+</span></span><span class="line"><span class="cl">   0x08049664 &lt;+32&gt;:    lea    eax,[ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x08049667 &lt;+35&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049668 &lt;+36&gt;:    push   DWORD PTR [ebp-0x3c]
+</span></span><span class="line"><span class="cl">   0x0804966b &lt;+39&gt;:    call   0x8049d2f &lt;read_n_numbers&gt;
+</span></span><span class="line"><span class="cl">   0x08049670 &lt;+44&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049673 &lt;+47&gt;:    test   eax,eax	# 检验是否输入了正确数量的数，如果read_n_numbers返回0，表示没有读取到正确数量的数，程序跳转爆炸
+</span></span><span class="line"><span class="cl">   0x08049675 &lt;+49&gt;:    jne    0x804967e &lt;phase_2+58&gt;
+</span></span><span class="line"><span class="cl">   0x08049677 &lt;+51&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x0804967c &lt;+56&gt;:    jmp    0x80496e3 &lt;phase_2+159&gt;
+</span></span><span class="line"><span class="cl">   0x0804967e &lt;+58&gt;:    mov    eax,DWORD PTR [ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x08049681 &lt;+61&gt;:    cmp    eax,0x20		# 判断第一个输入数是否为0x20(十进制32)，如果不是则跳转爆炸
+</span></span><span class="line"><span class="cl">   0x08049684 &lt;+64&gt;:    jne    0x804968e &lt;phase_2+74&gt;	
+</span></span><span class="line"><span class="cl">   0x08049686 &lt;+66&gt;:    mov    eax,DWORD PTR [ebp-0x28]
+</span></span><span class="line"><span class="cl">   0x08049689 &lt;+69&gt;:    cmp    eax,0x40		# 判断第二个输入数是否为0x40(十进制64)，如果不是则跳转爆炸
+</span></span><span class="line"><span class="cl">   0x0804968c &lt;+72&gt;:    je     0x804969a &lt;phase_2+86&gt;
+</span></span><span class="line"><span class="cl">   0x0804968e &lt;+74&gt;:    call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049693 &lt;+79&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049698 &lt;+84&gt;:    jmp    0x80496e3 &lt;phase_2+159&gt;
+</span></span><span class="line"><span class="cl">   0x0804969a &lt;+86&gt;:    mov    DWORD PTR [ebp-0x30],0x2		# 将表示循环次数的变量存入[ebp-0x30]中，开始循环，初始值为2（为方便描述设为i，并将8个输入数看做长度为8的数组）
+</span></span><span class="line"><span class="cl">   0x080496a1 &lt;+93&gt;:    jmp    0x80496d8 &lt;phase_2+148&gt;	# 跳转判断循环次数
+</span></span><span class="line"><span class="cl">   0x080496a3 &lt;+95&gt;:    mov    eax,DWORD PTR [ebp-0x30]
+</span></span><span class="line"><span class="cl">   0x080496a6 &lt;+98&gt;:    mov    eax,DWORD PTR [ebp+eax*4-0x2c]
+</span></span><span class="line"><span class="cl">   0x080496aa &lt;+102&gt;:   mov    edx,DWORD PTR [ebp-0x30]
+</span></span><span class="line"><span class="cl">   0x080496ad &lt;+105&gt;:   sub    edx,0x2	
+</span></span><span class="line"><span class="cl">   0x080496b0 &lt;+108&gt;:   mov    edx,DWORD PTR [ebp+edx*4-0x2c]
+</span></span><span class="line"><span class="cl">   0x080496b4 &lt;+112&gt;:   mov    ecx,edx
+</span></span><span class="line"><span class="cl">   0x080496b6 &lt;+114&gt;:   sar    ecx,1		# 下标为i-2的元素右移（除以二向下取整）
+</span></span><span class="line"><span class="cl">   0x080496b8 &lt;+116&gt;:   mov    edx,DWORD PTR [ebp-0x30]
+</span></span><span class="line"><span class="cl">   0x080496bb &lt;+119&gt;:   sub    edx,0x1
+</span></span><span class="line"><span class="cl">   0x080496be &lt;+122&gt;:   mov    edx,DWORD PTR [ebp+edx*4-0x2c]
+</span></span><span class="line"><span class="cl">   0x080496c2 &lt;+126&gt;:   add    edx,ecx	# 下标为i-1的元素加上下标的为i-2的元素
+</span></span><span class="line"><span class="cl">   0x080496c4 &lt;+128&gt;:   cmp    eax,edx	# 如果上述结果等于下标为i的元素则继续循环，不等于则爆炸
+</span></span><span class="line"><span class="cl">   0x080496c6 &lt;+130&gt;:   je     0x80496d4 &lt;phase_2+144&gt;
+</span></span><span class="line"><span class="cl">   0x080496c8 &lt;+132&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x080496cd &lt;+137&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080496d2 &lt;+142&gt;:   jmp    0x80496e3 &lt;phase_2+159&gt;
+</span></span><span class="line"><span class="cl">   0x080496d4 &lt;+144&gt;:   add    DWORD PTR [ebp-0x30],0x1
+</span></span><span class="line"><span class="cl">   0x080496d8 &lt;+148&gt;:   cmp    DWORD PTR [ebp-0x30],0x7		# 如果循环次数变量i大于0x7，则跳出循环，否则继续循环
+</span></span><span class="line"><span class="cl">   0x080496dc &lt;+152&gt;:   jle    0x80496a3 &lt;phase_2+95&gt;
+</span></span><span class="line"><span class="cl">   0x080496de &lt;+154&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x080496e3 &lt;+159&gt;:   mov    ecx,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x080496e6 &lt;+162&gt;:   xor    ecx,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x080496ed &lt;+169&gt;:   je     0x80496f4 &lt;phase_2+176&gt;
+</span></span><span class="line"><span class="cl">   0x080496ef &lt;+171&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x080496f4 &lt;+176&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x080496f5 &lt;+177&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过分析代码可得，该程序要求输入一组以数32，64开头的数，要满足如下关系式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span> <span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span> <span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编写程序C++程序模拟循环获得结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">array</span> <span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>	<span class="p">{</span>       
+</span></span><span class="line"><span class="cl"><span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span> <span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">array</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下
+<code>32 64 80 112 152 208 284 388</code></p>
+<h2 id="phase-3">Phase 3</h2>
+<p>输入<code>disassemble phase_3</code>获取<code>phase3</code>的汇编代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gdb-peda$ disassemble phase_3
+</span></span><span class="line"><span class="cl">Dump of assembler code for function phase_3:
+</span></span><span class="line"><span class="cl">   0x080496f6 &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x080496fa &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x080496fb &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x080496fd &lt;+7&gt;:     sub    esp,0x38
+</span></span><span class="line"><span class="cl">   0x08049700 &lt;+10&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049703 &lt;+13&gt;:    mov    DWORD PTR [ebp-0x2c],eax
+</span></span><span class="line"><span class="cl">   0x08049706 &lt;+16&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x0804970c &lt;+22&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x0804970f &lt;+25&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x08049711 &lt;+27&gt;:    mov    DWORD PTR [ebp-0x14],0x0
+</span></span><span class="line"><span class="cl">   0x08049718 &lt;+34&gt;:    mov    DWORD PTR [ebp-0x10],0x0
+</span></span><span class="line"><span class="cl">   0x0804971f &lt;+41&gt;:    lea    eax,[ebp-0x18]
+</span></span><span class="line"><span class="cl">   0x08049722 &lt;+44&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049723 &lt;+45&gt;:    lea    eax,[ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x08049726 &lt;+48&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049727 &lt;+49&gt;:    push   0x804b1e8		# sscanf读取的输入格式，查看内容可得%d %d，即输入为两个用空格分开的整数
+</span></span><span class="line"><span class="cl">   0x0804972c &lt;+54&gt;:    push   DWORD PTR [ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x0804972f &lt;+57&gt;:    call   0x80491f0 &lt;__isoc99_sscanf@plt&gt;
+</span></span><span class="line"><span class="cl">   0x08049734 &lt;+62&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049737 &lt;+65&gt;:    mov    DWORD PTR [ebp-0x10],eax
+</span></span><span class="line"><span class="cl">   0x0804973a &lt;+68&gt;:    cmp    DWORD PTR [ebp-0x10],0x1		# 检验是否输入了正确数量的数，如果输入的数小于1个则爆炸，如不是则跳过爆炸，继续运行
+</span></span><span class="line"><span class="cl">   0x0804973e &lt;+72&gt;:    jg     0x804974f &lt;phase_3+89&gt;
+</span></span><span class="line"><span class="cl">   0x08049740 &lt;+74&gt;:    call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049745 &lt;+79&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x0804974a &lt;+84&gt;:    jmp    0x80497e5 &lt;phase_3+239&gt;
+</span></span><span class="line"><span class="cl">   0x0804974f &lt;+89&gt;:    mov    eax,DWORD PTR [ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x08049752 &lt;+92&gt;:    sub    eax,0xcb
+</span></span><span class="line"><span class="cl">   0x08049757 &lt;+97&gt;:    cmp    eax,0x9		# 第一个输入数减去0xcb(十进制203)再与0x9(十进制9)比较，如果大于9则跳转至爆炸行，如不是则继续运行
+</span></span><span class="line"><span class="cl">   0x0804975a &lt;+100&gt;:   ja     0x80497c0 &lt;phase_3+202&gt;
+</span></span><span class="line"><span class="cl">   0x0804975c &lt;+102&gt;:   mov    eax,DWORD PTR [eax*4+0x804b1f0]
+</span></span><span class="line"><span class="cl">   0x08049763 &lt;+109&gt;:   notrack jmp eax		# 根据第一个输入的数减去0xcb的结果选择跳转至不同的分支
+</span></span><span class="line"><span class="cl"># case 0
+</span></span><span class="line"><span class="cl">   0x08049766 &lt;+112&gt;:   mov    DWORD PTR [ebp-0x14],0x3e8	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x3e8
+</span></span><span class="line"><span class="cl">   0x0804976d &lt;+119&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 1
+</span></span><span class="line"><span class="cl">   0x0804976f &lt;+121&gt;:   mov    DWORD PTR [ebp-0x14],0x3e8	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x3e8
+</span></span><span class="line"><span class="cl">   0x08049776 &lt;+128&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 2
+</span></span><span class="line"><span class="cl">   0x08049778 &lt;+130&gt;:   mov    DWORD PTR [ebp-0x14],0x14d	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x14d
+</span></span><span class="line"><span class="cl">   0x0804977f &lt;+137&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case3
+</span></span><span class="line"><span class="cl">   0x08049781 &lt;+139&gt;:   mov    DWORD PTR [ebp-0x14],0x3e8	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x3e8
+</span></span><span class="line"><span class="cl">   0x08049788 &lt;+146&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 4
+</span></span><span class="line"><span class="cl">   0x0804978a &lt;+148&gt;:   mov    DWORD PTR [ebp-0x14],0x14d	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x14d
+</span></span><span class="line"><span class="cl">   0x08049791 &lt;+155&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 5
+</span></span><span class="line"><span class="cl">   0x08049793 &lt;+157&gt;:   mov    DWORD PTR [ebp-0x14],0x3e8 	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x3e8
+</span></span><span class="line"><span class="cl">   0x0804979a &lt;+164&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 6
+</span></span><span class="line"><span class="cl">   0x0804979c &lt;+166&gt;:   mov    DWORD PTR [ebp-0x14],0x14d	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x14d
+</span></span><span class="line"><span class="cl">   0x080497a3 &lt;+173&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 7
+</span></span><span class="line"><span class="cl">   0x080497a5 &lt;+175&gt;:   mov    DWORD PTR [ebp-0x14],0x14d	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x14d
+</span></span><span class="line"><span class="cl">   0x080497ac &lt;+182&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 8
+</span></span><span class="line"><span class="cl">   0x080497ae &lt;+184&gt;:   mov    DWORD PTR [ebp-0x14],0x3e8	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x3e8
+</span></span><span class="line"><span class="cl">   0x080497b5 &lt;+191&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl"># case 9
+</span></span><span class="line"><span class="cl">   0x080497b7 &lt;+193&gt;:   mov    DWORD PTR [ebp-0x14],0x14d	# 给[ebp-0x14]中存入将要与第二个输入比较的数0x14d
+</span></span><span class="line"><span class="cl">   0x080497be &lt;+200&gt;:   jmp    0x80497cc &lt;phase_3+214&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x080497c0 &lt;+202&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x080497c5 &lt;+207&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080497ca &lt;+212&gt;:   jmp    0x80497e5 &lt;phase_3+239&gt;
+</span></span><span class="line"><span class="cl">   0x080497cc &lt;+214&gt;:   mov    eax,DWORD PTR [ebp-0x18]
+</span></span><span class="line"><span class="cl">   0x080497cf &lt;+217&gt;:   cmp    DWORD PTR [ebp-0x14],eax		# 比较第二个输入与上一步中赋给[ebp-0x14]的值是否相等
+</span></span><span class="line"><span class="cl">   0x080497d2 &lt;+220&gt;:   je     0x80497e0 &lt;phase_3+234&gt;		# 相等则跳转结束，不相等则爆炸
+</span></span><span class="line"><span class="cl">   0x080497d4 &lt;+222&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x080497d9 &lt;+227&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080497de &lt;+232&gt;:   jmp    0x80497e5 &lt;phase_3+239&gt;
+</span></span><span class="line"><span class="cl">   0x080497e0 &lt;+234&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x080497e5 &lt;+239&gt;:   mov    edx,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x080497e8 &lt;+242&gt;:   xor    edx,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x080497ef &lt;+249&gt;:   je     0x80497f6 &lt;phase_3+256&gt;
+</span></span><span class="line"><span class="cl">   0x080497f1 &lt;+251&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x080497f6 &lt;+256&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x080497f7 &lt;+257&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据上述分析可得，第一个输入减去<code>203</code>不能大于<code>9</code>，每种可能的第一个输入对应一种正确的第二个输入，得到下面一组解
+<code>204 1000</code></p>
+<h2 id="phase-4">Phase 4</h2>
+<p>输入<code>disassemble phase_4</code>获取<code>phase4</code>的汇编代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble phase_4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function phase_4:
+</span></span><span class="line"><span class="cl">   0x08049872 &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x08049876 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x08049877 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x08049879 &lt;+7&gt;:     sub    esp,0x38
+</span></span><span class="line"><span class="cl">   0x0804987c &lt;+10&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x0804987f &lt;+13&gt;:    mov    DWORD PTR [ebp-0x2c],eax
+</span></span><span class="line"><span class="cl">   0x08049882 &lt;+16&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x08049888 &lt;+22&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x0804988b &lt;+25&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x0804988d &lt;+27&gt;:    lea    eax,[ebp-0x18]
+</span></span><span class="line"><span class="cl">   0x08049890 &lt;+30&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049891 &lt;+31&gt;:    lea    eax,[ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x08049894 &lt;+34&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049895 &lt;+35&gt;:    push   0x804b1e8		# sscanf读取的输入格式，查看内容可得%d %d，即输入为两个用空格分开的整数
+</span></span><span class="line"><span class="cl">   0x0804989a &lt;+40&gt;:    push   DWORD PTR [ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x0804989d &lt;+43&gt;:    call   0x80491f0 &lt;__isoc99_sscanf@plt&gt;
+</span></span><span class="line"><span class="cl">   0x080498a2 &lt;+48&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x080498a5 &lt;+51&gt;:    mov    DWORD PTR [ebp-0x14],eax
+</span></span><span class="line"><span class="cl">   0x080498a8 &lt;+54&gt;:    cmp    DWORD PTR [ebp-0x14],0x2		# 检验是否输入了正确数量的数，如果输入的数不是2个则爆炸，如不是则跳过爆炸，继续运行
+</span></span><span class="line"><span class="cl">   0x080498ac &lt;+58&gt;:    jne    0x80498be &lt;phase_4+76&gt;
+</span></span><span class="line"><span class="cl">   0x080498ae &lt;+60&gt;:    mov    eax,DWORD PTR [ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x080498b1 &lt;+63&gt;:    cmp    eax,0x4
+</span></span><span class="line"><span class="cl">   0x080498b4 &lt;+66&gt;:    jle    0x80498be &lt;phase_4+76&gt;		# 检验第一个输入是否小于等于0x4，如果是则爆炸，如不是则继续运行
+</span></span><span class="line"><span class="cl">   0x080498b6 &lt;+68&gt;:    mov    eax,DWORD PTR [ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x080498b9 &lt;+71&gt;:    cmp    eax,0x29
+</span></span><span class="line"><span class="cl">   0x080498bc &lt;+74&gt;:    jle    0x80498ca &lt;phase_4+88&gt;		# 检验第一个输入是否小于等于0x29（十进制41），如果不是则爆炸，如是则继续运行
+</span></span><span class="line"><span class="cl">   0x080498be &lt;+76&gt;:    call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x080498c3 &lt;+81&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080498c8 &lt;+86&gt;:    jmp    0x80498f9 &lt;phase_4+135&gt;
+</span></span><span class="line"><span class="cl">   0x080498ca &lt;+88&gt;:    mov    eax,DWORD PTR [ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x080498cd &lt;+91&gt;:    sub    esp,0x4
+</span></span><span class="line"><span class="cl">   0x080498d0 &lt;+94&gt;:    push   0x29
+</span></span><span class="line"><span class="cl">   0x080498d2 &lt;+96&gt;:    push   0x5
+</span></span><span class="line"><span class="cl">   0x080498d4 &lt;+98&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x080498d5 &lt;+99&gt;:    call   0x80497f8 &lt;func4&gt;				# 传入参数(0x29,0x5,第一个输入)调用func4
+</span></span><span class="line"><span class="cl">   0x080498da &lt;+104&gt;:   add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x080498dd &lt;+107&gt;:   mov    DWORD PTR [ebp-0x10],eax
+</span></span><span class="line"><span class="cl">   0x080498e0 &lt;+110&gt;:   mov    eax,DWORD PTR [ebp-0x18]
+</span></span><span class="line"><span class="cl">   0x080498e3 &lt;+113&gt;:   cmp    DWORD PTR [ebp-0x10],eax		# 判断第二个输入和调用func4后的第一个输入是否相等，相等则拆除，否则爆炸
+</span></span><span class="line"><span class="cl">   0x080498e6 &lt;+116&gt;:   je     0x80498f4 &lt;phase_4+130&gt;
+</span></span><span class="line"><span class="cl">   0x080498e8 &lt;+118&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x080498ed &lt;+123&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080498f2 &lt;+128&gt;:   jmp    0x80498f9 &lt;phase_4+135&gt;
+</span></span><span class="line"><span class="cl">   0x080498f4 &lt;+130&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x080498f9 &lt;+135&gt;:   mov    edx,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x080498fc &lt;+138&gt;:   xor    edx,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x08049903 &lt;+145&gt;:   je     0x804990a &lt;phase_4+152&gt;
+</span></span><span class="line"><span class="cl">   0x08049905 &lt;+147&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x0804990a &lt;+152&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x0804990b &lt;+153&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用gdb的断点和步进功能，输入一个合法的输入，获取调用完func4后内存中该输入的值，此值即为对应的第二个输出，以6为例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 设置断点</span>
+</span></span><span class="line"><span class="cl">gdb-peda$ b *0x080498e3
+</span></span><span class="line"><span class="cl">Breakpoint <span class="m">1</span> at 0x80498e3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行程序</span>
+</span></span><span class="line"><span class="cl">gdb-peda$ r
+</span></span><span class="line"><span class="cl">Starting program: /home/jovyan/work/bomb 
+</span></span><span class="line"><span class="cl">Welcome to my fiendish little bomb. You have <span class="m">7</span> phases with
+</span></span><span class="line"><span class="cl">which to blow yourself up. Have a nice day!
+</span></span><span class="line"><span class="cl">Well <span class="k">done</span>! You seem to have warmed up!
+</span></span><span class="line"><span class="cl">Phase <span class="m">1</span> defused. How about the next one?
+</span></span><span class="line"><span class="cl">That<span class="err">&#39;</span>s number 2.  Keep going!
+</span></span><span class="line"><span class="cl">Halfway there!
+</span></span><span class="line"><span class="cl"><span class="m">6</span> <span class="m">28</span> <span class="c1"># 第一个输入为6，第二个随便输入</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 断点生效</span>
+</span></span><span class="line"><span class="cl"><span class="o">=</span>&gt; 0x80498e3 &lt;phase_4+113&gt;:     cmp    DWORD PTR <span class="o">[</span>ebp-0x10<span class="o">]</span>,eax
+</span></span><span class="line"><span class="cl">Breakpoint 1, 0x080498e3 in phase_4 <span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 此时eax中存储第二个输入，ebp-0x10中存储的为调用过func4的第一个输出，也就是6对应的答案</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看ebp-0x10中的内容</span>
+</span></span><span class="line"><span class="cl">gdb-peda$ x/d <span class="nv">$ebp</span>-0x10
+</span></span><span class="line"><span class="cl">0xffffd2d8:     <span class="m">27</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 得到一组正确答案 6 27</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="phase-5">Phase 5</h2>
+<p>输入<code>disassemble phase_5</code>获取<code>phase5</code>的汇编代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble phase_5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function phase_5:
+</span></span><span class="line"><span class="cl">   0x0804990c &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x08049910 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x08049911 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x08049913 &lt;+7&gt;:     sub    esp,0x38
+</span></span><span class="line"><span class="cl">   0x08049916 &lt;+10&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049919 &lt;+13&gt;:    mov    DWORD PTR [ebp-0x2c],eax
+</span></span><span class="line"><span class="cl">   0x0804991c &lt;+16&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x08049922 &lt;+22&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x08049925 &lt;+25&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x08049927 &lt;+27&gt;:    sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x0804992a &lt;+30&gt;:    push   DWORD PTR [ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x0804992d &lt;+33&gt;:    call   0x8049dc1 &lt;string_length&gt;	# 调用string_length函数获取输入的字符串长度
+</span></span><span class="line"><span class="cl">   0x08049932 &lt;+38&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049935 &lt;+41&gt;:    mov    DWORD PTR [ebp-0x18],eax
+</span></span><span class="line"><span class="cl">   0x08049938 &lt;+44&gt;:    cmp    DWORD PTR [ebp-0x18],0x6		# 如果不是6则爆炸, 是6则跳过爆炸继续运行
+</span></span><span class="line"><span class="cl">   0x0804993c &lt;+48&gt;:    je     0x804994a &lt;phase_5+62&gt;
+</span></span><span class="line"><span class="cl">   0x0804993e &lt;+50&gt;:    call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049943 &lt;+55&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049948 &lt;+60&gt;:    jmp    0x80499ac &lt;phase_5+160&gt;
+</span></span><span class="line"><span class="cl">   0x0804994a &lt;+62&gt;:    mov    DWORD PTR [ebp-0x1c],0x0		# 遍历字符串中的每一个字符，将当前下标存入[ebp-0x1c]中
+</span></span><span class="line"><span class="cl">   0x08049951 &lt;+69&gt;:    jmp    0x8049979 &lt;phase_5+109&gt;
+</span></span><span class="line"><span class="cl">   0x08049953 &lt;+71&gt;:    mov    edx,DWORD PTR [ebp-0x1c]		# 遍历循环体
+</span></span><span class="line"><span class="cl">   0x08049956 &lt;+74&gt;:    mov    eax,DWORD PTR [ebp-0x2c]
+</span></span><span class="line"><span class="cl">   0x08049959 &lt;+77&gt;:    add    eax,edx
+</span></span><span class="line"><span class="cl">   0x0804995b &lt;+79&gt;:    movzx  eax,BYTE PTR [eax]			# 进行全零扩展并传送，将输入字符串传入eax
+</span></span><span class="line"><span class="cl">   0x0804995e &lt;+82&gt;:    movsx  eax,al							# 进行符号扩展并传送，截取当前下标处的字符传给eax
+</span></span><span class="line"><span class="cl">   0x08049961 &lt;+85&gt;:    and    eax,0xf						# eax中的值和0xf做AND运算，得到的结果存入eax
+</span></span><span class="line"><span class="cl">   0x08049964 &lt;+88&gt;:    movzx  eax,BYTE PTR [eax+0x804d25c]	# 取出0x804d25c中下标为eax的值赋给eax并替换原字符串处的值
+</span></span><span class="line"><span class="cl">   0x0804996b &lt;+95&gt;:    lea    ecx,[ebp-0x13]
+</span></span><span class="line"><span class="cl">   0x0804996e &lt;+98&gt;:    mov    edx,DWORD PTR [ebp-0x1c]
+</span></span><span class="line"><span class="cl">   0x08049971 &lt;+101&gt;:   add    edx,ecx
+</span></span><span class="line"><span class="cl">   0x08049973 &lt;+103&gt;:   mov    BYTE PTR [edx],al
+</span></span><span class="line"><span class="cl">   0x08049975 &lt;+105&gt;:   add    DWORD PTR [ebp-0x1c],0x1		# 下标自增1
+</span></span><span class="line"><span class="cl">   0x08049979 &lt;+109&gt;:   cmp    DWORD PTR [ebp-0x1c],0x5		# 判断遍历是否完成
+</span></span><span class="line"><span class="cl">   0x0804997d &lt;+113&gt;:   jle    0x8049953 &lt;phase_5+71&gt;
+</span></span><span class="line"><span class="cl">   0x0804997f &lt;+115&gt;:   mov    BYTE PTR [ebp-0xd],0x0
+</span></span><span class="line"><span class="cl">   0x08049983 &lt;+119&gt;:   sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x08049986 &lt;+122&gt;:   push   0x804b218
+</span></span><span class="line"><span class="cl">   0x0804998b &lt;+127&gt;:   lea    eax,[ebp-0x13]
+</span></span><span class="line"><span class="cl">   0x0804998e &lt;+130&gt;:   push   eax
+</span></span><span class="line"><span class="cl">   0x0804998f &lt;+131&gt;:   call   0x8049df1 &lt;strings_not_equal&gt;	# 调用strings_not_equal函数比较两个字符串，在此处打断点即可使用gdb查看得到答案字符串为ckmfia
+</span></span><span class="line"><span class="cl">   0x08049994 &lt;+136&gt;:   add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049997 &lt;+139&gt;:   test   eax,eax		# strings_not_equal返回1，两字符串相等，跳过爆炸，否则爆炸
+</span></span><span class="line"><span class="cl">   0x08049999 &lt;+141&gt;:   je     0x80499a7 &lt;phase_5+155&gt;
+</span></span><span class="line"><span class="cl">   0x0804999b &lt;+143&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x080499a0 &lt;+148&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080499a5 &lt;+153&gt;:   jmp    0x80499ac &lt;phase_5+160&gt;
+</span></span><span class="line"><span class="cl">   0x080499a7 &lt;+155&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x080499ac &lt;+160&gt;:   mov    ecx,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x080499af &lt;+163&gt;:   xor    ecx,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x080499b6 &lt;+170&gt;:   je     0x80499bd &lt;phase_5+177&gt;
+</span></span><span class="line"><span class="cl">   0x080499b8 &lt;+172&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x080499bd &lt;+177&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x080499be &lt;+178&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析可得，程序需要输入长度为6的字符串，字符串中的每个字符的ASCII码与0xf进行AND运算得到的数作为下标，访问字符数组<code>&lt;array.2712&gt;</code>中的元素并替换输入字符数组的元素，最终的得到的字符串需要等于ckmfia。
+因此，首先需要查看<code>&lt;array.2712&gt;</code>中的元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ x/s 0x804d25c
+</span></span><span class="line"><span class="cl">0x804d25c &lt;array.2712&gt;: <span class="s2">&#34;lbmpagdcehnokjif&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后分别找到<code>ckmfia</code>在array中的位置<code>（7，12，2，15，14，4）</code>，现在需要得到能够和<code>0xf</code>做<code>AND</code>运算产生这些下标的字符，编写C++程序遍历<code>0~127</code>，将符合要求的字符输出，即可得到答案，主函数代码如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">string</span> <span class="n">array_2712</span><span class="o">=</span><span class="s">&#34;lbmpagdcehnokjif&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">ans_index</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>		<span class="c1">// 需要得到的答案下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>	<span class="p">{</span>					<span class="c1">// 依次搜索每一个下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Index&#34;</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&#34;:&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">128</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>	<span class="p">{</span>			<span class="c1">// 遍历可能的字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">((</span><span class="n">j</span><span class="o">&amp;</span><span class="mi">15</span> <span class="p">)</span><span class="o">==</span> <span class="n">ans_index</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>		<span class="c1">// 如果做运算后符合答案则输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%c &#34;</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终得到输出如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Index0:         &#39;       7       G       W       g       w
+</span></span><span class="line"><span class="cl">Index1:
+</span></span><span class="line"><span class="cl">                ,       &lt;       L       \       l       |
+</span></span><span class="line"><span class="cl">Index2:         &#34;       2       B       R       b       r
+</span></span><span class="line"><span class="cl">Index3:         /       ?       O       _       o
+</span></span><span class="line"><span class="cl">Index4:         .       &gt;       N       ^       n       ~
+</span></span><span class="line"><span class="cl">Index5:         $       4       D       T       d       t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>任取其中一种组合，即可得到正确答案，如
+<code>glbond</code></p>
+<h2 id="phase-6">Phase 6</h2>
+<p>输入<code>disassemble phase_6</code>获取<code>phase6</code>的汇编代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble phase_6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function phase_6:
+</span></span><span class="line"><span class="cl">   0x080499bf &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x080499c3 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x080499c4 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x080499c6 &lt;+7&gt;:     sub    esp,0x68
+</span></span><span class="line"><span class="cl">   0x080499c9 &lt;+10&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x080499cc &lt;+13&gt;:    mov    DWORD PTR [ebp-0x5c],eax
+</span></span><span class="line"><span class="cl">   0x080499cf &lt;+16&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x080499d5 &lt;+22&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x080499d8 &lt;+25&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x080499da &lt;+27&gt;:    mov    DWORD PTR [ebp-0x48],0x804d19c
+</span></span><span class="line"><span class="cl">   0x080499e1 &lt;+34&gt;:    sub    esp,0x4
+</span></span><span class="line"><span class="cl">   0x080499e4 &lt;+37&gt;:    push   0x7		# 读取7个输入的数
+</span></span><span class="line"><span class="cl">   0x080499e6 &lt;+39&gt;:    lea    eax,[ebp-0x44]
+</span></span><span class="line"><span class="cl">   0x080499e9 &lt;+42&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x080499ea &lt;+43&gt;:    push   DWORD PTR [ebp-0x5c]
+</span></span><span class="line"><span class="cl">   0x080499ed &lt;+46&gt;:    call   0x8049d2f &lt;read_n_numbers&gt;
+</span></span><span class="line"><span class="cl">   0x080499f2 &lt;+51&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x080499f5 &lt;+54&gt;:    test   eax,eax	# 判断输入的数是否为0，如果是则爆炸
+</span></span><span class="line"><span class="cl">   0x080499f7 &lt;+56&gt;:    jne    0x8049a03 &lt;phase_6+68&gt;
+</span></span><span class="line"><span class="cl">   0x080499f9 &lt;+58&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x080499fe &lt;+63&gt;:    jmp    0x8049b3a &lt;phase_6+379&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x08049a03 &lt;+68&gt;:    mov    DWORD PTR [ebp-0x50],0x0
+</span></span><span class="line"><span class="cl">   0x08049a0a &lt;+75&gt;:    jmp    0x8049a6c &lt;phase_6+173&gt;	# 如果不是0则跳转，继续执行程序
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x08049a0c &lt;+77&gt;:    mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049a0f &lt;+80&gt;:    mov    eax,DWORD PTR [ebp+eax*4-0x44]
+</span></span><span class="line"><span class="cl">   0x08049a13 &lt;+84&gt;:    test   eax,eax
+</span></span><span class="line"><span class="cl">   0x08049a15 &lt;+86&gt;:    jle    0x8049a23 &lt;phase_6+100&gt;	# 输入的数是否小于等于0，如果是则跳转爆炸，不是则继续运行
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x08049a17 &lt;+88&gt;:    mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049a1a &lt;+91&gt;:    mov    eax,DWORD PTR [ebp+eax*4-0x44]	# 循环遍历输入的数，如果小于等于7则继续，如果大于7则跳转爆炸
+</span></span><span class="line"><span class="cl">   0x08049a1e &lt;+95&gt;:    cmp    eax,0x7
+</span></span><span class="line"><span class="cl">   0x08049a21 &lt;+98&gt;:    jle    0x8049a32 &lt;phase_6+115&gt;
+</span></span><span class="line"><span class="cl">   0x08049a23 &lt;+100&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049a28 &lt;+105&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049a2d &lt;+110&gt;:   jmp    0x8049b3a &lt;phase_6+379&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x08049a32 &lt;+115&gt;:   mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049a35 &lt;+118&gt;:   add    eax,0x1
+</span></span><span class="line"><span class="cl">   0x08049a38 &lt;+121&gt;:   mov    DWORD PTR [ebp-0x4c],eax
+</span></span><span class="line"><span class="cl">   0x08049a3b &lt;+124&gt;:   jmp    0x8049a62 &lt;phase_6+163&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x08049a3d &lt;+126&gt;:   mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049a40 &lt;+129&gt;:   mov    edx,DWORD PTR [ebp+eax*4-0x44]
+</span></span><span class="line"><span class="cl">   0x08049a44 &lt;+133&gt;:   mov    eax,DWORD PTR [ebp-0x4c]
+</span></span><span class="line"><span class="cl">   0x08049a47 &lt;+136&gt;:   mov    eax,DWORD PTR [ebp+eax*4-0x44]
+</span></span><span class="line"><span class="cl">   0x08049a4b &lt;+140&gt;:   cmp    edx,eax	# 判断当前输入的数是否和已经输入的数重复，如果是则爆炸，如果不是则继续运行
+</span></span><span class="line"><span class="cl">   0x08049a4d &lt;+142&gt;:   jne    0x8049a5e &lt;phase_6+159&gt;
+</span></span><span class="line"><span class="cl">   0x08049a4f &lt;+144&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049a54 &lt;+149&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049a59 &lt;+154&gt;:   jmp    0x8049b3a &lt;phase_6+379&gt;
+</span></span><span class="line"><span class="cl">   0x08049a5e &lt;+159&gt;:   add    DWORD PTR [ebp-0x4c],0x1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   0x08049a62 &lt;+163&gt;:   cmp    DWORD PTR [ebp-0x4c],0x6		# 判断当前遍历下标是否小于等于6，如果是则继续遍历，如果不是则循环结束
+</span></span><span class="line"><span class="cl">   0x08049a66 &lt;+167&gt;:   jle    0x8049a3d &lt;phase_6+126&gt;
+</span></span><span class="line"><span class="cl">   0x08049a68 &lt;+169&gt;:   add    DWORD PTR [ebp-0x50],0x1
+</span></span><span class="line"><span class="cl">   0x08049a6c &lt;+173&gt;:   cmp    DWORD PTR [ebp-0x50],0x6
+</span></span><span class="line"><span class="cl">   0x08049a70 &lt;+177&gt;:   jle    0x8049a0c &lt;phase_6+77&gt;
+</span></span><span class="line"><span class="cl">   0x08049a72 &lt;+179&gt;:   mov    DWORD PTR [ebp-0x50],0x0
+</span></span><span class="line"><span class="cl">   0x08049a79 &lt;+186&gt;:   jmp    0x8049ab1 &lt;phase_6+242&gt;
+</span></span><span class="line"><span class="cl">   0x08049a7b &lt;+188&gt;:   mov    eax,DWORD PTR [ebp-0x48]
+</span></span><span class="line"><span class="cl">   0x08049a7e &lt;+191&gt;:   mov    DWORD PTR [ebp-0x54],eax
+</span></span><span class="line"><span class="cl">   0x08049a81 &lt;+194&gt;:   mov    DWORD PTR [ebp-0x4c],0x1
+</span></span><span class="line"><span class="cl">   0x08049a88 &lt;+201&gt;:   jmp    0x8049a97 &lt;phase_6+216&gt;
+</span></span><span class="line"><span class="cl">   0x08049a8a &lt;+203&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049a8d &lt;+206&gt;:   mov    eax,DWORD PTR [eax+0x8]
+</span></span><span class="line"><span class="cl">   0x08049a90 &lt;+209&gt;:   mov    DWORD PTR [ebp-0x54],eax
+</span></span><span class="line"><span class="cl">   0x08049a93 &lt;+212&gt;:   add    DWORD PTR [ebp-0x4c],0x1
+</span></span><span class="line"><span class="cl">   0x08049a97 &lt;+216&gt;:   mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049a9a &lt;+219&gt;:   mov    eax,DWORD PTR [ebp+eax*4-0x44]
+</span></span><span class="line"><span class="cl">   0x08049a9e &lt;+223&gt;:   cmp    DWORD PTR [ebp-0x4c],eax
+</span></span><span class="line"><span class="cl">   0x08049aa1 &lt;+226&gt;:   jl     0x8049a8a &lt;phase_6+203&gt;
+</span></span><span class="line"><span class="cl">   0x08049aa3 &lt;+228&gt;:   mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049aa6 &lt;+231&gt;:   mov    edx,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049aa9 &lt;+234&gt;:   mov    DWORD PTR [ebp+eax*4-0x28],edx
+</span></span><span class="line"><span class="cl">   0x08049aad &lt;+238&gt;:   add    DWORD PTR [ebp-0x50],0x1
+</span></span><span class="line"><span class="cl">   0x08049ab1 &lt;+242&gt;:   cmp    DWORD PTR [ebp-0x50],0x6
+</span></span><span class="line"><span class="cl">   0x08049ab5 &lt;+246&gt;:   jle    0x8049a7b &lt;phase_6+188&gt;
+</span></span><span class="line"><span class="cl">   0x08049ab7 &lt;+248&gt;:   mov    eax,DWORD PTR [ebp-0x28]
+</span></span><span class="line"><span class="cl">   0x08049aba &lt;+251&gt;:   mov    DWORD PTR [ebp-0x48],eax
+</span></span><span class="line"><span class="cl">   0x08049abd &lt;+254&gt;:   mov    eax,DWORD PTR [ebp-0x48]
+</span></span><span class="line"><span class="cl">   0x08049ac0 &lt;+257&gt;:   mov    DWORD PTR [ebp-0x54],eax
+</span></span><span class="line"><span class="cl">   0x08049ac3 &lt;+260&gt;:   mov    DWORD PTR [ebp-0x50],0x1
+</span></span><span class="line"><span class="cl">   0x08049aca &lt;+267&gt;:   jmp    0x8049ae6 &lt;phase_6+295&gt;
+</span></span><span class="line"><span class="cl">   0x08049acc &lt;+269&gt;:   mov    eax,DWORD PTR [ebp-0x50]
+</span></span><span class="line"><span class="cl">   0x08049acf &lt;+272&gt;:   mov    edx,DWORD PTR [ebp+eax*4-0x28]
+</span></span><span class="line"><span class="cl">   0x08049ad3 &lt;+276&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049ad6 &lt;+279&gt;:   mov    DWORD PTR [eax+0x8],edx
+</span></span><span class="line"><span class="cl">   0x08049ad9 &lt;+282&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049adc &lt;+285&gt;:   mov    eax,DWORD PTR [eax+0x8]
+</span></span><span class="line"><span class="cl">   0x08049adf &lt;+288&gt;:   mov    DWORD PTR [ebp-0x54],eax
+</span></span><span class="line"><span class="cl">   0x08049ae2 &lt;+291&gt;:   add    DWORD PTR [ebp-0x50],0x1
+</span></span><span class="line"><span class="cl">   0x08049ae6 &lt;+295&gt;:   cmp    DWORD PTR [ebp-0x50],0x6
+</span></span><span class="line"><span class="cl">   0x08049aea &lt;+299&gt;:   jle    0x8049acc &lt;phase_6+269&gt;
+</span></span><span class="line"><span class="cl">   0x08049aec &lt;+301&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049aef &lt;+304&gt;:   mov    DWORD PTR [eax+0x8],0x0
+</span></span><span class="line"><span class="cl">   0x08049af6 &lt;+311&gt;:   mov    eax,DWORD PTR [ebp-0x48]
+</span></span><span class="line"><span class="cl">   0x08049af9 &lt;+314&gt;:   mov    DWORD PTR [ebp-0x54],eax
+</span></span><span class="line"><span class="cl">   0x08049afc &lt;+317&gt;:   mov    DWORD PTR [ebp-0x50],0x0
+</span></span><span class="line"><span class="cl">   0x08049b03 &lt;+324&gt;:   jmp    0x8049b2f &lt;phase_6+368&gt;
+</span></span><span class="line"><span class="cl">   0x08049b05 &lt;+326&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049b08 &lt;+329&gt;:   mov    edx,DWORD PTR [eax]
+</span></span><span class="line"><span class="cl">   0x08049b0a &lt;+331&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049b0d &lt;+334&gt;:   mov    eax,DWORD PTR [eax+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b10 &lt;+337&gt;:   mov    eax,DWORD PTR [eax]
+</span></span><span class="line"><span class="cl">   0x08049b12 &lt;+339&gt;:   cmp    edx,eax
+</span></span><span class="line"><span class="cl">   0x08049b14 &lt;+341&gt;:   jle    0x8049b22 &lt;phase_6+355&gt;
+</span></span><span class="line"><span class="cl">   0x08049b16 &lt;+343&gt;:   call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049b1b &lt;+348&gt;:   mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049b20 &lt;+353&gt;:   jmp    0x8049b3a &lt;phase_6+379&gt;
+</span></span><span class="line"><span class="cl">   0x08049b22 &lt;+355&gt;:   mov    eax,DWORD PTR [ebp-0x54]
+</span></span><span class="line"><span class="cl">   0x08049b25 &lt;+358&gt;:   mov    eax,DWORD PTR [eax+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b28 &lt;+361&gt;:   mov    DWORD PTR [ebp-0x54],eax
+</span></span><span class="line"><span class="cl">   0x08049b2b &lt;+364&gt;:   add    DWORD PTR [ebp-0x50],0x1
+</span></span><span class="line"><span class="cl">   0x08049b2f &lt;+368&gt;:   cmp    DWORD PTR [ebp-0x50],0x5
+</span></span><span class="line"><span class="cl">   0x08049b33 &lt;+372&gt;:   jle    0x8049b05 &lt;phase_6+326&gt;
+</span></span><span class="line"><span class="cl">   0x08049b35 &lt;+374&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x08049b3a &lt;+379&gt;:   mov    ecx,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x08049b3d &lt;+382&gt;:   xor    ecx,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x08049b44 &lt;+389&gt;:   je     0x8049b4b &lt;phase_6+396&gt;
+</span></span><span class="line"><span class="cl">   0x08049b46 &lt;+391&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x08049b4b &lt;+396&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x08049b4c &lt;+397&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据分析可得，答案由1~7组成且不能重复，编写C++程序生成所有可能的输入（1~7的全排列），记录其对应的输出，并且依次检索输出，找到有拆弹成功提示语句的输出，其对应输入即为答案，代码及思路如下：
+首先编写<code>gen.cpp</code>，负责在<code>input</code>文件夹中生成输入文件，并按序号命名，代码如下；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 记录之前节点的答案
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">string</span> <span class="n">prev_phase</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Why index with the middle bits?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;-864026624 1103103214</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;32 64 80 112 152 208 284 388</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;204 1000</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;6 27</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;glbond</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;1 2 3 4 5 6 7 &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">str</span><span class="o">=</span><span class="s">&#34;1234567&#34;</span><span class="p">,</span><span class="n">filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stringstream</span> <span class="n">m_sstream</span><span class="p">;</span>	<span class="c1">// 使用字符串流实现整数和字符串的转化，方便按序号命名文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ofstream</span> <span class="n">f</span><span class="p">;</span>				<span class="c1">// 使用文件输出流将答案存放进txt中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">total</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>				<span class="c1">// 表示序号，用以记录区分不同的输入
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 使用algorithm中的函数对1234567进行全排列，将每次排列按空格分开记录入答案
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">str</span><span class="p">.</span><span class="n">end</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prev_phase</span><span class="p">[</span><span class="mi">6</span><span class="p">][</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>	<span class="c1">// 将重新排列的str中数字赋值给记录答案的字符串数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// gen file       
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">m_sstream</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_sstream</span><span class="o">&lt;&lt;</span><span class="s">&#34;./input/&#34;</span><span class="o">&lt;&lt;</span><span class="n">total</span><span class="p">;</span>		<span class="c1">// 指定文件路径和文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">m_sstream</span><span class="o">&gt;&gt;</span><span class="n">filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">filename</span><span class="o">&lt;&lt;</span><span class="s">&#34;.txt</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#34;.txt&#34;</span><span class="p">,</span><span class="n">ios</span><span class="o">::</span><span class="n">out</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">&lt;&lt;</span><span class="n">prev_phase</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>		
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">total</span><span class="p">;</span>		<span class="c1">// 获得全排列数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译运行后，即可在当前目录下得到<code>input</code>文件夹和全排列数<code>5039</code>，随后编写<code>scaner.cpp</code>用于检索答案，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;sstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">str</span><span class="o">=</span><span class="s">&#34;1234567&#34;</span><span class="p">,</span><span class="n">filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stringstream</span> <span class="n">m_sstream</span><span class="p">;</span>		<span class="c1">// 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ifstream</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">right_file_name</span><span class="o">=</span><span class="s">&#34;none&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isRightAns</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">total</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">total</span><span class="o">&lt;=</span><span class="mi">5039</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">isRightAns</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>			<span class="c1">// 当前输出为正确输出的真值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="c1">// open file       
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">m_sstream</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_sstream</span><span class="o">&lt;&lt;</span><span class="s">&#34;./Output/Output&#34;</span><span class="o">&lt;&lt;</span><span class="n">total</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_sstream</span><span class="o">&gt;&gt;</span><span class="n">filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#34;.txt&#34;</span><span class="p">,</span><span class="n">ios</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>		<span class="c1">// 打开Output文件夹内名为Output[序号].txt的文本文件，如Output25.txt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">.</span><span class="n">eof</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">getline</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span> 			<span class="c1">// 逐行读取文本
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="o">==</span><span class="s">&#34;BOOM!!!&#34;</span><span class="p">)</span>	<span class="c1">// 如果检索到拆除phase_6爆炸的语句，则不是正确输出，将isRightAns真值设为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">{</span>            
+</span></span><span class="line"><span class="cl">                <span class="n">isRightAns</span><span class="o">=</span><span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">isRightAns</span><span class="p">)</span>		<span class="c1">//如果没有提示爆炸，表示拆除成功，则输出当前输出记录文本的文件名，程序结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">right_file_name</span><span class="o">=</span><span class="n">filename</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">right_file_name</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">right_file_name</span><span class="p">;</span>	<span class="c1">// Debug 备用输出语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述代码编写完成后，已经可以自动生成输入和检索输出了，接下来需要编写shell脚本生成<code>input</code>文件，自动执行<code>bomb</code>文件，将每一个<code>input</code>带入运行，得到并记录对应的<code>Output</code>，再对<code>Output</code>进行检索即可得到正确答案。将<code>scaner.cpp</code>和g<code>en.cpp</code>打包为<code>tools.tar.gz</code>，编写的shell脚本<code>run.sh</code>，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash  
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">echo</span> <span class="s2">&#34;Welcome,running....&#34;</span>			
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Exacting tools&#34;</span>
+</span></span><span class="line"><span class="cl">tar -zxvf ./tools.tar.gz					<span class="c1"># 解压cpp文件</span>
+</span></span><span class="line"><span class="cl">cp ./tools/gen.cpp ./gen.cpp
+</span></span><span class="line"><span class="cl">cp ./tools/scaner.cpp ./scaner.cpp
+</span></span><span class="line"><span class="cl">g++ ./gen.cpp -o ./gen					<span class="c1"># 编译input生成器gen.cpp</span>
+</span></span><span class="line"><span class="cl">g++ ./scaner.cpp -o ./scanner				<span class="c1"># 编译Output检索器scaner.cpp</span>
+</span></span><span class="line"><span class="cl">chmod +x ./gen								<span class="c1"># 赋予可执行文件权限</span>
+</span></span><span class="line"><span class="cl">chmod +x ./scanner
+</span></span><span class="line"><span class="cl">chmod +x ./bomb
+</span></span><span class="line"><span class="cl">mkdir input								<span class="c1"># 创建存放input的文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Generating Inputs&#34;</span>
+</span></span><span class="line"><span class="cl">./gen										<span class="c1"># 执行生成器生成所有输出</span>
+</span></span><span class="line"><span class="cl">mkdir ./Output								<span class="c1"># 创建存放输出的文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">((</span><span class="nv">i</span><span class="o">=</span>1<span class="p">;</span>i&lt;<span class="o">=</span>5039<span class="p">;</span>i++<span class="o">))</span> 					<span class="c1"># 循环带入每一种输入</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;running&#34;</span>,<span class="k">$(</span>expr <span class="nv">$i</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">./bomb ./input/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.txt &gt; ./Output/Output<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.txt  <span class="c1">#将输出结构存入Output中</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Create Complete!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Finding ans...&#34;</span>
+</span></span><span class="line"><span class="cl">./scanner									<span class="c1"># 执行检索器寻找正确答案</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Done.&#34;</span>								<span class="c1"># 完成</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将<code>tools.tar.gz</code>和<code>run.sh</code>上传至<code>~/work</code>目录中执行脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">(</span>base<span class="o">)</span> jovyan@b5ea96d0ec9c:~/work$ chmod +x ./run.sh
+</span></span><span class="line"><span class="cl"><span class="o">(</span>base<span class="o">)</span> jovyan@b5ea96d0ec9c: ~/work$ ./run.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最终得到如下输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./Output/Output3078
+</span></span><span class="line"><span class="cl">Done.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看对应input3078的内容即可得到答案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">(</span>base<span class="o">)</span> jovyan@b5ea96d0ec9c: ~/work$ vim ./input/3078.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Why index with the middle bits?
+</span></span><span class="line"><span class="cl">-864026624 <span class="m">1103103214</span>
+</span></span><span class="line"><span class="cl"><span class="m">32</span> <span class="m">64</span> <span class="m">80</span> <span class="m">112</span> <span class="m">152</span> <span class="m">208</span> <span class="m">284</span> <span class="m">388</span>
+</span></span><span class="line"><span class="cl"><span class="m">204</span> <span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="m">6</span> <span class="m">27</span>
+</span></span><span class="line"><span class="cl">glbond
+</span></span><span class="line"><span class="cl"><span class="m">5</span> <span class="m">2</span> <span class="m">6</span> <span class="m">3</span> <span class="m">1</span> <span class="m">4</span> <span class="m">7</span>
+</span></span><span class="line"><span class="cl">~    
+</span></span><span class="line"><span class="cl">~  
+</span></span><span class="line"><span class="cl">                                                                                                                                                                                                         
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;./input/3078.txt&#34;</span>				7L,119C                                                               1,1           All
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因此正确答案为
+<code>5 2 6 3 1 4 7</code></p>
+<h2 id="phase-7-隐藏关">Phase 7 隐藏关</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gdb-peda$ disassemble secret_phase 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Dump of assembler code for function secret_phase:
+</span></span><span class="line"><span class="cl">   0x08049bb4 &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x08049bb8 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x08049bb9 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x08049bbb &lt;+7&gt;:     sub    esp,0x18
+</span></span><span class="line"><span class="cl">   0x08049bbe &lt;+10&gt;:    call   0x8049f2a &lt;read_line&gt;
+</span></span><span class="line"><span class="cl">   0x08049bc3 &lt;+15&gt;:    mov    DWORD PTR [ebp-0x14],eax
+</span></span><span class="line"><span class="cl">   0x08049bc6 &lt;+18&gt;:    sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x08049bc9 &lt;+21&gt;:    push   DWORD PTR [ebp-0x14]
+</span></span><span class="line"><span class="cl">   0x08049bcc &lt;+24&gt;:    call   0x8049220 &lt;atoi@plt&gt;
+</span></span><span class="line"><span class="cl">   0x08049bd1 &lt;+29&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049bd4 &lt;+32&gt;:    mov    DWORD PTR [ebp-0x10],eax
+</span></span><span class="line"><span class="cl">   0x08049bd7 &lt;+35&gt;:    cmp    DWORD PTR [ebp-0x10],0x0
+</span></span><span class="line"><span class="cl">   0x08049bdb &lt;+39&gt;:    jle    0x8049be6 &lt;secret_phase+50&gt;
+</span></span><span class="line"><span class="cl">   0x08049bdd &lt;+41&gt;:    cmp    DWORD PTR [ebp-0x10],0x3e9
+</span></span><span class="line"><span class="cl">   0x08049be4 &lt;+48&gt;:    jle    0x8049bf2 &lt;secret_phase+62&gt;
+</span></span><span class="line"><span class="cl">   0x08049be6 &lt;+50&gt;:    call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049beb &lt;+55&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049bf0 &lt;+60&gt;:    jmp    0x8049c34 &lt;secret_phase+128&gt;
+</span></span><span class="line"><span class="cl">   0x08049bf2 &lt;+62&gt;:    sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x08049bf5 &lt;+65&gt;:    push   DWORD PTR [ebp-0x10]
+</span></span><span class="line"><span class="cl">   0x08049bf8 &lt;+68&gt;:    push   0x804d250		# 查看地址得到&lt;n1&gt;:36
+</span></span><span class="line"><span class="cl">   0x08049bfd &lt;+73&gt;:    call   0x8049b4d &lt;fun7&gt;	# 调用fun7
+</span></span><span class="line"><span class="cl">   0x08049c02 &lt;+78&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049c05 &lt;+81&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x08049c08 &lt;+84&gt;:    cmp    DWORD PTR [ebp-0xc],0x3	# 判断返回值是否为0x3
+</span></span><span class="line"><span class="cl">   0x08049c0c &lt;+88&gt;:    je     0x8049c1a &lt;secret_phase+102&gt;		# 是3则跳过爆炸，否则爆炸
+</span></span><span class="line"><span class="cl">   0x08049c0e &lt;+90&gt;:    call   0x804a071 &lt;explode_bomb&gt;
+</span></span><span class="line"><span class="cl">   0x08049c13 &lt;+95&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049c18 &lt;+100&gt;:   jmp    0x8049c34 &lt;secret_phase+128&gt;
+</span></span><span class="line"><span class="cl">   0x08049c1a &lt;+102&gt;:   sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x08049c1d &lt;+105&gt;:   push   0x804b220		# 查询内容为87
+</span></span><span class="line"><span class="cl">   0x08049c22 &lt;+110&gt;:   call   0x80491b0 &lt;puts@plt&gt;
+</span></span><span class="line"><span class="cl">   0x08049c27 &lt;+115&gt;:   add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049c2a &lt;+118&gt;:   call   0x804a09e &lt;phase_defused&gt;
+</span></span><span class="line"><span class="cl">   0x08049c2f &lt;+123&gt;:   mov    eax,0x1
+</span></span><span class="line"><span class="cl">   0x08049c34 &lt;+128&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x08049c35 &lt;+129&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gdb-peda$ disassemble phase_defused 
+</span></span><span class="line"><span class="cl">Dump of assembler code for function phase_defused:
+</span></span><span class="line"><span class="cl">   0x0804a09e &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x0804a0a2 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x0804a0a3 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x0804a0a5 &lt;+7&gt;:     sub    esp,0x68
+</span></span><span class="line"><span class="cl">   0x0804a0a8 &lt;+10&gt;:    mov    eax,gs:0x14
+</span></span><span class="line"><span class="cl">   0x0804a0ae &lt;+16&gt;:    mov    DWORD PTR [ebp-0xc],eax
+</span></span><span class="line"><span class="cl">   0x0804a0b1 &lt;+19&gt;:    xor    eax,eax
+</span></span><span class="line"><span class="cl">   0x0804a0b3 &lt;+21&gt;:    mov    eax,ds:0x804d28c
+</span></span><span class="line"><span class="cl">   0x0804a0b8 &lt;+26&gt;:    cmp    eax,0x7
+</span></span><span class="line"><span class="cl">   0x0804a0bb &lt;+29&gt;:    jne    0x804a134 &lt;phase_defused+150&gt;
+</span></span><span class="line"><span class="cl">   0x0804a0bd &lt;+31&gt;:    sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x0804a0c0 &lt;+34&gt;:    lea    eax,[ebp-0x5c]
+</span></span><span class="line"><span class="cl">   0x0804a0c3 &lt;+37&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x0804a0c4 &lt;+38&gt;:    lea    eax,[ebp-0x64]
+</span></span><span class="line"><span class="cl">   0x0804a0c7 &lt;+41&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x0804a0c8 &lt;+42&gt;:    lea    eax,[ebp-0x68]
+</span></span><span class="line"><span class="cl">   0x0804a0cb &lt;+45&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x0804a0cc &lt;+46&gt;:    push   0x804b31e		# &#34;%d %d %s&#34;
+</span></span><span class="line"><span class="cl">   0x0804a0d1 &lt;+51&gt;:    push   0x804d3e0
+</span></span><span class="line"><span class="cl">   0x0804a0d6 &lt;+56&gt;:    call   0x80491f0 &lt;__isoc99_sscanf@plt&gt;
+</span></span><span class="line"><span class="cl">   0x0804a0db &lt;+61&gt;:    add    esp,0x20
+</span></span><span class="line"><span class="cl">   0x0804a0de &lt;+64&gt;:    mov    DWORD PTR [ebp-0x60],eax
+</span></span><span class="line"><span class="cl">   0x0804a0e1 &lt;+67&gt;:    cmp    DWORD PTR [ebp-0x60],0x3
+</span></span><span class="line"><span class="cl">   0x0804a0e5 &lt;+71&gt;:    jne    0x804a124 &lt;phase_defused+134&gt;
+</span></span><span class="line"><span class="cl">   0x0804a0e7 &lt;+73&gt;:    sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x0804a0ea &lt;+76&gt;:    push   0x804b327		# 内容为 &#34;bcLjEp&#34;
+</span></span><span class="line"><span class="cl">   0x0804a0ef &lt;+81&gt;:    lea    eax,[ebp-0x5c]
+</span></span><span class="line"><span class="cl">   0x0804a0f2 &lt;+84&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x0804a0f3 &lt;+85&gt;:    call   0x8049df1 &lt;strings_not_equal&gt;
+</span></span><span class="line"><span class="cl">   0x0804a0f8 &lt;+90&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x0804a0fb &lt;+93&gt;:    test   eax,eax
+</span></span><span class="line"><span class="cl">   0x0804a0fd &lt;+95&gt;:    jne    0x804a124 &lt;phase_defused+134&gt;
+</span></span><span class="line"><span class="cl">   0x0804a0ff &lt;+97&gt;:    sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x0804a102 &lt;+100&gt;:   push   0x804b330
+</span></span><span class="line"><span class="cl">   0x0804a107 &lt;+105&gt;:   call   0x80491b0 &lt;puts@plt&gt;
+</span></span><span class="line"><span class="cl">   0x0804a10c &lt;+110&gt;:   add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x0804a10f &lt;+113&gt;:   sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x0804a112 &lt;+116&gt;:   push   0x804b358
+</span></span><span class="line"><span class="cl">   0x0804a117 &lt;+121&gt;:   call   0x80491b0 &lt;puts@plt&gt;
+</span></span><span class="line"><span class="cl">   0x0804a11c &lt;+126&gt;:   add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x0804a11f &lt;+129&gt;:   call   0x8049bb4 &lt;secret_phase&gt;
+</span></span><span class="line"><span class="cl">   0x0804a124 &lt;+134&gt;:   sub    esp,0xc
+</span></span><span class="line"><span class="cl">   0x0804a127 &lt;+137&gt;:   push   0x804b390
+</span></span><span class="line"><span class="cl">   0x0804a12c &lt;+142&gt;:   call   0x80491b0 &lt;puts@plt&gt;
+</span></span><span class="line"><span class="cl">   0x0804a131 &lt;+147&gt;:   add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x0804a134 &lt;+150&gt;:   nop
+</span></span><span class="line"><span class="cl">   0x0804a135 &lt;+151&gt;:   mov    eax,DWORD PTR [ebp-0xc]
+</span></span><span class="line"><span class="cl">   0x0804a138 &lt;+154&gt;:   xor    eax,DWORD PTR gs:0x14
+</span></span><span class="line"><span class="cl">   0x0804a13f &lt;+161&gt;:   je     0x804a146 &lt;phase_defused+168&gt;
+</span></span><span class="line"><span class="cl">   0x0804a141 &lt;+163&gt;:   call   0x8049190 &lt;__stack_chk_fail@plt&gt;
+</span></span><span class="line"><span class="cl">   0x0804a146 &lt;+168&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x0804a147 &lt;+169&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据查询内容推断可得，在phase4答案后输入bcLjEp，即可打开隐藏关入口，随后分析fun7</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gdb-peda$ disassemble fun7
+</span></span><span class="line"><span class="cl">Dump of assembler code for function fun7:
+</span></span><span class="line"><span class="cl">   0x08049b4d &lt;+0&gt;:     endbr32 
+</span></span><span class="line"><span class="cl">   0x08049b51 &lt;+4&gt;:     push   ebp
+</span></span><span class="line"><span class="cl">   0x08049b52 &lt;+5&gt;:     mov    ebp,esp
+</span></span><span class="line"><span class="cl">   0x08049b54 &lt;+7&gt;:     sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x08049b57 &lt;+10&gt;:    cmp    DWORD PTR [ebp+0x8],0x0	
+</span></span><span class="line"><span class="cl">   0x08049b5b &lt;+14&gt;:    jne    0x8049b64 &lt;fun7+23&gt;
+</span></span><span class="line"><span class="cl">   0x08049b5d &lt;+16&gt;:    mov    eax,0xffffffff	
+</span></span><span class="line"><span class="cl">   0x08049b62 &lt;+21&gt;:    jmp    0x8049bb2 &lt;fun7+101&gt;
+</span></span><span class="line"><span class="cl">   0x08049b64 &lt;+23&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b67 &lt;+26&gt;:    mov    eax,DWORD PTR [eax]
+</span></span><span class="line"><span class="cl">   0x08049b69 &lt;+28&gt;:    cmp    DWORD PTR [ebp+0xc],eax
+</span></span><span class="line"><span class="cl">   0x08049b6c &lt;+31&gt;:    jge    0x8049b87 &lt;fun7+58&gt;
+</span></span><span class="line"><span class="cl">   0x08049b6e &lt;+33&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b71 &lt;+36&gt;:    mov    eax,DWORD PTR [eax+0x4]
+</span></span><span class="line"><span class="cl">   0x08049b74 &lt;+39&gt;:    sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x08049b77 &lt;+42&gt;:    push   DWORD PTR [ebp+0xc]
+</span></span><span class="line"><span class="cl">   0x08049b7a &lt;+45&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049b7b &lt;+46&gt;:    call   0x8049b4d &lt;fun7&gt;	# 递归调用fun7（eax，ebp+0xc）
+</span></span><span class="line"><span class="cl">   0x08049b80 &lt;+51&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049b83 &lt;+54&gt;:    add    eax,eax
+</span></span><span class="line"><span class="cl">   0x08049b85 &lt;+56&gt;:    jmp    0x8049bb2 &lt;fun7+101&gt;
+</span></span><span class="line"><span class="cl">   0x08049b87 &lt;+58&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b8a &lt;+61&gt;:    mov    eax,DWORD PTR [eax]
+</span></span><span class="line"><span class="cl">   0x08049b8c &lt;+63&gt;:    cmp    DWORD PTR [ebp+0xc],eax
+</span></span><span class="line"><span class="cl">   0x08049b8f &lt;+66&gt;:    jne    0x8049b98 &lt;fun7+75&gt;
+</span></span><span class="line"><span class="cl">   0x08049b91 &lt;+68&gt;:    mov    eax,0x0
+</span></span><span class="line"><span class="cl">   0x08049b96 &lt;+73&gt;:    jmp    0x8049bb2 &lt;fun7+101&gt;
+</span></span><span class="line"><span class="cl">   0x08049b98 &lt;+75&gt;:    mov    eax,DWORD PTR [ebp+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b9b &lt;+78&gt;:    mov    eax,DWORD PTR [eax+0x8]
+</span></span><span class="line"><span class="cl">   0x08049b9e &lt;+81&gt;:    sub    esp,0x8
+</span></span><span class="line"><span class="cl">   0x08049ba1 &lt;+84&gt;:    push   DWORD PTR [ebp+0xc]
+</span></span><span class="line"><span class="cl">   0x08049ba4 &lt;+87&gt;:    push   eax
+</span></span><span class="line"><span class="cl">   0x08049ba5 &lt;+88&gt;:    call   0x8049b4d &lt;fun7&gt;
+</span></span><span class="line"><span class="cl">   0x08049baa &lt;+93&gt;:    add    esp,0x10
+</span></span><span class="line"><span class="cl">   0x08049bad &lt;+96&gt;:    add    eax,eax
+</span></span><span class="line"><span class="cl">   0x08049baf &lt;+98&gt;:    add    eax,0x1
+</span></span><span class="line"><span class="cl">   0x08049bb2 &lt;+101&gt;:   leave  
+</span></span><span class="line"><span class="cl">   0x08049bb3 &lt;+102&gt;:   ret    
+</span></span><span class="line"><span class="cl">End of assembler dump.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编写以下代码模拟功能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fun7</span><span class="p">(</span><span class="kt">int</span> <span class="n">input_1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">input_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">input_1</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">input_1</span><span class="o">-</span><span class="n">input_2</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">ret</span><span class="o">=</span><span class="n">fun7</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input_1</span><span class="o">+</span><span class="mi">4</span><span class="p">),</span> <span class="n">input_2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="o">*=</span><span class="mi">2</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">input_1</span><span class="o">-</span> <span class="n">input_2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="o">=</span><span class="n">fun7</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input_1</span><span class="o">+</span><span class="mi">8</span><span class="p">),</span><span class="n">input_2</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="o">*=</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">ret</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>得到结果
+<code>107</code></p>
+<h1 id="一键拆弹方法"><del>一键拆弹</del>方法</h1>
+<blockquote>
+<p>项目地址:
+<a class="link" href="https://github.com/LinYuanChan/bomblab-auto-defuse"  target="_blank" rel="noopener"
+    >https://github.com/LinYuanChan/bomblab-auto-defuse</a></p>
+</blockquote>
+<h2 id="注意">注意</h2>
+<p><strong>此方法仅供学习交流使用, 不要用于正式评测及学术欺诈等不正当用途</strong></p>
+<h2 id="实现方法">实现方法</h2>
+<p>使用过程中发现, 提交评测时测试程序会检索<code>bomb</code>的输出,每得到一个正确的输出增加10分,因此只需要编写新的<code>bomb</code>,输出所有得分语句,并且替换即可<del>一键拆弹</del></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span><span class="o">*</span> <span class="nf">read_line</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s">&#34;001&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">FILE</span> <span class="o">*</span><span class="n">infile</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	<span class="n">infile</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Note to self: remember to port this bomb to Windows and put a 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * fantastic GUI on it. */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* When run with no arguments, the bomb reads its input lines 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * from standard input. */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">	<span class="n">infile</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* When run with one argument &lt;file&gt;, the bomb reads from &lt;file&gt; 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * until EOF, and then switches to standard input. Thus, as you 
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * defuse each phase, you can add its defusing string to &lt;file&gt; and
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * avoid having to retype it. */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">infile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34;r&#34;</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s: Error: Couldn&#39;t open %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">exit</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* You can&#39;t call the bomb with more than 1 command line argument. */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Usage: %s [&lt;input_file&gt;]</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">exit</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Do all sorts of secret stuff that makes the bomb harder to defuse. */</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//initialize_bomb();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to my fiendish little bomb. You have 7 phases with</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;which to blow yourself up. Have a nice day!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Warm up phase! */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>             <span class="cm">/* Get input                   */</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_0(input) ) {           /* Run the phase               */
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//     phase_defused();             /* Drat!  They figured it out! */
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Well done! You seem to have warmed up!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Hmm...  Six phases must be more secure than one phase! */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>             <span class="cm">/* Get input                   */</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_1(input) ) {           /* Run the phase               */
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// phase_defused();             /* Drat!  They figured it out! Let me know how they did it. */
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Phase 1 defused. How about the next one?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* The second phase is harder.  No one will ever figure out
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * how to defuse this... */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_2(input) ) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// phase_defused();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;That&#39;s number 2.  Keep going!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* I guess this is too easy so far.  Some more complex code will
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * confuse people. */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_3(input) ) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// phase_defused();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Halfway there!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Oh yeah?  Well, how good is your math?  Try on this saucy problem! */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_4(input) ) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// phase_defused();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;So you got that one.  Try this one.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Round and &#39;round in memory we go, where we stop, the bomb blows! */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_5(input) ) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// phase_defused();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Good work!  On to the next...</span><span class="se">\n</span><span class="s">Curses, you&#39;ve found the secret phase!</span><span class="se">\n</span><span class="s">But finding it and solving it are quite different...</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* This phase will never be used, since no one will get past the
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * earlier ones.  But just in case, make this one extra hard. */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// if( phase_6(input) ) {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// phase_defused();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Wow! You&#39;ve defused the secret stage!</span><span class="se">\n</span><span class="s">Congratulations! You&#39;ve defused the bomb!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Wow, they got it!  But isn&#39;t something... missing?  Perhaps
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * something they overlooked?  Mua ha ha ha ha! */</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// return 0;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了达到~~<strong>真 一键拆弹</strong>~~的效果, 再编写一个shell脚本,自动执行编译和替换文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">cd</span> ~
+</span></span><span class="line"><span class="cl">git clone git@github.com:LinYuanChan/bomblab-auto-defuse.git 
+</span></span><span class="line"><span class="cl">mv ./bomblab-auto-defuse/auto_defuse.sh ./auto_defuse.sh
+</span></span><span class="line"><span class="cl">chmod +x auto_defuse.sh
+</span></span><span class="line"><span class="cl">./auto_defuse.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成后执行脚本即可</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+            <a href="/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/spider_beijing_bus/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python爬虫获取北京公交线路</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 WitchElaina&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.15.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

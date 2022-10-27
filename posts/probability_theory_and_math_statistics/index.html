@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='带你速刷概率论与数理统计知识点, 考试周不破防!!'>
+<title>概率论与数理统计自学整理汇总</title>
+
+<link rel='canonical' href='https://withcelaina.github.io/posts/probability_theory_and_math_statistics/'>
+
+<link rel="stylesheet" href="/scss/style.min.3b122f5b6a7023e613be9affad843eaceacf4a3383edd177ce41e35501998968.css"><meta property='og:title' content='概率论与数理统计自学整理汇总'>
+<meta property='og:description' content='带你速刷概率论与数理统计知识点, 考试周不破防!!'>
+<meta property='og:url' content='https://withcelaina.github.io/posts/probability_theory_and_math_statistics/'>
+<meta property='og:site_name' content='WitchElaina&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='基础学科' />
+<meta name="twitter:title" content="概率论与数理统计自学整理汇总">
+<meta name="twitter:description" content="带你速刷概率论与数理统计知识点, 考试周不破防!!">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://cdn.staticaly.com/gh/LinYuanChan/image-hosting@master/81346402.webp" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">❄️</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WitchElaina&#39;s Blog</a></h1>
+            <h2 class="site-description">New blog developing...</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/WitchElaina'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://withcelaina.github.io/" selected>English</option>
+                        
+                            <option value="https://withcelaina.github.io/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概率论">概率论</a>
+      <ol>
+        <li><a href="#随机事件与概率">随机事件与概率</a>
+          <ol>
+            <li><a href="#随机事件">随机事件</a></li>
+            <li><a href="#概率">概率</a></li>
+            <li><a href="#古典概型-等可能概型">古典概型 (等可能概型)</a></li>
+            <li><a href="#条件概率">条件概率</a>
+              <ol>
+                <li><a href="#全概率公式">全概率公式</a></li>
+                <li><a href="#贝叶斯公式">贝叶斯公式</a></li>
+              </ol>
+            </li>
+            <li><a href="#事件独立性">事件独立性</a></li>
+          </ol>
+        </li>
+        <li><a href="#一维随机变量及其分布">一维随机变量及其分布</a>
+          <ol>
+            <li><a href="#离散型随机变量">离散型随机变量</a>
+              <ol>
+                <li><a href="#特殊分布">特殊分布</a></li>
+              </ol>
+            </li>
+            <li><a href="#随机变量分布函数">随机变量分布函数</a></li>
+            <li><a href="#连续性随机变量">连续性随机变量</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#fx">$$
+F(x)</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#相互独立的随机变量">相互独立的随机变量</a></li>
+            <li><a href="#两个随机变量函数的分布">两个随机变量函数的分布</a>
+              <ol>
+                <li><a href="#zxy分布">$Z=X+Y$分布</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#多维随机变量及其分布">多维随机变量及其分布</a>
+          <ol>
+            <li><a href="#二维离散型随机变量">二维离散型随机变量</a></li>
+            <li><a href="#二维连续型随机变量">二维连续型随机变量</a></li>
+            <li><a href="#边缘分布">边缘分布</a></li>
+            <li><a href="#条件分布">条件分布</a></li>
+            <li><a href="#相互独立的随机变量-1">相互独立的随机变量</a></li>
+            <li><a href="#两个随机变量的函数分布">两个随机变量的函数分布</a></li>
+          </ol>
+        </li>
+        <li><a href="#随机变量的数字特征">随机变量的数字特征</a>
+          <ol>
+            <li><a href="#数学期望">数学期望</a></li>
+          </ol>
+        </li>
+        <li><a href="#方差与矩">方差与矩</a></li>
+        <li><a href="#协方差">协方差</a></li>
+        <li><a href="#相关系数">相关系数</a></li>
+        <li><a href="#极限定理">极限定理</a>
+          <ol>
+            <li><a href="#大数定律">大数定律</a></li>
+            <li><a href="#中心极限定理">中心极限定理</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#数理统计">数理统计</a>
+      <ol>
+        <li><a href="#基本概念">基本概念</a>
+          <ol>
+            <li><a href="#常见统计量">常见统计量</a></li>
+            <li><a href="#四大统计量及其分布">四大统计量及其分布</a></li>
+          </ol>
+        </li>
+        <li><a href="#参数估计">参数估计</a>
+          <ol>
+            <li><a href="#矩估计">矩估计</a></li>
+            <li><a href="#极大似然估计">极大似然估计</a></li>
+            <li><a href="#点估计优良性">点估计优良性</a></li>
+            <li><a href="#区间估计">区间估计</a>
+              <ol>
+                <li><a href="#正态总体均值">正态总体均值</a></li>
+                <li><a href="#正态总体方差">正态总体方差</a></li>
+                <li><a href="#0-1分布总体方差">(0-1)分布总体方差</a></li>
+              </ol>
+            </li>
+            <li><a href="#假设检验">假设检验</a>
+              <ol>
+                <li><a href="#单个正态总体的假设检验">单个正态总体的假设检验</a></li>
+                <li><a href="#两个正态总体的假设检验">两个正态总体的假设检验</a></li>
+                <li><a href="#分布拟合检验">分布拟合检验</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" >
+                笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/probability_theory_and_math_statistics/">概率论与数理统计自学整理汇总</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            带你速刷概率论与数理统计知识点, 考试周不破防!!
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+
+    
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="概率论">概率论</h1>
+<h2 id="随机事件与概率">随机事件与概率</h2>
+<h3 id="随机事件">随机事件</h3>
+<p><strong>随机试验(Experiment)</strong>	满足<strong>可重复进行</strong>, <strong>结果明确且不止一个</strong>, <strong>结果无法预测</strong>的<strong>试验</strong>, 记作$E$</p>
+<p><strong>样本空间</strong>	随机试验所有结果的集合, 记作$S$或$\varOmega$</p>
+<p><strong>样本点</strong>	样本空间中的元素, 即随机试验的每一个结果, 记作$e$或$\omega$</p>
+<p><strong>随机事件</strong>	随机试验样本空间的子集, 用$A,B,C,\cdots$表示</p>
+<blockquote>
+<p><strong>基本事件</strong>	只包含一个样本点的随机事件</p>
+<p><strong>不可能事件</strong>	$\varnothing$, 一个样本点都不包含的随机事件</p>
+<p><strong>必然事件</strong>	$S$</p>
+</blockquote>
+<p>事件满足集合运算, 特别的, $A\cap B=AB$, 对立事件$\bar A$</p>
+<h3 id="概率">概率</h3>
+<p><strong>频率</strong>	$n$次试验中随机事件$A$发生了$n_A$次, 则其频率记作
+$$
+f_n(A)=\dfrac{n_A}{n}
+$$</p>
+<blockquote>
+<p><strong>非负</strong>	$0\leq f_n(A)\leq1$</p>
+<p><strong>规范</strong>	$f_n(S)=1$</p>
+<p><strong>可加</strong>	$f_n(A_1\cup A_2\cup \cdots\cup A_n)=f_n(A_1)+f_n(A_2) +\cdots+f_n(A_n),\  (A_i两两不相容)$</p>
+</blockquote>
+<p><strong>概率</strong>	对$E$的每一个事件$A$赋予一个实数$P(A)$即为$A$的概率</p>
+<blockquote>
+<p><strong>非负</strong>	$0\leq P(A)\leq1$</p>
+<p><strong>规范</strong>	$P(S)=1$</p>
+<p><strong>可列可加</strong>	$P(A_1\cup A_2\cup \cdots\cup A_n)=P(A_1)+P(A_2) +\cdots+P(A_n),\  (A_i两两不相容)$</p>
+</blockquote>
+<p>相关性质如下:
+$$
+P(A-B)=P(A)-P(B)	\
+P(A+B)=P(A)+P(B)-P(AB)	\
+P(\bar A)=1-P(A)
+$$</p>
+<h3 id="古典概型-等可能概型">古典概型 (等可能概型)</h3>
+<p>$$
+P(A)=\dfrac{k}{n}
+$$</p>
+<blockquote>
+<p>其中$n$为样本点总数, $k$为$A$包含的样本数</p>
+</blockquote>
+<h3 id="条件概率">条件概率</h3>
+<p>$$
+P(A|B)=\dfrac{P(AB)}{P(B)}
+$$</p>
+<p>即$B$发生的情况下$A$的概率</p>
+<h4 id="全概率公式">全概率公式</h4>
+<p>样本空间$S$的划分$B_1,B_2,\cdots , B_n$称为样本空间的<strong>互斥完备事件组</strong>, 则有
+$$
+P(A)=\sum_{i=1}^nP(B_i)P(A|B_i)
+$$</p>
+<blockquote>
+<p><strong>Polya模型</strong>	有无放回地取球概率相等</p>
+</blockquote>
+<h4 id="贝叶斯公式">贝叶斯公式</h4>
+<p>样本空间$S$有划分$B_1,B_2,\cdots , B_n$, 则有
+$$
+P(B_i|A)=\dfrac{P(B_i)P(A|B_i)}{\sum_{j=1}^nP(B_j)P(A|B_j)}
+$$</p>
+<h3 id="事件独立性">事件独立性</h3>
+<p><strong>两两独立</strong>	$P(AB)=P(A)P(B)$</p>
+<p><strong>相互独立</strong>	三个事件两两独立的基础上$P(A)P(B)P(C)=P(ABC)$</p>
+<blockquote>
+<p>$A,B,C$两两独立不能证明其相互独立</p>
+</blockquote>
+<h2 id="一维随机变量及其分布">一维随机变量及其分布</h2>
+<p><strong>离散型随机变量</strong>	随机变量$X$的取值是可列的或有限个的</p>
+<p><strong>连续型随机变量</strong>	随机变量$X$的可能取值是数轴或至少有一部分取值是某个区间</p>
+<h3 id="离散型随机变量">离散型随机变量</h3>
+<p><strong>分布律</strong>	设$X$所有可能取值$x_k$, $x_k$被取到的概率$p_k$, $(k=1,2,3,\cdots)$, 则</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$X$</th>
+<th>$x_1$</th>
+<th>$x_2$</th>
+<th>$\cdots$</th>
+<th>$x_n$</th>
+<th>$\cdots$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$p_k$</td>
+<td>$p_1$</td>
+<td>$p_2$</td>
+<td>$\cdots$</td>
+<td>$p_n$</td>
+<td>$\cdots$</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>非负性</strong>	$p_k\geqslant 0 $</p>
+<p><strong>完备性</strong>	$\sum_{i=1}^{+\inf}p_k=1$</p>
+</blockquote>
+<h4 id="特殊分布">特殊分布</h4>
+<p><strong>(0-1)分布</strong>	也叫两点分布, 随机变量只能取0,1两个值</p>
+<p><strong>二项分布</strong>	由贝努利概型,若随机变量可能取值为$0, 1, 2,\cdots,n$得到的分布$X\sim B(n,p)$</p>
+<blockquote>
+<p><strong>贝努利概型</strong>	$n$次重复, 结果独立且只有$A$和$\bar A$两种的试验为贝努利试验, $n$为贝努里概型</p>
+<p><strong>贝努利定理</strong>	$p=P(A)$,$n$次试验中$A$发生$k$次的概率$P_n(k)$满足
+$$
+P_n(k)=C_n^kp^k(1-p)^{n-k}
+$$</p>
+</blockquote>
+<p><strong>泊松 (Poisson) 定理</strong>	设$\lambda=n\cdot p_n$, 则
+$$
+\lim\limits_{n\to \infty}P_n(k)=\dfrac{\lambda^ke^{-\lambda}}{k!}
+$$
+<strong>泊松分布</strong>	若随机变量可能取值为$0, 1, 2,\cdots$,则根据泊松定理有泊松分布$X\sim P(\lambda)$</p>
+<h3 id="随机变量分布函数">随机变量分布函数</h3>
+<p>设$X$为一个随机变量, 则$F(x)=P(X\leqslant x)$</p>
+<p><strong>单调性</strong>	$F(x)$是在实数轴上单调非减的函数</p>
+<p><strong>有界性</strong>	对任意$x$有$0\leqslant F(x)\leqslant 1$, $\lim\limits_{x\to-\infty}F(x)=0$, $\lim\limits_{x\to+\infty}F(x)=1$</p>
+<p><strong>右连续性</strong>	$\lim\limits_{x\to x_0}F(x)=F(x_0)$</p>
+<h3 id="连续性随机变量">连续性随机变量</h3>
+<p><strong>概率密度函数</strong>	非负函数$f(x)$使得$F(X)=\int_{-\infty}^xf(t)dt$, 则这个函数为概率密度函数</p>
+<blockquote>
+<p><strong>非负性</strong>	$f(x)\geqslant0$</p>
+<p><strong>正则性</strong>	$\int_{-\infty}^{+\infty}f(x)dx=1$</p>
+<p>若$F(x)$在$x$上连续则$F&rsquo;(x)=f(x)$</p>
+<p>$P(x_1\leqslant X\leqslant x_2)=F(x_2)-F(x_1)=\int_{x_1}^{x_2}f(x)dx$</p>
+</blockquote>
+<p><strong>均匀分布</strong>	$b$到$a$上的自由分布
+$$
+f(x)=<br>
+\begin{cases}
+\dfrac{1}{b-a} &amp;a&lt;x&lt;b \
+0 &amp;\text{其他}
+\end{cases}
+$$</p>
+<p>$$
+F(x)=
+\begin{cases}
+0 &amp; x&lt;a	\
+\dfrac{x-a}{b-a} &amp; a\leqslant x&lt;b	\
+1 &amp; x\geqslant b
+\end{cases}
+$$</p>
+<p><strong>指数分布</strong>
+$$
+f(x)=
+\begin{cases}<br>
+\dfrac{1}{\theta}e^{-\frac{x}{\theta}} &amp; x&gt;0,\text{其中}\theta\text{为常数} \<br>
+0 &amp;\text{其他}
+\end{cases}
+$$</p>
+<p>$$
+F(x)=
+\begin{cases}
+1-e^{-\frac{x}{\theta}}	&amp;	x&gt;0\
+0	&amp;	\text{其他}
+\end{cases}
+$$</p>
+<p><strong>正态分布</strong>	$X\sim N(\mu,\sigma^2)$
+$$
+f(x)={\frac {1}{\sigma {\sqrt {2\pi }}}};e^{-{\frac {\left(x-\mu \right)^{2}}{2\sigma ^{2}}}}
+$$</p>
+<h1 id="fx">$$
+F(x)</h1>
+<p>\frac{1}{\sigma\sqrt{2\pi}}
+\int_{-\infty}^x
+\exp
+\left( -\frac{(t - \mu)^2}{2\sigma^2}
+\ \right), dt.
+$$</p>
+<blockquote>
+<p><strong>位置参数</strong>$\mu$决定中心位置, <strong>尺度参数</strong>$\sigma$越大曲线越矮越胖</p>
+</blockquote>
+<p><strong>标准正态分布</strong>	$X\sim N(0,1)$</p>
+<blockquote>
+<p>$\mu=0$, $\sigma=1$</p>
+</blockquote>
+<p>$$
+\varphi(x)=
+f(x)=
+\frac{1}{\sqrt{2\pi}}
+\exp\left(-\frac{t^2}{2}\right)
+, dt
+$$</p>
+<p>$$
+\varPhi(x)=
+F(x)=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^x
+\exp\left(-\frac{t^2}{2}\right)
+, dt
+$$</p>
+<h3 id="相互独立的随机变量">相互独立的随机变量</h3>
+<p>$$
+F(x,y)=F_X(x)\cdot F_Y(y)	\
+P(x,y)=P_X(x)\cdot P_Y(y)	\
+f(x,y)=f_X(x)\cdot f_Y(y)
+$$</p>
+<h3 id="两个随机变量函数的分布">两个随机变量函数的分布</h3>
+<h4 id="zxy分布">$Z=X+Y$分布</h4>
+<p>$$
+F_Z(z)=P(Z\leqslant z)=\iint_{x+y\leqslant z}f(x,y)dxdy
+$$</p>
+<p><strong>卷积公式</strong>	当$X\ ,Y$相互独立时
+$$
+f_X * f_Y=\int_{-\infty}^{+\infty}f_X(x)\cdot f_Y(z-x)\mathrm dx
+=\int_{-\infty}^{+\infty}f_X(z-y)\cdot f_Y(y)\mathrm dy
+$$
+​
+$$</p>
+<p>$$</p>
+<h2 id="多维随机变量及其分布">多维随机变量及其分布</h2>
+<p><strong>二维随机变量</strong>	同一个样本空间中的随机变量$X,Y$组成的向量$(X,Y)$</p>
+<p><strong>二维随机变量分布函数</strong>
+$$
+F(x,y)=P(X\leqslant x,Y\leqslant y)
+$$</p>
+<blockquote>
+<p>满足<strong>单调性</strong>, <strong>有界性</strong>, <strong>右连续性</strong>, <strong>非负性</strong></p>
+</blockquote>
+<h3 id="二维离散型随机变量">二维离散型随机变量</h3>
+<p>$(x,y)$取值为有限多对或可列无限多对, 则$(X,Y)$为二维离散型随机变量</p>
+<p><strong>联合分布律</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$X$ \ $Y$</th>
+<th>$y_0$</th>
+<th>$y_1$</th>
+<th>$\cdots$</th>
+<th>$y_j$</th>
+<th>$\cdots$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x_0$</td>
+<td>$p_{00}$</td>
+<td>$p_{01}$</td>
+<td>$\cdots$</td>
+<td>$p_{00}$</td>
+<td>$\cdots$</td>
+</tr>
+<tr>
+<td>$x_1$</td>
+<td>$p_{10}$</td>
+<td>$p_{11}$</td>
+<td>$\cdots$</td>
+<td>$p_{1j}$</td>
+<td>$\cdots$</td>
+</tr>
+<tr>
+<td>$\vdots$</td>
+<td>$\vdots$</td>
+<td>$\vdots$</td>
+<td>$\ddots$</td>
+<td>$\vdots$</td>
+<td>$\ddots$</td>
+</tr>
+<tr>
+<td>$x_i$</td>
+<td>$p_{i0}$</td>
+<td>$p_{i1}$</td>
+<td>$\cdots$</td>
+<td>$p_{ij}$</td>
+<td>$\cdots$</td>
+</tr>
+<tr>
+<td>$\vdots$</td>
+<td>$\vdots$</td>
+<td>$\vdots$</td>
+<td>$\vdots$</td>
+<td>$\vdots$</td>
+<td>$\ddots$</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>非负性</strong>	$p_{ij}\geqslant 0$</p>
+<p><strong>正则性</strong>	$\sum_i\sum_jp_{ij}=1$</p>
+</blockquote>
+<p><strong>联合分布函数</strong>
+$$
+P(X\leqslant x,Y\leqslant y)=F(x,y)=
+\sum_{
+\begin{subarray}{1}
+x_i \leqslant x	\
+y_j \leqslant y
+\end{subarray}}
+p_{ij}
+$$</p>
+<h3 id="二维连续型随机变量">二维连续型随机变量</h3>
+<p><strong>联合概率密度函数</strong>	非负二元函数$f(x,y)$, 有
+$$
+F(x,y)=
+\int_{-\infty}^{x}
+\int_{-\infty}^{y}
+f(x,y)\mathrm{d} x\mathrm{d} y
+$$</p>
+<blockquote>
+<p><strong>非负性</strong>	$f(x,y)\geqslant0$</p>
+<p><strong>规范性</strong>	$\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x,y)\mathrm{d} x\mathrm{d} y=1$</p>
+</blockquote>
+<p><strong>联合分布函数</strong>	$F(x, y)$</p>
+<h3 id="边缘分布">边缘分布</h3>
+<p>边缘分布函数
+$$
+F_X(x)=F(x,+\infty)	\
+F_Y(y)=F(+\infty,y)
+$$</p>
+<h3 id="条件分布">条件分布</h3>
+<p><strong>离散型随机变量</strong> 给定$X$求$Y$或给定$Y$求$X$</p>
+<p><strong>连续型随机变量</strong>	取极限
+$$
+F_{X|Y}(x|y)=P(X\leqslant x\ |\ Y=y )
+$$</p>
+<h3 id="相互独立的随机变量-1">相互独立的随机变量</h3>
+<p>$$
+F(x,y)=F_X(x)\cdot F_Y(y)
+$$</p>
+<p><strong>离散型</strong>	直接计算</p>
+<p><strong>连续型</strong>
+$$
+f(x,y)=f_X(x)\cdot f_Y(y)
+$$</p>
+<h3 id="两个随机变量的函数分布">两个随机变量的函数分布</h3>
+<p><strong>$Z=X+Y$分布</strong>
+$$
+F_Z(z)=P(Z\leqslant z)=\iint_{x+y\leqslant z}f(x,y)\mathrm{d}x\mathrm{d}y
+$$</p>
+<p>$$
+f_Z(z)=\int_{-\infty}^{+\infty}f(z-y,y)\mathrm{d}x=\int_{-\infty}^{+\infty}f(x,z-x)\mathrm{d}y
+$$
+当$X$与$Y$相互独立时,有<strong>卷积公式</strong>
+$$
+f_Z(z)=f_X(x)*f_Y(y)=\int_{-\infty}^{+\infty}f_X(z-y)f_Y(y)\mathrm{d}y=\int_{-\infty}^{+\infty}f_Y(z-x)f_X(x)\mathrm{d}x
+$$
+<strong>$Z=X/Y$分布</strong>
+$$
+F_Z(z)=P(Z\leqslant z)=\iint_{\frac{x}{y}\leqslant z}f(x,y)\mathrm{d}x\mathrm{d}y
+$$</p>
+<p>相互独立时, 有:
+$$
+f_Z(z)=\int_{-\infty}^{+\infty}|y|f_X(yz)\cdot f_Y(y)\mathrm dy
+$$</p>
+<p><strong>最大最小值分布</strong>
+$$
+M=\max{X,Y}	\
+N=\min{X,Y}
+$$
+则X,Y相互独立时
+$$
+F_M(m)=F_X(m)\cdot F_Y(m)	\
+F_N(n)=1-[1-F_X(n)]-[1- F_Y(n)]
+$$</p>
+<h2 id="随机变量的数字特征">随机变量的数字特征</h2>
+<h3 id="数学期望">数学期望</h3>
+<p>对于离散型随机变量$X$, 分布律$P(X=x_k)=p_k,k=1,2,\cdots$, 若<a class="link" href="https://zh.wikipedia.org/wiki/%E7%BA%A7%E6%95%B0#%E7%BB%9D%E5%AF%B9%E6%94%B6%E6%95%9B"  target="_blank" rel="noopener"
+    >级数</a>$\sum_{k=1}^{\infty}x_kp_k$绝对收敛, 则
+$$
+E(X)=\sum_{k=1}^\infty x_kp_k
+$$
+对于连续型随机变量$X$, 概率密度$f(x)$
+$$
+E(X)=\int_{-\infty}^{+\infty}xf(x)\mathrm{d}x
+$$</p>
+<blockquote>
+<p>数学期望简称期望或均值</p>
+</blockquote>
+<p><strong>随机变量函数的数学期望</strong></p>
+<p>离散型	若$\sum_{k=1}^{\infty}g(x_k)p_k$绝对收敛,则
+$$
+E(Y)=E(g(x))=\sum_{k=1}^{\infty}g(x_k)p_k
+$$
+连续型	若$\int^{+\infty}<em>{-\infty}g(x)f(x)\mathrm dx$绝对收敛, 则
+$$
+E(Y)=E(g(x))=\int^{+\infty}</em>{-\infty}g(x)f(x)\mathrm dx
+$$
+$n$维度连续型
+$$
+E(X)=\int^{+\infty}<em>{-\infty}\int^{+\infty}</em>{-\infty}xf(x,y)\mathrm dx\mathrm dy	\
+E[g(X,Y)]=\int^{+\infty}<em>{-\infty}\int^{+\infty}</em>{-\infty}g(x,y)f(x,y)\mathrm dx\mathrm dy
+$$
+<strong>性质</strong></p>
+<ul>
+<li>$C$为常数则$E(C)=C$</li>
+<li>$E(CX)=CE(X)$</li>
+<li>$E(X_1+X_2+\cdots+X_n)=\sum E(X_i)$</li>
+<li>$E(X_1X_2\cdots X_n)=E(X_1)E(X_2)\cdots E(X_n)$</li>
+</ul>
+<h2 id="方差与矩">方差与矩</h2>
+<p><strong>方差</strong>	若期望存在,则
+$$
+D(X)=E(X-E(X))^2
+$$</p>
+<blockquote>
+<p><strong>标准差/均方差</strong>	$\sqrt {D(X)}$</p>
+</blockquote>
+<p><strong>矩</strong>	若$E(x^k)$存在, 则其$k$阶矩
+$$
+\mu_k = E(X^k)
+$$
+<strong>离散型随机变量</strong>
+$$
+D(x)=\sum_{k=1}^{\infty}[x_k-E(X)]^2p_k
+$$
+<strong>连续型随机变量</strong>
+$$
+D(x)=\int_{-\infty}^{+\infty}[x-E(X)]^2f(x)\mathrm dx
+$$
+另,
+$$
+D(X)=E(X^2)-[E(X)]^2
+$$</p>
+<blockquote>
+<p>正态分布$X\sim N(\mu,\sigma^2)$中, $\mu$为数学期望, $\sigma^2$为方差</p>
+</blockquote>
+<p><strong>性质</strong></p>
+<ul>
+<li>若$C$为常数, $D(C)=0$</li>
+<li>$D(CX)=C^2D(X)$</li>
+<li>$D(X_1+X_2+\cdots+X_n)=\sum D(X_i)$</li>
+<li>$D(X)=0 \iff P(X=E(x))=1$</li>
+</ul>
+<p><strong>切比雪夫不等式</strong>	若随机变量方差与期望均存在, 对$\forall \varepsilon&gt;0$
+$$
+P(|X-E(X)|\geqslant\varepsilon)\leqslant\dfrac{D(X)}{\varepsilon^2}
+$$</p>
+<h2 id="协方差">协方差</h2>
+<p>二维随机变量$(X,Y)$, 若存在则
+$$
+\mathrm{cov}(X,Y)=E[(X-E(X))(Y-E(Y))]
+$$
+常用公式
+$$
+\mathrm{cov}(X,Y)=E(XY)-E(X)\cdot E(Y)
+$$
+<strong>性质</strong></p>
+<ul>
+<li>$\mathrm{cov}(X,X)=D(X)$</li>
+<li>$\mathrm{cov}(X,C)=0$</li>
+<li>$\mathrm{cov}(X,Y)=\mathrm{cov}(Y,X)$</li>
+<li>$\mathrm{cov}(aX,bY)=ab\mathrm{cov}(X,Y)$</li>
+<li>$\mathrm{cov}(X+Y,Z)=\mathrm{cov}(X,Z)+\mathrm{cov}(Y,Z)$</li>
+<li>$D(X+Y)=D(X)+D(Y)+2\mathrm{cov}(X,Y)$</li>
+</ul>
+<h2 id="相关系数">相关系数</h2>
+<p>二维随机变量$(X,Y)$, $D(X)\neq0$且 $D(Y)\neq0$时
+$$
+\rho_{XY}=\dfrac{\mathrm{cov}(X,Y)}{\sqrt{D(X)}\cdot\sqrt{D(Y)}}
+$$</p>
+<blockquote>
+<p>$|\rho|\leqslant1$</p>
+<p><strong>线性相关系数</strong>	$|\rho|=1\iff P(Y=aX+b)=1, a\neq0$</p>
+</blockquote>
+<h2 id="极限定理">极限定理</h2>
+<p><strong>概率收敛</strong>	设$Y_1,Y_2,\cdots,Y_n,\cdots$是随机变量序列且对常数$a$, $\forall \varepsilon&gt;0$有
+$$
+\lim\limits_{n\to \infty}P(|Y_n-a|\geqslant\varepsilon)=0	\
+\text{or}	\
+\lim\limits_{n\to \infty}P(|Y_n-a|&lt;\varepsilon)=1
+$$
+则随机序列概率收敛到常数$a$, 记作
+$$
+Y_n\xrightarrow P a
+$$</p>
+<h3 id="大数定律">大数定律</h3>
+<p><strong>贝努利大数定律</strong>	设$X_1,X_2,\cdots,X_n,\cdots$是相互独立的随机变量序列且均服从以$p$为参数的**(0-1)分布**, 则
+$$
+\dfrac{1}{n}\sum_{k=1}^nX_k\xrightarrow{P}p
+$$
+<strong>切比雪夫大数定律特例</strong>	设$X_1,X_2,\cdots,X_n,\cdots$是相互独立的随机变量序列且数学期望与方差相同, $E(X_k)=\mu$, $D(X_k)=\sigma^2$ $(k=1,2,\cdots)$, 则
+$$
+\dfrac{1}{n}\sum_{k=1}^nX_k\xrightarrow{P}\mu
+$$
+<strong>辛钦大数定律</strong>	设$X_1,X_2,\cdots,X_n,\cdots$是相互独立的随机变量序列且服从相同的分布, 并且存在数学期望$E(X_k)=\mu$, 则
+$$
+\dfrac{1}{n}\sum_{k=1}^nX_k\xrightarrow{P}\mu
+$$</p>
+<h3 id="中心极限定理">中心极限定理</h3>
+<hr>
+<h1 id="数理统计">数理统计</h1>
+<p>数理统计相比于概率论, 研究的都是分布未知的随机变量</p>
+<h2 id="基本概念">基本概念</h2>
+<p><strong>总体</strong>	研究对象某个指标值得全体称为<strong>总体</strong></p>
+<p><strong>个体</strong>	总体中的每个元素</p>
+<p><strong>抽样</strong>	按一定规则从总体中抽取若干个体的过程</p>
+<p><strong>样本</strong>	所抽取的个体</p>
+<p><strong>样本容量</strong>	样本中所包含的个体数</p>
+<blockquote>
+<p>样本应该具有随机性, 独立性</p>
+</blockquote>
+<h3 id="常见统计量">常见统计量</h3>
+<p><strong>统计量</strong>	样本的函数</p>
+<p><strong>样本均值</strong>	$\bar X$
+$$
+\bar X=\dfrac{1}{n}\sum_{i=1}^nX_i
+$$</p>
+<blockquote>
+<p><strong>偏差</strong>	样本中数据与样本均值的差$X_i-\bar X$</p>
+<p><strong>性质 偏差和为0</strong>	$\sum (X_i-\bar X)=0$</p>
+</blockquote>
+<p><strong>样本均值的抽样分布</strong>	若总体分布为$N(\mu,\sigma^2)$, 则$\bar X\sim N(\mu,\dfrac{\sigma^2}{n})$; 若总体不为正态分布但期望为$\mu$,方差为$\sigma^2$则$\bar X$近似分布$ N(\mu,\dfrac{\sigma^2}{n})$</p>
+<p><strong>样本方差</strong>	$S^2$
+$$
+S^2=\dfrac{1}{n-1}\sum_{i=1}^n (X_i-\bar X)^2
+$$
+<strong>样本标准差</strong>	$S=\sqrt {S^2}$</p>
+<h3 id="四大统计量及其分布">四大统计量及其分布</h3>
+<p><strong>卡方分布/$\chi^2$分布</strong>	对来自正态总体$N(0,1)$的样本$X_1, X_2,\cdots,X_n$, 统计量$\chi^2=\sum^n_{i=1} X_i^2$服从自由度为$n$的卡方分布, 记作
+$$
+\chi^2\sim\chi^2(n)
+$$</p>
+<blockquote>
+<p>$E(\chi^2)=n$</p>
+<p>$D(\chi^2)=2n$</p>
+<p>$n&gt;45$时分位点近似公式$\chi^2_\alpha(n)\approx n+\sqrt{2n}\cdot z_\alpha$, $z_\alpha$为标准正态分布的分位点,
+$$
+P(\chi^2&gt;\chi^2_\alpha (n))=\int^{+\infty}<em>{\chi^2</em>\alpha(n)}f(x)\mathrm d x
+$$</p>
+</blockquote>
+<p><strong>$t$分布/学生分布</strong>	$X\sim N(0,1)$, $Y\sim\chi^2(n)$, $X,Y$独立, $t=\dfrac{X}{\sqrt\frac{Y}{n}}$
+$$
+t\sim t(n)
+$$</p>
+<ul>
+<li>
+<p>$n=1$	 均值不存在</p>
+</li>
+<li>
+<p>$n&gt;1$	$E(t)=0$</p>
+</li>
+<li>
+<p>$n&gt;2$	$D(t)=\dfrac{n}{n-2}$</p>
+</li>
+</ul>
+<p>分位点</p>
+<p>$$
+P(t&gt;t_\alpha(n))=\int_{t_{\alpha(n)}}^{+\infty}h(t)\mathrm dt
+$$</p>
+<ul>
+<li>
+<p>$n&gt;45$时, $t_\alpha(n)\approx z_\alpha$</p>
+</li>
+<li>
+<p>$n\leqslant45$时, 查表</p>
+</li>
+</ul>
+<p><strong>$F$分布</strong>	<em>X</em> ~ F(<em>n</em>1, <em>n</em>2)</p>
+<p><strong>正态总体相关四定理</strong>	对于来自正态总体$X\sim N(\mu,\sigma^2)$的样本$X_1,X_2,\cdots,X_n$, 有
+$$
+\bar X\sim N(\mu,\dfrac{\sigma^2}{n})\ \text{or}\
+\dfrac{\bar {X}-\mu}{\sigma/\sqrt n}\sim N(0,1)	\	\
+\dfrac{\bar {X}-\mu}{S/\sqrt n}\sim t(n-1)	\	\
+\dfrac{(n-1)S^2}{\sigma^2}=\dfrac{\sum_{i=1}^{n}(X_i-\bar X)^2}{\sigma^2} \sim \chi^2(n-1)	\	\
+\bar X\text{与}S^2\text{相互独立}
+$$</p>
+<h2 id="参数估计">参数估计</h2>
+<h3 id="矩估计">矩估计</h3>
+<p><strong>步骤</strong>	估$k$个待估参数</p>
+<ol>
+<li>
+<p>求前$k$阶矩,</p>
+</li>
+<li>
+<p>用样本矩带入$\mu_i$
+$$
+M_i=\dfrac{1}{n}\sum_{j=1}^{n}X_j^i=\mu_i
+$$</p>
+</li>
+<li>
+<p>解方程</p>
+</li>
+</ol>
+<h3 id="极大似然估计">极大似然估计</h3>
+<p><strong>步骤</strong>	求极大似然函数的最大值</p>
+<ol>
+<li>写出极大似然函数</li>
+<li>利用偏导或$lnF$的偏导求最值</li>
+</ol>
+<h3 id="点估计优良性">点估计优良性</h3>
+<p><strong>无偏性</strong>	$E(\hat\theta)=\theta$</p>
+<p><strong>有效性</strong>	若$\hat\theta_1, \hat\theta_2$都是无偏估计, 若$D(\hat\theta_1-\theta)&lt;D(\hat\theta_2-\theta)$则$\hat\theta_1$更比2有效</p>
+<p><strong>相合性</strong>	若$n\to\infty$, $\forall\varepsilon&gt;0$
+$$
+\lim\limits_{n\to\infty}P(|\hat\theta_n-\theta|&lt;\varepsilon)=1
+$$</p>
+<h3 id="区间估计">区间估计</h3>
+<p>$$
+P(\underline\theta&lt;\theta&lt;\overline\theta)=1-\alpha
+$$</p>
+<blockquote>
+<p><strong>置信区间</strong>	$(\underline\theta,\overline\theta)$</p>
+<p><strong>置信上限</strong>	$\overline\theta$</p>
+<p><strong>置信下限</strong>	$\underline\theta$</p>
+<p><strong>置信度/置信概率</strong>	$1-\alpha$</p>
+</blockquote>
+<h4 id="正态总体均值">正态总体均值</h4>
+<p><strong>单个正态总体</strong>	$\mu$</p>
+<ul>
+<li>
+<p>$\sigma^2$已知
+$$
+(\overline X\pm\dfrac{\sigma}{\sqrt{n}}z_{\frac{\alpha}{2}} )
+$$</p>
+</li>
+<li>
+<p>$\sigma^2$未知
+$$
+(\overline X\pm\dfrac{S}{\sqrt{n}}t_{\frac{\alpha}{2}}(n-1) )
+$$</p>
+</li>
+</ul>
+<p><strong>两个正态总体</strong>	$\mu_1-\mu_2$</p>
+<ul>
+<li>
+<p>$\sigma^2_1$$,\sigma_2^2$均已知
+$$
+(\bar X-\bar Y\pm\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}\cdot z_{\frac{\alpha}{2}})
+$$</p>
+</li>
+<li>
+<p>$\sigma_1^2=\sigma_2^2=\sigma^2$但未知
+$$
+(\bar X-\bar Y\pm S_w \sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}\cdot t_{\frac{\alpha}{2}}(n_1+n_2-2))
+$$</p>
+</li>
+</ul>
+<h4 id="正态总体方差">正态总体方差</h4>
+<p><strong>单个正态总体</strong>
+$$
+\bigg(\dfrac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n-1)},\dfrac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n-1)}\bigg)
+$$</p>
+<h4 id="0-1分布总体方差">(0-1)分布总体方差</h4>
+<p>$$
+(n+z^2_{\frac{\alpha}{2}})p^2-(2n\bar X+z^2_{\frac{\alpha}{2}})p+n\bar X^2=0
+$$</p>
+<p>解方程得到
+$$
+(p_1,p_2)
+$$</p>
+<h3 id="假设检验">假设检验</h3>
+<p>一般步骤</p>
+<ol>
+<li>提出原假设$H_0$及备择假设$H_1$</li>
+<li>给定显著性水平$\alpha$及样本容量$n$</li>
+<li>提出拒绝域的形式并确定检验统计量</li>
+<li>由$P(\text{拒绝}H_0\ |\ H_0\text{为真})=\alpha$求表达式</li>
+<li>对总体抽样判断是否接受假设</li>
+</ol>
+<h4 id="单个正态总体的假设检验">单个正态总体的假设检验</h4>
+<p><strong>$\mu$的假设检验</strong>	$H_0:\mu=\mu_0$的拒绝域</p>
+<ul>
+<li>
+<p>$\sigma^2$已知
+$$
+|\dfrac{\bar X-\mu_0}{\sigma/\sqrt n}|&gt;z_{\frac{\alpha}{2}}
+$$</p>
+</li>
+<li>
+<p>$\sigma^2$未知
+$$
+|t|=|\dfrac{\bar X-\mu_0}{S/\sqrt n}|&gt;t_{\frac{\alpha}{2}}(n-1)
+$$</p>
+</li>
+</ul>
+<p><strong>$\sigma^2$的假设检验</strong>	$H_0:\sigma^2=\sigma^2_0$的拒绝域
+$$
+\chi^2=\dfrac{(n-1)S^2}{\sigma^2_0}\in(0,\chi_{1-\frac{\alpha}{2}}^2(n-1))\cup(\chi_{\frac{\alpha}{2}}^2(n-1),+\infty)
+$$
+<strong>单边假设检验</strong>	$H_0:\mu\geqslant\mu_0$的拒绝域
+$$
+\bar x-\mu_0&lt;-\dfrac{\sigma_0}{\sqrt{n}}\cdot z_\alpha
+$$</p>
+<h4 id="两个正态总体的假设检验">两个正态总体的假设检验</h4>
+<p><strong>方差已知均值的假设检验</strong>	$H_0:\mu_1=\mu_2$
+$$
+|U|=|\dfrac{\bar x-\bar y}{\sqrt{\dfrac{\sigma_1^2}{n_1}-\dfrac{\sigma_2^2}{n_2}}}|&gt;z_{\frac{\alpha}{2}}
+$$
+<strong>均值未知总体方差的检验</strong>	$H_0:\sigma^2_1=\sigma^2_2$的拒绝域
+$$
+\dfrac{S_1^2}{S_2^2}\in (0,F_{1-\frac{\alpha}{2}}(n_1-1,n_2-1))\cup (F_{\frac{\alpha}{2}}(n_1-1,n_2-1),+\infty)
+$$</p>
+<h4 id="分布拟合检验">分布拟合检验</h4>
+<p>当$n\geqslant50$时(充分大时),
+$$
+\delta
+$$</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/">基础学科</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/discrete-mathematics/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">离散数学自学整理汇总</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 WitchElaina&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.15.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='离散数学是计算机专业必修数学课之一, 本文记录了数理逻辑/代数结构/图相关知识'>
+<title>离散数学自学整理汇总</title>
+
+<link rel='canonical' href='https://withcelaina.github.io/posts/discrete-mathematics/'>
+
+<link rel="stylesheet" href="/scss/style.min.3b122f5b6a7023e613be9affad843eaceacf4a3383edd177ce41e35501998968.css"><meta property='og:title' content='离散数学自学整理汇总'>
+<meta property='og:description' content='离散数学是计算机专业必修数学课之一, 本文记录了数理逻辑/代数结构/图相关知识'>
+<meta property='og:url' content='https://withcelaina.github.io/posts/discrete-mathematics/'>
+<meta property='og:site_name' content='WitchElaina&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='基础学科' />
+<meta name="twitter:title" content="离散数学自学整理汇总">
+<meta name="twitter:description" content="离散数学是计算机专业必修数学课之一, 本文记录了数理逻辑/代数结构/图相关知识">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://cdn.staticaly.com/gh/LinYuanChan/image-hosting@master/81346402.webp" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">❄️</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">WitchElaina&#39;s Blog</a></h1>
+            <h2 class="site-description">New blog developing...</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/WitchElaina'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://withcelaina.github.io/" selected>English</option>
+                        
+                            <option value="https://withcelaina.github.io/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#数理逻辑">数理逻辑</a>
+      <ol>
+        <li><a href="#命题逻辑">命题逻辑</a>
+          <ol>
+            <li><a href="#命题">命题</a>
+              <ol>
+                <li><a href="#定义">定义</a></li>
+                <li><a href="#分类">分类</a></li>
+                <li><a href="#标识符">标识符</a></li>
+              </ol>
+            </li>
+            <li><a href="#联结词">联结词</a>
+              <ol>
+                <li><a href="#否定联结词">否定联结词</a></li>
+                <li><a href="#合取联结词">合取联结词</a></li>
+                <li><a href="#析取联结词">析取联结词</a></li>
+                <li><a href="#蕴含联结词">蕴含联结词</a></li>
+                <li><a href="#等价联结词">等价联结词</a></li>
+              </ol>
+            </li>
+            <li><a href="#命题公式之间的关系">命题公式之间的关系</a>
+              <ol>
+                <li><a href="#逻辑等价">逻辑等价</a></li>
+                <li><a href="#逻辑蕴含">逻辑蕴含</a></li>
+              </ol>
+            </li>
+            <li><a href="#对偶">对偶</a>
+              <ol>
+                <li><a href="#定义-1">定义</a></li>
+                <li><a href="#性质">性质</a></li>
+              </ol>
+            </li>
+            <li><a href="#范式">范式</a>
+              <ol>
+                <li><a href="#概念">概念</a></li>
+                <li><a href="#求范式步骤">求范式步骤</a></li>
+              </ol>
+            </li>
+            <li><a href="#命题演算推证">命题演算推证</a>
+              <ol>
+                <li><a href="#推理根据">推理根据</a></li>
+                <li><a href="#推理规则">推理规则</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+        <li><a href="#谓词逻辑">谓词逻辑</a>
+          <ol>
+            <li><a href="#谓词和个体">谓词和个体</a></li>
+            <li><a href="#量词">量词</a></li>
+            <li><a href="#谓词公式">谓词公式</a></li>
+            <li><a href="#自由与约束">自由与约束</a></li>
+            <li><a href="#逻辑等价-1">逻辑等价</a>
+              <ol>
+                <li><a href="#命题公式推广">命题公式推广</a></li>
+                <li><a href="#否定逻辑等价式">否定逻辑等价式</a></li>
+                <li><a href="#辖域扩张与收缩">辖域扩张与收缩</a></li>
+                <li><a href="#量词分配">量词分配</a></li>
+              </ol>
+            </li>
+            <li><a href="#前束范式">前束范式</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#集合论">集合论</a>
+      <ol>
+        <li><a href="#二元关系">二元关系</a>
+          <ol>
+            <li><a href="#二元关系-1">二元关系</a>
+              <ol>
+                <li><a href="#定义-2">定义</a></li>
+                <li><a href="#特殊关系">特殊关系</a></li>
+                <li><a href="#表示">表示</a></li>
+              </ol>
+            </li>
+            <li><a href="#性质-1">性质</a></li>
+            <li><a href="#运算">运算</a></li>
+            <li><a href="#闭包">闭包</a></li>
+            <li><a href="#等价关系">等价关系</a>
+              <ol>
+                <li><a href="#等价类">等价类</a></li>
+                <li><a href="#商集">商集</a></li>
+                <li><a href="#划分">划分</a></li>
+              </ol>
+            </li>
+            <li><a href="#相容关系">相容关系</a>
+              <ol>
+                <li><a href="#相容类">相容类</a></li>
+                <li><a href="#覆盖">覆盖</a></li>
+              </ol>
+            </li>
+            <li><a href="#偏序关系">偏序关系</a>
+              <ol>
+                <li><a href="#全序关系">全序关系</a></li>
+                <li><a href="#盖住关系">盖住关系</a></li>
+                <li><a href="#哈斯图">哈斯图</a></li>
+                <li><a href="#特殊元素">特殊元素</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#代数结构">代数结构</a>
+      <ol>
+        <li><a href="#代数系统">代数系统</a>
+          <ol>
+            <li><a href="#二元运算">二元运算</a>
+              <ol>
+                <li><a href="#二元运算性质">二元运算性质</a></li>
+                <li><a href="#单位元">单位元</a></li>
+                <li><a href="#零元">零元</a></li>
+              </ol>
+            </li>
+            <li><a href="#代数系统-1">代数系统</a>
+              <ol>
+                <li><a href="#子代数系统">子代数系统</a></li>
+                <li><a href="#积代数系统">积代数系统</a></li>
+                <li><a href="#同态">同态</a></li>
+                <li><a href="#同构">同构</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#群论">群论</a>
+      <ol>
+        <li><a href="#半群与独异点">半群与独异点</a></li>
+        <li><a href="#群">群</a>
+          <ol>
+            <li><a href="#阶元">阶元</a></li>
+          </ol>
+        </li>
+        <li><a href="#特殊群">特殊群</a></li>
+      </ol>
+    </li>
+    <li><a href="#图论">图论</a>
+      <ol>
+        <li><a href="#基本概念">基本概念</a>
+          <ol>
+            <li><a href="#度">度</a></li>
+            <li><a href="#握手定理">握手定理</a></li>
+            <li><a href="#度数序列">度数序列</a>
+              <ol>
+                <li><a href="#可图化">可图化</a></li>
+                <li><a href="#可简单图化">可简单图化</a></li>
+              </ol>
+            </li>
+            <li><a href="#补图">补图</a></li>
+            <li><a href="#子图">子图</a></li>
+          </ol>
+        </li>
+        <li><a href="#连通性">连通性</a></li>
+        <li><a href="#树">树</a>
+          <ol>
+            <li><a href="#性质-2">性质</a></li>
+            <li><a href="#生成树">生成树</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" >
+                笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/discrete-mathematics/">离散数学自学整理汇总</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            离散数学是计算机专业必修数学课之一, 本文记录了数理逻辑/代数结构/图相关知识
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+
+    
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>为了考试周不破防, 准备系统地<del>预习</del>复习一遍<strong>离散数学</strong>, 参考了<strong>高等教育出版社</strong>的<strong>离散数学(第2版)</strong>, 这篇博文用于记录各种知识点以及后续的大作业代码实现及思路</p>
+</blockquote>
+<h1 id="数理逻辑">数理逻辑</h1>
+<h2 id="命题逻辑">命题逻辑</h2>
+<h3 id="命题">命题</h3>
+<h4 id="定义">定义</h4>
+<p>具有<strong>真假意义</strong>的<strong>表达判断</strong>的<strong>陈述句</strong>为<strong>命题</strong></p>
+<h4 id="分类">分类</h4>
+<p>按真值</p>
+<ul>
+<li>真命题</li>
+<li>假命题</li>
+</ul>
+<p>按能否再分:</p>
+<ul>
+<li>原子命题(简单命题)</li>
+<li>复合命题</li>
+</ul>
+<h4 id="标识符">标识符</h4>
+<p>大写字母/带下标的大写字母/[]包围的数字 都是合法的命题标识符</p>
+<blockquote>
+<p>$A, B, A_i, [12]$</p>
+</blockquote>
+<p>表示确定命题的标识符为<strong>命题常元</strong>, 表示命题位置,并不代表具体某个命题的标识符称为<strong>命题变元</strong></p>
+<h3 id="联结词">联结词</h3>
+<p>命题之间可以由联结词联结组成新的命题, 常见联结词如下</p>
+<h4 id="否定联结词">否定联结词</h4>
+<p>非	$\neg$	<code>$\neg$</code></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$P$</th>
+<th>$\neg P$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$0$</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>最简单的联结词之一, 取反, 常见语言表述为 &ldquo;不, 没有&hellip;&rdquo;</p>
+</blockquote>
+<h4 id="合取联结词">合取联结词</h4>
+<p>且	$\land$	<code>$\land$</code></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$P$</th>
+<th>$Q$</th>
+<th>$P\land Q$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$0$</td>
+<td>$1$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$0$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="析取联结词">析取联结词</h4>
+<p>或	$\lor$	<code>$\lor$</code></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$P$</th>
+<th>$Q$</th>
+<th>$P\lor Q$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$0$</td>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$0$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>需要注意与自然语言中的<strong>或</strong>区分, 数理逻辑中的或为<strong>可兼或</strong>, 即$P,Q$可以同时发生, 但是自然语言中还有<strong>排斥或</strong>, 不可同时发生, 此时就不能使用$P\or Q$表示这一命题, 需要根据真值表构造新的命题, 在以后的章节中会提到</p>
+</blockquote>
+<h4 id="蕴含联结词">蕴含联结词</h4>
+<p>如果&hellip;则&hellip;	$\to$	<code>$\to$</code> <code>$\rightarrow$</code></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$P$</th>
+<th>$Q$</th>
+<th>$P\rightarrow Q$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$0$</td>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$0$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="等价联结词">等价联结词</h4>
+<p>当且仅当	$\leftrightarrow$	<code>$\leftrightarrow$</code></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>$P$</th>
+<th>$Q$</th>
+<th>$P\leftrightarrow Q$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$0$</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$0$</td>
+<td>$1$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$0$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$1$</td>
+<td>$1$</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>以上联结词具有以下优先级(从高到低)
+$$
+(), \lnot , \land , \lor , \rightarrow , \leftrightarrow
+$$</p>
+</blockquote>
+<h3 id="命题公式之间的关系">命题公式之间的关系</h3>
+<h4 id="逻辑等价">逻辑等价</h4>
+<p>双重否定率
+$$
+A\iff \lnot \lnot A
+$$
+幂等率
+$$
+A\iff A \lor A \
+A\iff A \land A
+$$
+交换律
+$$
+A\lor B\iff B \lor A \
+A\land B\iff B \land A
+$$
+结合律
+$$
+(A\lor B)\lor C\iff A\lor (B\lor C) \
+(A\land B)\land C\iff A\land (B\land C)
+$$
+分配律
+$$
+A\lor (B\land C)\iff (A\lor B)\land(A\lor C) \
+A\land (B\lor C)\iff (A\land B)\lor(A\land C)
+$$
+<strong>德摩根律</strong>
+$$
+\lnot (A\lor B)\iff\lnot A\land \lnot B \
+\lnot (A\land B)\iff\lnot A\lor \lnot B
+$$
+吸收律
+$$
+A\lor (A\land B)\iff A \
+A\land (A\lor B)\iff A
+$$
+零律
+$$
+A \lor 1 \iff 1 \
+A \land 0 \iff 0
+$$
+同一律
+$$
+A \land 1 \iff A \
+A \lor 0 \iff A
+$$
+排中律
+$$
+A \lor \lnot A \iff 1
+$$
+矛盾律
+$$
+A \land \lnot A \iff 0
+$$
+<strong>蕴含律</strong>
+$$
+A \rightarrow B \iff \lnot A \lor B
+$$
+等价律
+$$
+A \leftrightarrow B \iff (A\rightarrow B)\land(B \rightarrow A)
+$$
+假言易位律
+$$
+A\to B \iff \lnot B \to \lnot A
+$$
+等价否定律
+$$
+A \leftrightarrow B \iff \lnot A \leftrightarrow \lnot B
+$$
+归谬率
+$$
+(A\to B)\land(A \to \lnot B)\iff \lnot A
+$$</p>
+<h4 id="逻辑蕴含">逻辑蕴含</h4>
+<p>若$A\to B$是<strong>重言式</strong>, 则有$A\implies B$, 称为<strong>A逻辑蕴含B</strong></p>
+<p>推理定律如下</p>
+<p>附加律
+$$
+A \implies A\lor B
+$$
+化简律
+$$
+A \land B \implies A
+$$
+假言推理
+$$
+(A\to B)\land A \implies B
+$$
+拒取式
+$$
+(A \to B)\land \lnot B \implies \lnot A
+$$
+析取三段论
+$$
+(A \lor B)\land \lnot B \implies A
+$$
+假言三段论
+$$
+(A\to B)\land (B\to C) \implies A \to C
+$$
+等价三段论
+$$
+(A \leftrightarrow B)\land (B \leftrightarrow C)\implies A \leftrightarrow C
+$$
+构造性二难
+$$
+(A\to B)\land(C\to D)\land(A \lor C)\implies B\lor D
+$$
+破坏性二难
+$$
+(A\to B)\land(C\to D)\land(\lnot B\lor \lnot D) \implies \lnot A \lor \lnot C
+$$</p>
+<h3 id="对偶">对偶</h3>
+<h4 id="定义-1">定义</h4>
+<p>对于只包含$\lnot,$ $\land$和$\lor$的命题公式$A$,互换 $\land$和$\lor$,$0$和$1$, 得到的新命题公式$A^*$称为$A$的对偶式</p>
+<h4 id="性质">性质</h4>
+<ul>
+<li>设$A$为命题公式,$P_n$为命题公式中的命题变元,$A^*$是$A$的对偶式,则</li>
+</ul>
+<p>$$
+\lnot A(P_1,P_2,\cdots,P_n) \iff A^<em>(\lnot P_1,\lnot P_2,\cdots,\lnot P_n) \
+A(\lnot P_1,\lnot P_2,\cdots,\lnot P_n) \iff \lnot A^</em>(P_1,P_2,\cdots,P_n)
+$$</p>
+<ul>
+<li>若$A \iff B$, 则$A^* \iff B^*$</li>
+</ul>
+<h3 id="范式">范式</h3>
+<h4 id="概念">概念</h4>
+<p><strong>文字</strong>	命题变元和命题变元的否定</p>
+<blockquote>
+<p>如$P,\lnot P$</p>
+</blockquote>
+<p><strong>简单析取式</strong>	仅由有限个文字构成的析取式</p>
+<blockquote>
+<p>如$P\lor$$\lnot Q$</p>
+</blockquote>
+<p><strong>简单合取式</strong>	仅由有限个文字构成的合取式</p>
+<blockquote>
+<p>如$P\land$$\lnot Q$</p>
+</blockquote>
+<blockquote>
+<p>一个文字既是简单合取式也是简单析取式</p>
+</blockquote>
+<p><strong>析取范式</strong>	仅由有限个简单合取式构成的析取式</p>
+<p><strong>合取范式</strong>	仅由有限个简单析取式构成的合取式</p>
+<p><strong>范式</strong>	析取范式和合取范式统称为范式</p>
+<blockquote>
+<p>简单析取式和简单合取式都既是析取范式也是合取范式</p>
+</blockquote>
+<hr>
+<p><strong>极小项</strong>	含有$n$个命题变元, 每个命题变元和他的否定式有且只有一个, 且按照(字典)顺序排列的简单合取式</p>
+<blockquote>
+<p>$n$个命题变元有$2^n$个极小项, 两两互不逻辑等价, 所有最小项析取式永真</p>
+<p>每个极小项有且仅有一个成真赋值, 记作$m_i, \ i$为十进制下的成真赋值</p>
+<p>任两个不同极小项的合取式永假</p>
+</blockquote>
+<p><strong>极大项</strong>	含有$n$个命题变元, 每个命题变元和他的否定式有且只有一个, 且按照(字典)顺序排列的简单析取式</p>
+<blockquote>
+<p>$n$个命题变元有$2^n$个极大项, 两两互不逻辑等价, 所有最大项的合取式永假</p>
+<p>每个极大项有且仅有一个成假赋值, 记作$m_i, \ i$为十进制下的成真赋值</p>
+<p>任两个不同极大项的析取式永真</p>
+</blockquote>
+<p><strong>主析取范式</strong>	有限个极小项构成的析取式</p>
+<p><strong>主合取范式</strong>	有限个极大项构成的合取式</p>
+<p><strong>主范式</strong>	主析取范式和主合取范式统称为主范式</p>
+<blockquote>
+<p>任何命题公式都存在<strong>唯一</strong>与之逻辑等价的主析取范式和主合取范式</p>
+</blockquote>
+<h4 id="求范式步骤">求范式步骤</h4>
+<p><strong>范式存在定理</strong>	任一命题公式都存在与之逻辑等价的析取范式和合取范式</p>
+<ol>
+<li>
+<p>消去$\rightarrow$ ,$\leftrightarrow$
+$$
+A\to B\iff \lnot A\lor B \
+A \leftrightarrow B \iff A\to B \land B\to A
+$$</p>
+</li>
+<li>
+<p>消去$\lnot$$\lnot$
+$$
+\lnot\lnot A\iff A
+$$</p>
+</li>
+<li>
+<p>消去$\lnot ()$ //内移$\lnot$
+$$
+\lnot(A\land B)\iff \lnot A\lor \lnot B	\
+\lnot(A\lor B)\iff \lnot A\land \lnot B
+$$</p>
+</li>
+<li>
+<p>分配$\land$,$\lor$
+$$
+A\lor(B \land C)\iff (A\lor B)\land(A \lor C)	\
+A\land (B \or C) \iff (A\land B)\lor(A\land C)
+$$</p>
+</li>
+<li></li>
+</ol>
+<p><strong>求主范式</strong>	在求出范式的基础上, 添加缺少的项组成<strong>最小/最大项</strong>即可</p>
+<h3 id="命题演算推证">命题演算推证</h3>
+<p><strong>定义</strong>	由<strong>推理根据</strong>, <strong>推理规则</strong>和<strong>证明方法</strong>组成</p>
+<h4 id="推理根据">推理根据</h4>
+<p>推理根据是命题验算的命题定律和推理定律, 主要为<strong>逻辑等价式</strong>和<strong>逻辑蕴含式</strong></p>
+<h4 id="推理规则">推理规则</h4>
+<ul>
+<li><strong>P规则/前提引入规则</strong>	在推论的任何步骤中引入前提</li>
+<li><strong>T规则/结论引入规则</strong>    所得到的结论作为后续的前提</li>
+<li><strong>CP规则/附加前提规则</strong></li>
+</ul>
+<h2 id="谓词逻辑">谓词逻辑</h2>
+<h3 id="谓词和个体">谓词和个体</h3>
+<p><strong>论域</strong>	个体变元的取值范围</p>
+<p><strong>全总个体域</strong>	宇宙间一切个体组成的论域</p>
+<p><strong>谓词</strong>	刻画论域中个体性质的模式</p>
+<p><strong>简单命题函数</strong>	$P(x_1,x_2,\cdots)$</p>
+<blockquote>
+<p><strong>特性谓词</strong>	一般用于在全总个体域中声明事物特性的谓词, 如: $F(x):x$是人</p>
+</blockquote>
+<h3 id="量词">量词</h3>
+<p><strong>全称量词</strong>	$\forall$</p>
+<blockquote>
+<p>特性谓词一般做蕴含的<strong>前件</strong>, $\forall x(F(x)\to G(x))$</p>
+</blockquote>
+<p><strong>存在量词</strong>	$\exist$</p>
+<blockquote>
+<p>特性谓词一般做<strong>合取项</strong>, $\exist x(F(x)\land G(x))$</p>
+</blockquote>
+<h3 id="谓词公式">谓词公式</h3>
+<p>由命题变元, 联结词和括号按照一定的规则组成的字符串称为<strong>谓词公式</strong></p>
+<p><strong>原子谓词公式</strong>	$P(x_1,x_2,\cdots)$</p>
+<h3 id="自由与约束">自由与约束</h3>
+<p><strong>指导变元/作用变元</strong>	$\forall xA$或$ \exist xA$中, $x$称为量词的<strong>指导变元</strong>, $A$称为量词的辖域</p>
+<p><strong>封闭的公式/闭式</strong>	不含自由出现个体变元的公式</p>
+<h3 id="逻辑等价-1">逻辑等价</h3>
+<h4 id="命题公式推广">命题公式推广</h4>
+<p>$$
+\lnot \lnot \forall xF(x)\iff \forall F(x)	\
+\forall xF(x)\to \exist yG(y) \iff \lnot xF(x)\lor \exist yG(y)	\
+\lnot(\forall xF(x)\lor \exist yG(y))\iff \lnot\forall xF(x) \land \lnot\exist yG(y)
+$$</p>
+<h4 id="否定逻辑等价式">否定逻辑等价式</h4>
+<p>$$
+\lnot \forall P(x) \iff \exist x(\lnot P(x))	\
+\lnot \exist P(x) \iff \forall x(\lnot P(x))
+$$</p>
+<h4 id="辖域扩张与收缩">辖域扩张与收缩</h4>
+<p>$$
+\lnot(\forall xF(x)\lor G)\iff \lnot\forall xF(x)\lor G	\
+\cdots
+$$</p>
+<h4 id="量词分配">量词分配</h4>
+<p>$$
+\forall x(A(x)\land B(x))\iff \forall xA(x)\land\forall xB(x)	\
+\exist x(A(x)\lor B(x))\iff \exist xA(x)\lor \exist xB(x)
+$$</p>
+<h3 id="前束范式">前束范式</h3>
+<p>若一个公式的量词都在最前边且其辖域一直延伸到末尾, 则其为<strong>前束范式</strong></p>
+<blockquote>
+<p>没有量词的前束范式称为<strong>平凡的前束范式</strong></p>
+</blockquote>
+<hr>
+<h1 id="集合论">集合论</h1>
+<h2 id="二元关系">二元关系</h2>
+<h3 id="二元关系-1">二元关系</h3>
+<p>仅含有序对的集合或此意义下的空集</p>
+<h4 id="定义-2">定义</h4>
+<p>设$A$,$B$为集合, $A\times B$的任何子集称为从$A$到$B$的<strong>二元关系</strong>, 记为$R\subseteq$$A\times B$</p>
+<p>若$R\subseteq$$A\times A$则$R$为$A$上的二元关系</p>
+<blockquote>
+<p>若集合$A$有n个元素, 则有$2^{n^m}$个$m$元关系</p>
+</blockquote>
+<h4 id="特殊关系">特殊关系</h4>
+<p><strong>空关系</strong>	$\varnothing$</p>
+<p><strong>全域关系</strong>	$E=A\times B$</p>
+<p><strong>恒等关系</strong>	$I_A = {&lt;x,x&gt;|x\in A}$</p>
+<blockquote>
+<p>其他常用关系</p>
+<p><strong>小于等于关系</strong>	$L_A = {&lt;x,y&gt;|x,y\in A \land x\leq y}$</p>
+<p><strong>整除关系</strong>	$D_A = {&lt;x,y&gt;|x,y\in A \land x是 y的因子}$</p>
+<p><strong>包含关系</strong>	$R_{\subseteq}={&lt;x,y&gt;|x,y\in A\land x\subseteq y}$</p>
+</blockquote>
+<h4 id="表示">表示</h4>
+<p><strong>列举法</strong></p>
+<p><strong>描述法</strong></p>
+<p><strong>矩阵表示法</strong>	使用<strong>关系矩阵</strong>表示二元关系, 只适用于有限集
+$$
+M_R=(r_{ij})<em>{m\times n} \
+r</em>{ij} = \begin{cases}
+1 &amp;,a_iRb_j \
+0 &amp;,a_i \tilde{R} b_j
+\end{cases}
+$$
+<strong>关系图表示法</strong></p>
+<h3 id="性质-1">性质</h3>
+<p><strong>自反性</strong>
+$$
+\forall x(x\in A\to &lt;x,x&gt;\in R)
+$$</p>
+<blockquote>
+<p>关系图上每个结点都有环</p>
+<p>关系矩阵主对角线上元素均为1</p>
+</blockquote>
+<p><strong>反自反性</strong>
+$$
+\forall x(x\in A\to &lt;x,x&gt;\notin R)
+$$</p>
+<blockquote>
+<p>空关系是$A$上的反自反关系</p>
+</blockquote>
+<blockquote>
+<p>关系图上每个结点均无环</p>
+<p>关系矩阵主对角线上的元素均为0</p>
+</blockquote>
+<p><strong>对称性</strong>
+$$
+\forall x\forall y(x,y\in A\and &lt;x,y&gt;\in R\to&lt;y,x&gt;\in R)
+$$</p>
+<blockquote>
+<p>关系矩阵是对称矩阵</p>
+<p>关系图上两结点间若有边则一定有方向相反的两个边</p>
+</blockquote>
+<p><strong>反对称性</strong>
+$$
+\forall x\forall y(x,y\in A\and &lt;x,y&gt;\in R\to&lt;y,x&gt;\in R)
+$$</p>
+<blockquote>
+<p>关系矩阵如果$r_{ij}=1$且$i\neq j$则$r_{ji}=0$</p>
+<p>关系图上两结点间若有边则一定是单向边</p>
+</blockquote>
+<p><strong>传递性</strong>
+$$
+\forall x\forall y\forall z(x,y,z\in A\land &lt;x,y&gt;\in R\land&lt;y,z&gt;\in R\to&lt;x,z&gt;\in R)
+$$</p>
+<blockquote>
+<p>$M^2$中1的位置关系矩阵$M$中也为1</p>
+<p>关系图上的边有传递性</p>
+</blockquote>
+<h3 id="运算">运算</h3>
+<p>设$R$为二元关系</p>
+<p><strong>定义域</strong>	有序对第一元素构成的集合
+$$
+domR={x|\exist y(&lt;x,y&gt;\in R)}
+$$
+<strong>值域</strong>	有序对的第二元素构成的集合
+$$
+ranR={y|\exist x(&lt;x,y&gt;\in R)}
+$$
+<strong>域</strong>
+$$
+fldR=domR\cup ranR
+$$
+<strong>限制</strong>
+$$
+R\upharpoonright A={&lt;x,y&gt;|xRy \land x\in A}
+$$
+<strong>像</strong>
+$$
+R[A]=ran(R\upharpoonright A)
+$$
+<strong>逆运算</strong>
+$$
+R^{-1}={&lt;x,y&gt;|&lt;y,x&gt;\in R}
+$$
+<strong>复合运算</strong>
+$$
+R\circ S={&lt;x,y&gt;|\exist z\land(xRz\land zSy)}
+$$</p>
+<blockquote>
+<p>注意$R\circ S\neq S\circ R$</p>
+</blockquote>
+<blockquote>
+<p>幂运算由复合运算产生</p>
+</blockquote>
+<h3 id="闭包">闭包</h3>
+<p>为现有关系$R$<strong>尽可能少</strong>地添加有序对使其具有新的性质, $R&rsquo;$称为$R$的闭包</p>
+<p><strong>自反闭包</strong>
+$$
+r(R)=R\cup R^0	\
+M_r = M + E
+$$</p>
+<p><strong>对称闭包</strong>
+$$
+s(R)=R\cup R^{-1}	\
+M_s=M+M^T
+$$</p>
+<p><strong>传递闭包</strong>
+$$
+t(R)=R\cup R^{2}\cup R^{3}\cup \cdots	\
+M_t = M + M^2 + M^3 + \cdots
+$$</p>
+<blockquote>
+<p>此处+为逻辑加</p>
+</blockquote>
+<blockquote>
+<p>使用关系图闭包较为简单, 不再赘述</p>
+</blockquote>
+<h3 id="等价关系">等价关系</h3>
+<p>若非空集合$A$上的关系$R$是<strong>自反,对称且传递</strong>的, 则$R$为$A$上的等价关系, 若$&lt;x,y&gt;\in R$记作$x\sim y$</p>
+<h4 id="等价类">等价类</h4>
+<p>设非空集合$A$上的关系$R$为等价关系, $\forall x\in A$ , 则$[x]_R$为$x$关于$R$的等价类
+$$
+[x]={y|y\in A\land xRy}
+$$</p>
+<h4 id="商集">商集</h4>
+<p>设非空集合$A$上的关系$R$为等价关系, 则有$R$关于$A$的商集$A/R$
+$$
+A/R={[x]_R | x\in A}
+$$</p>
+<h4 id="划分">划分</h4>
+<ul>
+<li>集合运算求划分</li>
+<li>关系矩阵求划分</li>
+<li>关系图求划分</li>
+</ul>
+<h3 id="相容关系">相容关系</h3>
+<p>若非空集合$A$上的关系$R$是<strong>自反,对称</strong>的, 则$R$为$A$上的相容关系</p>
+<blockquote>
+<p>所有等价关系都是相容关系</p>
+<p>相容关系可用简化图与下三角矩阵表示</p>
+<p>相容关系不能确定划分</p>
+</blockquote>
+<h4 id="相容类">相容类</h4>
+<p>若$x,y\in C$有$xRy$, 则$C$是$A$的一个相容类</p>
+<p>若$C$不是任何相容类的真子集, 则$C$是最大相容类</p>
+<blockquote>
+<p>简化关系图上:</p>
+<ul>
+<li>最大完全多边形的顶点构成的集合</li>
+<li>孤立点构成的集合</li>
+<li>非完全多边形的边的端点构成的集合</li>
+</ul>
+<p>是最大相容类</p>
+</blockquote>
+<h4 id="覆盖">覆盖</h4>
+<p>若$A$的子集族$\pi$满足$\varnothing $$\notin$$\pi$, $\cup _{x\in\pi} x=A$则$\pi$为$A$的一个覆盖</p>
+<p>由$R$最大相容类构成的$A$的覆盖是<strong>完全覆盖</strong></p>
+<h3 id="偏序关系">偏序关系</h3>
+<p>若非空集合$A$上的关系$R$是<strong>自反</strong>,<strong>反对称</strong>且<strong>传递</strong>的, 则$R$为$A$上的偏序关系, 记作$\leq$</p>
+<p>集合$A$与$\leq$一起组成的有序对$&lt;A,\leq&gt;$称为<strong>偏序集</strong></p>
+<h4 id="全序关系">全序关系</h4>
+<p>设$&lt;A,\leq&gt;$是偏序集, $\forall x,y\in A, x与y均可比$, 则$\leq$是$A$上的全序关系(线序关系), $&lt;A,\leq&gt;$是全序集</p>
+<h4 id="盖住关系">盖住关系</h4>
+<p>设$&lt;A,\leq&gt;$是偏序集, $\forall x,y\in A \land (\not\exist z\in A\land x\leq z\leq y)$, 则$y$<strong>盖住</strong>$x$
+$$
+COV A={&lt;x,y&gt;|x,y\in A\land y盖住x}
+$$</p>
+<h4 id="哈斯图">哈斯图</h4>
+<p>根据盖住关系绘制, $\circ$表示$A$中元素, $\forall x,y\in A$若</p>
+<ol>
+<li>$x&lt;y$, 则$x$在$y$下方</li>
+<li>$&lt;x,y&gt;\in COV A$, 则用线连接</li>
+</ol>
+<blockquote>
+<p>全序关系的哈斯图是一条线, 因此称为线序关系</p>
+</blockquote>
+<h4 id="特殊元素">特殊元素</h4>
+<p>设$B\subseteq A, y\in B$, 则$y$是$B$的</p>
+<p><strong>最小元</strong>	$\forall x(x\in B\to y\leq x)$</p>
+<p><strong>最大元</strong>	$\forall x(x\in B\to x\leq y)$</p>
+<p><strong>极小元</strong>	$\lnot \exist x(x\in B\land x&lt;y)$</p>
+<p><strong>极大元</strong>	$\lnot\exist x(x\in B\land y&lt;x)$</p>
+<p>设$B\subseteq A, y\in A$, 则$y$是$B$的</p>
+<p><strong>上界</strong>	$\forall x(x\in B\to y\leq x)$</p>
+<p><strong>下界</strong>	$\forall x(x\in B\to x\leq y)$</p>
+<p><strong>上确界</strong>	${y\ |\ y为B的上界}$</p>
+<p><strong>下确界</strong>	${y\ |\ y为B的下界}$</p>
+<hr>
+<h1 id="代数结构">代数结构</h1>
+<h2 id="代数系统">代数系统</h2>
+<h3 id="二元运算">二元运算</h3>
+<p>设非空集合$S$, 则$S^n$到$S$的一个函数$f$为$S$上的$n$<strong>元代数运算</strong></p>
+<p>当$n=2$时称为<strong>二元运算</strong>, 记作$a_1*a_2=b$</p>
+<p><strong>封闭性</strong>	运算结果一定在$S$中</p>
+<p><strong>唯一性</strong>	参与运算的元素和其顺序都相同, 则结果一定相同</p>
+<h4 id="二元运算性质">二元运算性质</h4>
+<p><strong>交换律</strong>
+$$
+a<em>b=b</em>a
+$$
+<strong>结合律</strong>
+$$
+a*(b<em>c)=(a</em>b)<em>c
+$$
+<strong>分配律</strong>	$</em>$对$+$满足
+$$
+a*(b+c)=(a<em>c)+(b</em>c) \
+(b+c)<em>a=(b</em>a)+(c<em>a)
+$$
+<strong>幂等律</strong>
+$$
+a</em>a=a
+$$
+<strong>吸收律</strong>	$<em>$和$+$满足
+$$
+a</em>(a+b)=a \
+a+(a*b)=a
+$$</p>
+<h4 id="单位元">单位元</h4>
+<p><strong>左单位元</strong>	$e_l*x=x$</p>
+<p><strong>右单位元</strong>	$x*e_r=x$</p>
+<p>若$e_l=e_r$,  则$e$为$S$上的<strong>单位元</strong>(幺元)</p>
+<p><strong>左逆元</strong>	$y_l\circ x=e$</p>
+<p><strong>右逆元</strong>	$x\circ y_r=e$</p>
+<p>若$y_l=y_r$, 则y为x的<strong>逆元</strong>, $x$是<strong>可逆的</strong></p>
+<h4 id="零元">零元</h4>
+<p><strong>左零元</strong>	$\theta_l*x=\theta_l$</p>
+<p><strong>右零元</strong>	$x*\theta_r=\theta_r$</p>
+<h3 id="代数系统-1">代数系统</h3>
+<p><strong>定义</strong>	集合$A$与$A$上的$k$个运算所组成的系统$&lt;A, \cdot_1,\cdot_2,\cdots,\cdot_k&gt;$, 简称<strong>代数</strong></p>
+<p><strong>代数常数/特异元素</strong>	如零元, 单位元, 也可出现在代数系统中$&lt;A, \cdot_1,\cdot_2,\cdots,\cdot_k,e&gt;$,</p>
+<h4 id="子代数系统">子代数系统</h4>
+<p>对代数系统$V=&lt;A, \cdot_1,\cdot_2,\cdots,\cdot_k&gt;$,若$A_0 \subseteq A$, $A0$对运算$\cdot$封闭且$A$中代数常数与$A_0$相等, 则$&lt;A_0, \cdot_1,\cdot_2,\cdots,\cdot_k&gt;$也是代数系统, 且称为$V$的<strong>子代数(系统)</strong></p>
+<h4 id="积代数系统">积代数系统</h4>
+<p>设$V_1=&lt;A_1,\cdot_1&gt;$, $V_2=&lt;A_2,\cdot_2&gt;$,定义$A_1\times A_2$上的二元运算$\cdot$使得$\forall &lt;x_1,y_1&gt;,&lt;x_2,y_2&gt;\in A_1\times A_2$有$&lt;x_1,y_1&gt;\cdot &lt;x_2,y_2&gt;=&lt;x_1\cdot_1x_2,y_1\cdot_2 y_2&gt;$,则$&lt;A_1\times A_2,\cdot&gt;$是$V_1,V_2$的<strong>积代数系统</strong></p>
+<h4 id="同态">同态</h4>
+<p>设$U=&lt;X,\cdot&gt;$, $V=&lt;Y,*&gt;$是两个同一类型的代数系统, $\exist f:X\to Y$对于$\forall x_1,x_2\in X$, 若
+$$
+f(x_1\cdot x_2)=f(x_1)*f(x_2)
+$$
+则$f:X\to Y$为$U$到$V$的<strong>同态(映射)</strong></p>
+<blockquote>
+<p>若$f:U\to U$则为<strong>自同态</strong></p>
+</blockquote>
+<blockquote>
+<p>若$f$<strong>满射</strong>, 则为<strong>满同态</strong></p>
+<p>若$f$<strong>单射</strong>, 则为<strong>单同态</strong></p>
+</blockquote>
+<h4 id="同构">同构</h4>
+<blockquote>
+<p>若上述$f$<strong>双射</strong>, 则为<strong>同构</strong></p>
+</blockquote>
+<blockquote>
+<p>若$f:U\to U$则为<strong>自同构</strong></p>
+</blockquote>
+<h1 id="群论">群论</h1>
+<p><strong>群</strong>	单位元, 逆元和一个可结合运算共同构成的代数系统</p>
+<h2 id="半群与独异点">半群与独异点</h2>
+<p>$\cdot$是$G$上的二元代数且满足结合律, 则$&lt;G,\cdot&gt;$为<strong>半群</strong>, 其子代数系统为<strong>子半群</strong></p>
+<p><strong>独异点/含幺半群</strong>	$G$中含有$\cdot$的幺元, 若其子代数也含有, 则其为<strong>子独异点</strong></p>
+<h2 id="群">群</h2>
+<p><strong>定义</strong>	对独异点$&lt;G,\cdot&gt;$, 若$\forall a\in G$存在$a^{-1}\in G$使得$a\cdot a^{-1}=a^{-1}\cdot a=e$, 则$&lt;G,\cdot&gt;$为群</p>
+<p><strong>有限群</strong>	$G$是有限集</p>
+<p><strong>阶数</strong>	$|G|$</p>
+<p><strong>平凡群</strong>	只含有单位元</p>
+<h3 id="阶元">阶元</h3>
+<p>$a\in G$使得$a^k=e$的最小正整数$k$为$a$<strong>的阶元</strong>, 记作$|a|=k$, 称$a$为$k$阶元</p>
+<blockquote>
+<p>若不存在这样的正整数$k$则$a$为无限阶元</p>
+</blockquote>
+<p><strong>性质</strong></p>
+<ul>
+<li>若$|a|=r$, $r$整除$k$, 则$a^k=e$</li>
+<li>$|a^{-1}|=|a|$</li>
+</ul>
+<h2 id="特殊群">特殊群</h2>
+<p>&hellip;</p>
+<hr>
+<h1 id="图论">图论</h1>
+<h2 id="基本概念">基本概念</h2>
+<blockquote>
+<p><strong>无序积</strong>	$A&amp;B$	记作$(a,b)={{a,b}|a\in A\land b\in B}$</p>
+</blockquote>
+<p>图定义为一个<strong>三元组</strong>$(V,E,\varphi)$</p>
+<ul>
+<li><strong>顶点(vertex)</strong>	非空集合$V(G)$</li>
+<li><strong>边(edge)</strong></li>
+<li>$\varphi$    边集合$E$到$V&amp; V$上的函数</li>
+</ul>
+<h3 id="度">度</h3>
+<p>图$G=&lt;V,E&gt;$中顶点$v$与所有边的<strong>关联次数之和</strong>为<strong>度</strong>, 记作$deg(v)$</p>
+<p><strong>入度</strong>	有序图中进入这一顶点的边的关联次数, 记作$deg^-(v)$</p>
+<p><strong>出度</strong>	有序图中离开这一顶点的边的关联次数, 记作$deg^+(v)$</p>
+<p><strong>最大度</strong>	$\varDelta (G)$</p>
+<p><strong>最小度</strong>	$\delta(G)$</p>
+<h3 id="握手定理">握手定理</h3>
+<p>每个图中顶点度数等于边数的二倍
+$$
+\sum_{v\in V} deg(v) = 2|E|
+$$</p>
+<h3 id="度数序列">度数序列</h3>
+<p>$$
+d=(d_1,d_2,\cdots,d_n)=(deg(v_1),deg(v_2),\cdots,deg(v_n))
+$$</p>
+<h4 id="可图化">可图化</h4>
+<p>非负整数列$d$可图化当且仅当$\sum_{i=1}^{n} d_i$为偶数</p>
+<h4 id="可简单图化">可简单图化</h4>
+<blockquote>
+<p><strong>哈韦尔-哈基米算法</strong>	令$S=(d_{1},\dots ,d_{n})$为有限多个非负整数组成的非递增序列。$S$可简单图化当且仅当有穷序列$S&rsquo;=(d_{2}-1,d_{3}-1,\dots ,d_{d_{1}+1}-1,d_{d_{1}+2},\dots ,d_{n})$只含有非负整数且是可简单图化的。</p>
+</blockquote>
+<h3 id="补图">补图</h3>
+<p><strong>完全图</strong>	$G$中每一个顶点都与其余所有顶点相连, 则$K_n$为$n$阶完全图</p>
+<p><strong>竞赛图</strong>	$G$为有向图则为$n$阶竞赛图</p>
+<blockquote>
+<p>$K_n$的边数为$\dfrac{n(n-1)}{2}=C_n^2$</p>
+</blockquote>
+<p>给定图$G$中所有顶点和能使$G$成为完全图的所有<strong>添加边</strong>构成$G$的<strong>补图</strong>, 记作$\bar G$</p>
+<h3 id="子图">子图</h3>
+<p><strong>生成子图</strong>	去边法</p>
+<h2 id="连通性">连通性</h2>
+<p><strong>回路</strong>	始点和终点相同的路径</p>
+<h2 id="树">树</h2>
+<p>连通无回路的无向图称为树</p>
+<p><strong>树叶</strong>	度数为1的顶点</p>
+<p><strong>分支点</strong>	度数大于1的顶点</p>
+<h3 id="性质-2">性质</h3>
+<p>给定图$T$为树</p>
+<ul>
+<li>无回路的连通图</li>
+<li>无回路且$e=v-1$</li>
+<li>连通且$e=v-1$</li>
+<li>无回路但新增一条边则有且仅有一个回路</li>
+<li>连通但删去一条边不再连通</li>
+<li>每一对顶点之间有且仅有一条路</li>
+</ul>
+<h3 id="生成树">生成树</h3>
+<p>无向图$G$的<strong>生成子图</strong>$T$若为一棵树, 则$T$是$G$的生成树</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/">基础学科</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/probability_theory_and_math_statistics/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">概率论与数理统计自学整理汇总</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 WitchElaina&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.15.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
