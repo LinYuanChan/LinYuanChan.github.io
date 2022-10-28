@@ -11,7 +11,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/spider_beijing_bus/</guid>
-        <description>&lt;h1 id=&#34;python爬虫获取北京公交线路&#34;&gt;Python爬虫获取北京公交线路&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/1653997175098.1t4cg3v9lw8w.webp" alt="Featured image of post Python爬虫获取北京公交线路" /&gt;&lt;h1 id=&#34;python爬虫获取北京公交线路&#34;&gt;Python爬虫获取北京公交线路&lt;/h1&gt;
 &lt;p&gt;人工智能大作业需要编写&lt;a class=&#34;link&#34; href=&#34;https://github.com/WitchElaina/Beijing-bus-helper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;北京公交换乘系统&lt;/a&gt;, 数据较为庞大, 因此使用爬虫快速收集&lt;/p&gt;
 &lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;

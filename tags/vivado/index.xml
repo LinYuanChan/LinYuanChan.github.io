@@ -12,7 +12,7 @@
         <pubDate>Thu, 13 Oct 2022 13:02:24 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/vivado_on_mac/</guid>
-        <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.staticaly.com/gh/LinYuanChan/image-hosting@master/B6B71618-A874-4D9F-ADE5-BD4FEF0E7C01_1_105_c.3yozcmhsx6c0.webp" alt="Featured image of post 如何在mac上优雅地使用Vivado" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;最近计组实验需要频繁使用vivado, 但是Xilinx没有开发macOS版本的, 一般解决方案是使用虚拟机或Bootcamp, 但过于臃肿, 我们可以借助Docker与Xquartz优雅地在macOS上搭建环境。&lt;/p&gt;
 &lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
 &lt;p&gt;Docker想必不用做过多介绍，可谓是虚拟机的一个可行、经济且高效的替代方案，具体可以前往&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

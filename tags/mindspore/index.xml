@@ -12,7 +12,7 @@
         <pubDate>Tue, 10 May 2022 01:46:51 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/mindspore_install_macos/</guid>
-        <description>&lt;h1 id=&#34;macos下安装华为mindspore框架&#34;&gt;macOS下安装华为Mindspore框架&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/1651426728771.38aibei064i0.webp" alt="Featured image of post macOS下安装华为Mindspore框架" /&gt;&lt;h1 id=&#34;macos下安装华为mindspore框架&#34;&gt;macOS下安装华为Mindspore框架&lt;/h1&gt;
 &lt;p&gt;人工智能课程要求使用&lt;code&gt;Mindspore 1.3.0&lt;/code&gt;完成一些实验, 但是官方没有提供macOS的版本, 我思考后决定使用&lt;code&gt;Docker&lt;/code&gt;搭建相关环境&lt;/p&gt;
 &lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
 &lt;p&gt;前往&lt;a class=&#34;link&#34; href=&#34;https://www.docker.com/get-started/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

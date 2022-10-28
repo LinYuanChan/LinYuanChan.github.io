@@ -12,7 +12,7 @@
         <pubDate>Thu, 13 Oct 2022 13:02:24 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/vivado_on_mac/</guid>
-        <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.staticaly.com/gh/LinYuanChan/image-hosting@master/B6B71618-A874-4D9F-ADE5-BD4FEF0E7C01_1_105_c.3yozcmhsx6c0.webp" alt="Featured image of post 如何在mac上优雅地使用Vivado" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;最近计组实验需要频繁使用vivado, 但是Xilinx没有开发macOS版本的, 一般解决方案是使用虚拟机或Bootcamp, 但过于臃肿, 我们可以借助Docker与Xquartz优雅地在macOS上搭建环境。&lt;/p&gt;
 &lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
 &lt;p&gt;Docker想必不用做过多介绍，可谓是虚拟机的一个可行、经济且高效的替代方案，具体可以前往&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -174,7 +174,7 @@
         <pubDate>Tue, 10 May 2022 01:46:51 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/mindspore_install_macos/</guid>
-        <description>&lt;h1 id=&#34;macos下安装华为mindspore框架&#34;&gt;macOS下安装华为Mindspore框架&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/1651426728771.38aibei064i0.webp" alt="Featured image of post macOS下安装华为Mindspore框架" /&gt;&lt;h1 id=&#34;macos下安装华为mindspore框架&#34;&gt;macOS下安装华为Mindspore框架&lt;/h1&gt;
 &lt;p&gt;人工智能课程要求使用&lt;code&gt;Mindspore 1.3.0&lt;/code&gt;完成一些实验, 但是官方没有提供macOS的版本, 我思考后决定使用&lt;code&gt;Docker&lt;/code&gt;搭建相关环境&lt;/p&gt;
 &lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
 &lt;p&gt;前往&lt;a class=&#34;link&#34; href=&#34;https://www.docker.com/get-started/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

@@ -11,7 +11,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/frp/</guid>
-        <description>&lt;h1 id=&#34;frp内网穿透访问远端内网中的设备&#34;&gt;Frp内网穿透访问远端内网中的设备&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/1654693717491.23u0bblzb2r.webp" alt="Featured image of post Frp内网穿透访问远端内网中的设备" /&gt;&lt;h1 id=&#34;frp内网穿透访问远端内网中的设备&#34;&gt;Frp内网穿透访问远端内网中的设备&lt;/h1&gt;
 &lt;p&gt;疫情期间需要远程访问一台远端内网中的树莓派, 恰好手边有一台拥有公网ip的华为云ECS服务器~~(不是广告)~~, 因此可以借助&lt;a class=&#34;link&#34; href=&#34;https://github.com/fatedier/frp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;frp&lt;/a&gt;轻松解决上述需求, 步骤如下&lt;/p&gt;
 &lt;h2 id=&#34;配置服务器&#34;&gt;配置服务器&lt;/h2&gt;

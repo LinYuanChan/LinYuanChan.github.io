@@ -11,7 +11,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/bomb_defusion/</guid>
-        <description>&lt;h1 id=&#34;bomblab拆弹实验总结&#34;&gt;Bomblab拆弹实验总结&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/49e1fce65e10d0ca2e1284ae6bd28374ce217b71_raw.19vy2xjqt8bk.jpg" alt="Featured image of post Bomblab拆弹实验" /&gt;&lt;h1 id=&#34;bomblab拆弹实验总结&#34;&gt;Bomblab拆弹实验总结&lt;/h1&gt;
 &lt;h2 id=&#34;前期准备&#34;&gt;前期准备&lt;/h2&gt;
 &lt;h3 id=&#34;安装gdb-peda插件&#34;&gt;安装gdb-peda插件&lt;/h3&gt;
 &lt;p&gt;首先使用&lt;code&gt;tar -xvf 42024203.tar&lt;/code&gt;解压压缩包，然后使用 &lt;code&gt;gdb ./work/bomb &lt;/code&gt;指令用&lt;code&gt;gdb&lt;/code&gt;打开二进制可执行文件&lt;code&gt;bomb&lt;/code&gt;&lt;/p&gt;

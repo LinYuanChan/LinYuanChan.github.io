@@ -12,7 +12,7 @@
         <pubDate>Thu, 13 Oct 2022 13:02:24 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/vivado_on_mac/</guid>
-        <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.staticaly.com/gh/LinYuanChan/image-hosting@master/B6B71618-A874-4D9F-ADE5-BD4FEF0E7C01_1_105_c.3yozcmhsx6c0.webp" alt="Featured image of post 如何在mac上优雅地使用Vivado" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;最近计组实验需要频繁使用vivado, 但是Xilinx没有开发macOS版本的, 一般解决方案是使用虚拟机或Bootcamp, 但过于臃肿, 我们可以借助Docker与Xquartz优雅地在macOS上搭建环境。&lt;/p&gt;
 &lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
 &lt;p&gt;Docker想必不用做过多介绍，可谓是虚拟机的一个可行、经济且高效的替代方案，具体可以前往&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -174,7 +174,7 @@
         <pubDate>Tue, 10 May 2022 01:46:51 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/mindspore_install_macos/</guid>
-        <description>&lt;h1 id=&#34;macos下安装华为mindspore框架&#34;&gt;macOS下安装华为Mindspore框架&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/1651426728771.38aibei064i0.webp" alt="Featured image of post macOS下安装华为Mindspore框架" /&gt;&lt;h1 id=&#34;macos下安装华为mindspore框架&#34;&gt;macOS下安装华为Mindspore框架&lt;/h1&gt;
 &lt;p&gt;人工智能课程要求使用&lt;code&gt;Mindspore 1.3.0&lt;/code&gt;完成一些实验, 但是官方没有提供macOS的版本, 我思考后决定使用&lt;code&gt;Docker&lt;/code&gt;搭建相关环境&lt;/p&gt;
 &lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
 &lt;p&gt;前往&lt;a class=&#34;link&#34; href=&#34;https://www.docker.com/get-started/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -276,7 +276,7 @@
         <pubDate>Thu, 30 Sep 2021 21:23:40 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/date_cal_trick/</guid>
-        <description>&lt;h1 id=&#34;相对日期法计算天数差&#34;&gt;相对日期法计算天数差&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/iShot2021-11-01-12.48.14.nn1ghd7eptc.jpg" alt="Featured image of post 相对日期法计算日期差" /&gt;&lt;h1 id=&#34;相对日期法计算天数差&#34;&gt;相对日期法计算天数差&lt;/h1&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;C++大作业编写银行系统中问到了计算日期差的方法, 在此记录一种方便快捷的&lt;strong&gt;相对日期法&lt;/strong&gt;, 同时收录一些日期计算相关的其他细节问题, 具体如下&lt;/p&gt;
 &lt;h2 id=&#34;正文&#34;&gt;正文&lt;/h2&gt;
@@ -440,7 +440,7 @@
         <pubDate>Tue, 07 Sep 2021 20:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/macos%E4%B8%8B%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAblog/</guid>
-        <description>&lt;h2 id=&#34;环境配置&#34;&gt;环境配置&lt;/h2&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/mmexport1624964179296.2mwipxyju8o0.jpg" alt="Featured image of post 使用hexo搭建个人blog" /&gt;&lt;h2 id=&#34;环境配置&#34;&gt;环境配置&lt;/h2&gt;
 &lt;h3 id=&#34;安装git&#34;&gt;安装git&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1292,7 +1292,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/frp/</guid>
-        <description>&lt;h1 id=&#34;frp内网穿透访问远端内网中的设备&#34;&gt;Frp内网穿透访问远端内网中的设备&lt;/h1&gt;
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/1654693717491.23u0bblzb2r.webp" alt="Featured image of post Frp内网穿透访问远端内网中的设备" /&gt;&lt;h1 id=&#34;frp内网穿透访问远端内网中的设备&#34;&gt;Frp内网穿透访问远端内网中的设备&lt;/h1&gt;
 &lt;p&gt;疫情期间需要远程访问一台远端内网中的树莓派, 恰好手边有一台拥有公网ip的华为云ECS服务器~~(不是广告)~~, 因此可以借助&lt;a class=&#34;link&#34; href=&#34;https://github.com/fatedier/frp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;frp&lt;/a&gt;轻松解决上述需求, 步骤如下&lt;/p&gt;
 &lt;h2 id=&#34;配置服务器&#34;&gt;配置服务器&lt;/h2&gt;
