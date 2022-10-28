@@ -11,7 +11,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/probability_theory_and_math_statistics/</guid>
-        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/cd4d3254882211ebb6edd017c2d2eca2.670ko0lq4w80.jpg" alt="Featured image of post 概率论与数理统计自学整理汇总" /&gt;&lt;h1 id=&#34;概率论&#34;&gt;概率论&lt;/h1&gt;
+        <description>&lt;h1 id=&#34;概率论&#34;&gt;概率论&lt;/h1&gt;
 &lt;h2 id=&#34;随机事件与概率&#34;&gt;随机事件与概率&lt;/h2&gt;
 &lt;h3 id=&#34;随机事件&#34;&gt;随机事件&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;随机试验(Experiment)&lt;/strong&gt;	满足&lt;strong&gt;可重复进行&lt;/strong&gt;, &lt;strong&gt;结果明确且不止一个&lt;/strong&gt;, &lt;strong&gt;结果无法预测&lt;/strong&gt;的&lt;strong&gt;试验&lt;/strong&gt;, 记作$E$&lt;/p&gt;
@@ -705,7 +705,7 @@ $$&lt;/p&gt;
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://withcelaina.github.io/posts/discrete-mathematics/</guid>
-        <description>&lt;img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/a6048ba8ec1a4df8ad855ef6f99465eb.1gs9tpsvtw80.png" alt="Featured image of post 离散数学自学整理汇总" /&gt;&lt;blockquote&gt;
+        <description>&lt;blockquote&gt;
 &lt;p&gt;为了考试周不破防, 准备系统地&lt;del&gt;预习&lt;/del&gt;复习一遍&lt;strong&gt;离散数学&lt;/strong&gt;, 参考了&lt;strong&gt;高等教育出版社&lt;/strong&gt;的&lt;strong&gt;离散数学(第2版)&lt;/strong&gt;, 这篇博文用于记录各种知识点以及后续的大作业代码实现及思路&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;数理逻辑&#34;&gt;数理逻辑&lt;/h1&gt;
