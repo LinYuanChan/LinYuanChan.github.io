@@ -55,7 +55,6 @@ a.article-title {
 
 /* 顶部导航栏 */
 #nav a {
-    color: #240303;
     text-shadow: 0.1rem 0.1rem 0.2rem rgb(4 4 4 / 76%);
 }
 
@@ -137,5 +136,92 @@ p {
     object-fit: cover;
 }
 
+#article-container.post-content h1 {
+    padding-left: 0px;
+}
+
+#article-container.post-content h1:before {
+    display: none;
+}
+
+#article-container.post-content h1:hover {
+    padding-left: 0px;
+}
 
 
+#article-container.post-content h2 {
+    padding-left: 0px;
+}
+
+#article-container.post-content h2:before {
+    display: none;
+}
+
+#article-container.post-content h2:hover {
+    padding-left: 0px;
+}
+
+
+#article-container.post-content h3 {
+    padding-left: 0px;
+}
+
+#article-container.post-content h3:before {
+    display: none;
+}
+
+#article-container.post-content h3:hover {
+    padding-left: 0px;
+}
+
+
+#article-container.post-content h4 {
+    padding-left: 0px;
+}
+
+#article-container.post-content h4:before {
+    display: none;
+}
+
+#article-container.post-content h4:hover {
+    padding-left: 0px;
+}
+
+
+#article-container.post-content h5 {
+    padding-left: 0px;
+}
+
+#article-container.post-content h5:before {
+    display: none;
+}
+
+#article-container.post-content h5:hover {
+    padding-left: 0px;
+}
+
+
+#article-container.post-content h6 {
+    padding-left: 0px;
+}
+
+#article-container.post-content h6:before {
+    display: none;
+}
+
+#article-container.post-content h6:hover {
+    padding-left: 0px;
+}
+
+
+/* nav-fixed glass */
+#page-header.nav-fixed #nav {
+    backdrop-filter: blur(45px);
+    -webkit-backdrop-filter: blur(45px);
+    background-color: rgba(255,255,255,0.4);
+}
+
+#page-header.nav-fixed #nav a, #page-header.nav-fixed #nav #site-name, #page-header.nav-fixed #nav #toggle-menu{
+    color: #0b0b0b;
+    text-shadow: rgba(0, 0, 0, 0.664);
+}
