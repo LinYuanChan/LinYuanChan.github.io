@@ -88,16 +88,24 @@ a.article-title {
 /*修改颜色值*/
 /*最近文章卡片*/
 #recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
-    background:#FFFFFB;
-
+    /* background:#FFFFFB; */
+    backdrop-filter: blur(24px);
+    background: #ffffffb8;
+    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%)
   }
   
   #aside-content .card-widget {
-    background: #FFFFFB
+    /* background: #FFFFFB */
+    backdrop-filter: blur(24px);
+    background: #ffffffb8;
+    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%);
   }
   
   #post,#page,#archive,#tag,#category{
-  background: #FFFFFB
+    /* background: #FFFFFB */
+    backdrop-filter: blur(24px);
+    background: #ffffffb8;
+    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%)
   }
   
   /*修改代码下拉箭头颜色  */
@@ -106,7 +114,10 @@ a.article-title {
   }
 
 #sidebar-menus {
-    background: #FFFFFB;
+    /* background: #FFFFFB; */
+    backdrop-filter: blur(24px);
+    background: #ffffffb8;
+    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%)
 }
 
 #recent-posts >.recent-post-item {
@@ -224,4 +235,38 @@ p {
 #page-header.nav-fixed #nav a, #page-header.nav-fixed #nav #site-name, #page-header.nav-fixed #nav #toggle-menu{
     color: #0b0b0b;
     text-shadow: rgba(0, 0, 0, 0.664);
+}
+
+#aside-content .aside-list > .aside-list-item .thumbnail {
+    /* border-radius: 8px; */
+    display: none;
+}
+
+#aside-content .card-info #card-info-btn {
+    border-radius: 20px;
+}
+
+.button--animated:before {
+    /* border-radius: 20px; */
+    display: none;
+}
+
+.avatar-img {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%);
+}
+
+.avatar-img img:hover {
+    transform: none;
+}
+
+#aside-content .card-info .author-info__name {
+    margin-bottom: 0.1rem;
+}
+
+#aside-content .card-info .card-info-social-icons{
+    margin-bottom: 1.5rem;
 }
