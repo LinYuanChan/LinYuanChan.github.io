@@ -6,9 +6,6 @@
     color: #000;
 }
 
-* {
-    transform: translate3d(0, 0, 0);
-}
 
 a.article-title {
     font-family: 'Poppins', sans-serif;
@@ -90,47 +87,12 @@ a.article-title {
 
 
 /*修改颜色值*/
-/*最近文章卡片*/
-#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
-    /* background:#FFFFFB; */
-    backdrop-filter: blur(24px);
-    background: #ffffffb8;
-    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%);
-   
-    -webkit-transform: translateZ(0);
-  }
-  
-  #aside-content .card-widget {
-    /* background: #FFFFFB */
-    backdrop-filter: blur(24px);
-    background: #ffffffb8;
-    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%);
-   
-    -webkit-transform: translateZ(0);
-  }
-  
-  #post,#page,#archive,#tag,#category{
-    /* background: #FFFFFB */
-    backdrop-filter: blur(24px);
-    background: #ffffffb8;
-    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%);
-   
-    -webkit-transform: translateZ(0);
-  }
-  
-  /*修改代码下拉箭头颜色  */
-  .fa-angle-double-down:before {
-      color: white;
-  }
 
-#sidebar-menus {
-    /* background: #FFFFFB; */
-    backdrop-filter: blur(24px);
-    background: #ffffffb8;
-    box-shadow: 0px 2px 24px rgb(0 0 0 / 20%);
-   
-    -webkit-transform: translateZ(0);
+/*修改代码下拉箭头颜色  */
+.fa-angle-double-down:before {
+    color: white;
 }
+
 
 #recent-posts >.recent-post-item {
     height: 18em;
@@ -242,8 +204,7 @@ p {
     backdrop-filter: blur(45px);
     -webkit-backdrop-filter: blur(45px);
     background-color: rgba(255,255,255,0.4);
-   
-    -webkit-transform: translateZ(0);
+
 }
 
 #page-header.nav-fixed #nav a, #page-header.nav-fixed #nav #site-name, #page-header.nav-fixed #nav #toggle-menu{
@@ -285,14 +246,4 @@ p {
     margin-bottom: 1.5rem;
 }
 
-/* gray */
-html {
-    filter: grayscale(85%) saturate(80%);
-    -webkit-filter: grayscale(85%) saturate(80%);
-    -moz-filter: grayscale(85%) saturate(80%);
-    -ms-filter: grayscale(85%) saturate(80%);
-    -o-filter: grayscale(85%) saturate(80%);
-    filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");
-    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=.85);
-    -webkit-filter: grayscale(.85) saturate(.8);
-}
+
