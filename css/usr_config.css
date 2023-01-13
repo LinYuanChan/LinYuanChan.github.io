@@ -107,8 +107,13 @@ p {
     color: #ededed;
 }
 
+#article-container .highlight-tools .code-lang {
+    font-size: 1em;
+}
+
 .avatar-img img {
     height: 100%;
+    width: 100%;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -119,6 +124,11 @@ p {
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.55, 0.99);
     transition-delay: 0s;
     object-fit: cover;
+}
+
+.avatar-img :hover {
+    height: 105%;
+    width: 105%;
 }
 
 #article-container.post-content h1 {

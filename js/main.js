@@ -342,6 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let initTop = 0
     let isChatShow = true
     const $header = document.getElementById('page-header')
+    $header.classList.add('nav-fixed', 'nav-visible');
     const isChatBtnHide = typeof chatBtnHide === 'function'
     const isChatBtnShow = typeof chatBtnShow === 'function'
 
@@ -351,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const isDown = scrollDirection(currentTop)
         if (currentTop > 56) {
           if (isDown) {
-            if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
+            // if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
             if (isChatBtnShow && isChatShow === true) {
               chatBtnHide()
               isChatShow = false
@@ -369,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         } else {
           if (currentTop === 0) {
-            $header.classList.remove('nav-fixed', 'nav-visible')
+            // $header.classList.remove('nav-fixed', 'nav-visible')
           }
           $rightside.style.cssText = "opacity: ''; transform: ''"
         }
